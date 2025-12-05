@@ -1,0 +1,466 @@
+// Sample historical data - this would grow significantly over time
+// Data should be sourced from multiple perspectives to avoid bias
+
+import { Power, Person, HistoricalEvent, Connection, Policy } from '@/types';
+
+export const powers: Power[] = [
+  {
+    id: 'roman-empire',
+    name: 'Roman Empire',
+    type: 'empire',
+    color: '#8B0000',
+    timeRange: { start: -27, end: 476 },
+    capital: { lat: 41.9028, lng: 12.4964 },
+    description: 'One of the largest empires in ancient history, originating from the city of Rome.',
+    tags: ['ancient', 'mediterranean', 'republic-turned-empire'],
+  },
+  {
+    id: 'british-empire',
+    name: 'British Empire',
+    type: 'empire',
+    color: '#C41E3A',
+    timeRange: { start: 1583, end: 1997 },
+    capital: { lat: 51.5074, lng: -0.1278 },
+    description: 'The largest empire in history at its peak, controlling territories across every continent.',
+    tags: ['colonial', 'maritime', 'industrial'],
+  },
+  {
+    id: 'usa',
+    name: 'United States of America',
+    type: 'nation',
+    color: '#3C3B6E',
+    timeRange: { start: 1776, end: null },
+    capital: { lat: 38.9072, lng: -77.0369 },
+    description: 'Federal republic founded on principles of democracy and individual liberty.',
+    tags: ['democracy', 'superpower', 'federal'],
+  },
+  {
+    id: 'ussr',
+    name: 'Soviet Union',
+    type: 'nation',
+    color: '#CC0000',
+    timeRange: { start: 1922, end: 1991 },
+    capital: { lat: 55.7558, lng: 37.6173 },
+    description: 'Socialist state spanning much of Eurasia, one pole of the Cold War.',
+    tags: ['communist', 'superpower', 'cold-war'],
+  },
+  {
+    id: 'prc',
+    name: "People's Republic of China",
+    type: 'nation',
+    color: '#DE2910',
+    timeRange: { start: 1949, end: null },
+    capital: { lat: 39.9042, lng: 116.4074 },
+    description: 'Most populous country, governed by the Communist Party of China.',
+    tags: ['communist', 'superpower', 'ancient-civilization'],
+  },
+  {
+    id: 'mongol-empire',
+    name: 'Mongol Empire',
+    type: 'empire',
+    color: '#4A4A4A',
+    timeRange: { start: 1206, end: 1368 },
+    capital: { lat: 47.9184, lng: 106.9177 },
+    description: 'Largest contiguous land empire in history, founded by Genghis Khan.',
+    tags: ['nomadic', 'conquest', 'trade-routes'],
+  },
+  {
+    id: 'ottoman-empire',
+    name: 'Ottoman Empire',
+    type: 'empire',
+    color: '#006400',
+    timeRange: { start: 1299, end: 1922 },
+    capital: { lat: 41.0082, lng: 28.9784 },
+    description: 'Multi-ethnic empire controlling Southeast Europe, Western Asia, and North Africa.',
+    tags: ['islamic', 'multi-ethnic', 'caliphate'],
+  },
+  {
+    id: 'nazi-germany',
+    name: 'Nazi Germany',
+    type: 'nation',
+    color: '#1C1C1C',
+    timeRange: { start: 1933, end: 1945 },
+    capital: { lat: 52.5200, lng: 13.4050 },
+    description: 'Totalitarian dictatorship under Adolf Hitler, responsible for WWII in Europe and the Holocaust.',
+    tags: ['fascist', 'totalitarian', 'wwii'],
+  },
+  {
+    id: 'un',
+    name: 'United Nations',
+    type: 'organization',
+    color: '#009EDB',
+    timeRange: { start: 1945, end: null },
+    capital: { lat: 40.7489, lng: -73.9680 },
+    description: 'Intergovernmental organization aimed at maintaining international peace and security.',
+    tags: ['international', 'peacekeeping', 'diplomacy'],
+  },
+  {
+    id: 'nato',
+    name: 'NATO',
+    type: 'alliance',
+    color: '#004990',
+    timeRange: { start: 1949, end: null },
+    capital: { lat: 50.8676, lng: 4.3786 },
+    description: 'North Atlantic Treaty Organization, military alliance of North American and European countries.',
+    tags: ['military', 'alliance', 'cold-war'],
+  },
+  {
+    id: 'east-india-company',
+    name: 'British East India Company',
+    type: 'corporation',
+    color: '#C41E3A',
+    timeRange: { start: 1600, end: 1874 },
+    capital: { lat: 51.5074, lng: -0.1278 },
+    parentPower: 'british-empire',
+    description: 'Trading company that effectively ruled large parts of the Indian subcontinent.',
+    tags: ['colonial', 'trade', 'corporate-rule'],
+  },
+];
+
+export const people: Person[] = [
+  {
+    id: 'julius-caesar',
+    name: 'Julius Caesar',
+    birth: -100,
+    death: -44,
+    birthPlace: { lat: 41.9028, lng: 12.4964 },
+    roles: [
+      { title: 'Dictator', powerId: 'roman-empire', timeRange: { start: -49, end: -44 } },
+    ],
+    affiliations: ['roman-empire'],
+    description: 'Roman military general and statesman who played a critical role in transforming the Roman Republic into the Roman Empire.',
+    tags: ['military', 'politics', 'assassination'],
+  },
+  {
+    id: 'genghis-khan',
+    name: 'Genghis Khan',
+    birth: 1162,
+    death: 1227,
+    birthPlace: { lat: 48.0, lng: 108.0 },
+    roles: [
+      { title: 'Great Khan', powerId: 'mongol-empire', timeRange: { start: 1206, end: 1227 } },
+    ],
+    affiliations: ['mongol-empire'],
+    description: 'Founder and first Great Khan of the Mongol Empire, which became the largest contiguous empire in history.',
+    tags: ['conqueror', 'founder', 'nomadic'],
+  },
+  {
+    id: 'abraham-lincoln',
+    name: 'Abraham Lincoln',
+    birth: 1809,
+    death: 1865,
+    birthPlace: { lat: 37.5, lng: -85.7 },
+    roles: [
+      { title: '16th President', powerId: 'usa', timeRange: { start: 1861, end: 1865 } },
+    ],
+    affiliations: ['usa'],
+    description: 'Led the United States through the Civil War, preserved the Union, and abolished slavery.',
+    tags: ['president', 'civil-war', 'emancipation', 'assassination'],
+  },
+  {
+    id: 'vladimir-lenin',
+    name: 'Vladimir Lenin',
+    birth: 1870,
+    death: 1924,
+    birthPlace: { lat: 54.3167, lng: 48.3667 },
+    roles: [
+      { title: 'Chairman of the Council of People\'s Commissars', powerId: 'ussr', timeRange: { start: 1917, end: 1924 } },
+    ],
+    affiliations: ['ussr'],
+    description: 'Revolutionary who led the Bolshevik Revolution and founded the Soviet state.',
+    tags: ['revolutionary', 'communist', 'founder'],
+  },
+  {
+    id: 'adolf-hitler',
+    name: 'Adolf Hitler',
+    birth: 1889,
+    death: 1945,
+    birthPlace: { lat: 48.2564, lng: 13.0400 },
+    roles: [
+      { title: 'Führer', powerId: 'nazi-germany', timeRange: { start: 1934, end: 1945 } },
+    ],
+    affiliations: ['nazi-germany'],
+    description: 'Dictator of Nazi Germany who initiated World War II in Europe and orchestrated the Holocaust.',
+    tags: ['dictator', 'fascist', 'wwii', 'genocide'],
+  },
+  {
+    id: 'mao-zedong',
+    name: 'Mao Zedong',
+    birth: 1893,
+    death: 1976,
+    birthPlace: { lat: 27.9167, lng: 112.9167 },
+    roles: [
+      { title: 'Chairman', powerId: 'prc', timeRange: { start: 1949, end: 1976 } },
+    ],
+    affiliations: ['prc'],
+    description: 'Founder of the People\'s Republic of China, led the Chinese Communist Revolution.',
+    tags: ['revolutionary', 'communist', 'founder'],
+  },
+  {
+    id: 'winston-churchill',
+    name: 'Winston Churchill',
+    birth: 1874,
+    death: 1965,
+    birthPlace: { lat: 51.8, lng: -1.3 },
+    roles: [
+      { title: 'Prime Minister', powerId: 'british-empire', timeRange: { start: 1940, end: 1945 } },
+      { title: 'Prime Minister', powerId: 'british-empire', timeRange: { start: 1951, end: 1955 } },
+    ],
+    affiliations: ['british-empire'],
+    description: 'British statesman who served as Prime Minister during World War II.',
+    tags: ['wwii', 'politician', 'wartime-leader'],
+  },
+];
+
+export const events: HistoricalEvent[] = [
+  {
+    id: 'fall-of-rome',
+    name: 'Fall of the Western Roman Empire',
+    type: 'collapse',
+    date: 476,
+    location: { lat: 41.9028, lng: 12.4964 },
+    radius: 2000,
+    participants: ['roman-empire'],
+    keyFigures: [],
+    description: 'The deposition of Romulus Augustulus marked the end of the Western Roman Empire.',
+    impact: 'transformative',
+    tags: ['ancient', 'collapse', 'europe'],
+  },
+  {
+    id: 'american-revolution',
+    name: 'American Revolutionary War',
+    type: 'revolution',
+    date: 1775,
+    endDate: 1783,
+    location: { lat: 40.7128, lng: -74.0060 },
+    radius: 1500,
+    participants: ['british-empire', 'usa'],
+    keyFigures: [],
+    description: 'War of independence that established the United States as a sovereign nation.',
+    impact: 'transformative',
+    casualties: 50000,
+    tags: ['independence', 'revolution', 'colonial'],
+  },
+  {
+    id: 'french-revolution',
+    name: 'French Revolution',
+    type: 'revolution',
+    date: 1789,
+    endDate: 1799,
+    location: { lat: 48.8566, lng: 2.3522 },
+    radius: 500,
+    participants: [],
+    keyFigures: [],
+    description: 'Period of radical political and societal change in France that overthrew the monarchy.',
+    impact: 'transformative',
+    casualties: 40000,
+    tags: ['revolution', 'democracy', 'monarchy'],
+  },
+  {
+    id: 'wwi',
+    name: 'World War I',
+    type: 'war',
+    date: 1914,
+    endDate: 1918,
+    location: { lat: 49.0, lng: 2.0 },
+    radius: 5000,
+    participants: ['british-empire', 'ottoman-empire'],
+    keyFigures: [],
+    description: 'Global war originating in Europe involving major world powers.',
+    impact: 'transformative',
+    casualties: 20000000,
+    tags: ['world-war', 'trench-warfare', 'empires'],
+  },
+  {
+    id: 'russian-revolution',
+    name: 'Russian Revolution',
+    type: 'revolution',
+    date: 1917,
+    location: { lat: 59.9311, lng: 30.3609 },
+    radius: 1000,
+    participants: ['ussr'],
+    keyFigures: ['vladimir-lenin'],
+    description: 'Revolution that overthrew the Russian monarchy and led to the creation of the Soviet Union.',
+    impact: 'transformative',
+    tags: ['revolution', 'communist', 'monarchy'],
+  },
+  {
+    id: 'wwii',
+    name: 'World War II',
+    type: 'war',
+    date: 1939,
+    endDate: 1945,
+    location: { lat: 52.5200, lng: 13.4050 },
+    radius: 10000,
+    participants: ['nazi-germany', 'ussr', 'usa', 'british-empire'],
+    keyFigures: ['adolf-hitler', 'winston-churchill'],
+    description: 'Deadliest conflict in human history, involving the majority of world\'s nations.',
+    impact: 'transformative',
+    casualties: 70000000,
+    tags: ['world-war', 'holocaust', 'atomic'],
+  },
+  {
+    id: 'cold-war-start',
+    name: 'Start of the Cold War',
+    type: 'policy',
+    date: 1947,
+    location: { lat: 38.9072, lng: -77.0369 },
+    radius: 10000,
+    participants: ['usa', 'ussr'],
+    keyFigures: [],
+    description: 'Beginning of geopolitical tension between the United States and the Soviet Union.',
+    impact: 'transformative',
+    tags: ['cold-war', 'nuclear', 'ideology'],
+  },
+  {
+    id: 'chinese-revolution',
+    name: 'Chinese Communist Revolution',
+    type: 'revolution',
+    date: 1949,
+    location: { lat: 39.9042, lng: 116.4074 },
+    radius: 2000,
+    participants: ['prc'],
+    keyFigures: ['mao-zedong'],
+    description: 'Revolution that established the People\'s Republic of China.',
+    impact: 'transformative',
+    tags: ['revolution', 'communist', 'civil-war'],
+  },
+  {
+    id: 'fall-of-ussr',
+    name: 'Dissolution of the Soviet Union',
+    type: 'collapse',
+    date: 1991,
+    location: { lat: 55.7558, lng: 37.6173 },
+    radius: 3000,
+    participants: ['ussr'],
+    keyFigures: [],
+    description: 'The end of the Soviet Union, marking the end of the Cold War.',
+    impact: 'transformative',
+    tags: ['collapse', 'cold-war', 'democracy'],
+  },
+];
+
+export const connections: Connection[] = [
+  {
+    id: 'cold-war-conflict',
+    type: 'conflict',
+    sourceId: 'usa',
+    targetId: 'ussr',
+    sourceType: 'power',
+    targetType: 'power',
+    timeRange: { start: 1947, end: 1991 },
+    strength: 0.9,
+    description: 'Ideological, political, and military rivalry between superpowers.',
+  },
+  {
+    id: 'nato-us-alliance',
+    type: 'alliance',
+    sourceId: 'usa',
+    targetId: 'nato',
+    sourceType: 'power',
+    targetType: 'power',
+    timeRange: { start: 1949, end: null },
+    strength: 1.0,
+    description: 'US founding membership and leadership in NATO.',
+  },
+  {
+    id: 'british-eic',
+    type: 'funding',
+    sourceId: 'british-empire',
+    targetId: 'east-india-company',
+    sourceType: 'power',
+    targetType: 'power',
+    timeRange: { start: 1600, end: 1874 },
+    strength: 0.95,
+    description: 'Crown charter and backing of the East India Company.',
+  },
+];
+
+export const policies: Policy[] = [
+  {
+    id: 'magna-carta',
+    name: 'Magna Carta',
+    type: 'constitutional',
+    powerId: 'british-empire',
+    enacted: 1215,
+    description: 'Charter limiting royal authority and establishing certain legal protections.',
+    effects: ['Limited royal power', 'Established rule of law principles'],
+    sponsors: [],
+    tags: ['constitutional', 'rights', 'medieval'],
+  },
+  {
+    id: 'us-constitution',
+    name: 'United States Constitution',
+    type: 'constitutional',
+    powerId: 'usa',
+    enacted: 1788,
+    description: 'Supreme law of the United States establishing the framework of government.',
+    effects: ['Established federal government', 'Bill of Rights', 'Separation of powers'],
+    sponsors: [],
+    tags: ['constitutional', 'democracy', 'founding'],
+  },
+  {
+    id: 'emancipation-proclamation',
+    name: 'Emancipation Proclamation',
+    type: 'executive_order',
+    powerId: 'usa',
+    enacted: 1863,
+    description: 'Executive order freeing slaves in Confederate states during the Civil War.',
+    effects: ['Freed slaves in rebel states', 'Changed war aims to include abolition'],
+    sponsors: ['abraham-lincoln'],
+    tags: ['slavery', 'civil-war', 'freedom'],
+  },
+  {
+    id: 'marshall-plan',
+    name: 'Marshall Plan',
+    type: 'economic',
+    powerId: 'usa',
+    enacted: 1948,
+    repealed: 1952,
+    description: 'American initiative providing aid to Western Europe for post-WWII reconstruction.',
+    effects: ['Rebuilt European economies', 'Strengthened Western alliance against USSR'],
+    sponsors: [],
+    tags: ['economic', 'cold-war', 'reconstruction'],
+  },
+];
+
+// Helper to get data for a specific year
+export function getWorldStateForYear(year: number): {
+  powers: Power[];
+  events: HistoricalEvent[];
+  people: Person[];
+  connections: Connection[];
+  policies: Policy[];
+} {
+  return {
+    powers: powers.filter(p => 
+      p.timeRange.start <= year && 
+      (p.timeRange.end === null || p.timeRange.end >= year)
+    ),
+    events: events.filter(e => {
+      const endYear = e.endDate ?? e.date;
+      return e.date <= year && endYear >= year - 10; // Show events from last 10 years
+    }),
+    people: people.filter(p => 
+      p.birth <= year && 
+      (p.death === null || p.death >= year)
+    ),
+    connections: connections.filter(c =>
+      c.timeRange.start <= year &&
+      (c.timeRange.end === null || c.timeRange.end >= year)
+    ),
+    policies: policies.filter(p =>
+      p.enacted <= year &&
+      (p.repealed === undefined || p.repealed >= year)
+    ),
+  };
+}
+
+// All available tags for filtering
+export const allTags = [
+  'ancient', 'medieval', 'modern', 'contemporary',
+  'war', 'revolution', 'democracy', 'communist', 'fascist',
+  'colonial', 'independence', 'superpower', 'alliance',
+  'constitutional', 'economic', 'military', 'diplomatic',
+];
+
