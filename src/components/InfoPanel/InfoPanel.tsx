@@ -3,6 +3,14 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useGameStore } from '@/store/useGameStore';
 import { powers, people, events, policies, connections } from '@/data/historical-data';
+import type { Power, Person, HistoricalEvent, Policy } from '@/types';
+
+type EntityData = 
+  | { type: 'power'; data: Power | undefined }
+  | { type: 'person'; data: Person | undefined }
+  | { type: 'event'; data: HistoricalEvent | undefined }
+  | { type: 'policy'; data: Policy | undefined }
+  | null;
 
 export default function InfoPanel() {
   const { 
@@ -14,18 +22,18 @@ export default function InfoPanel() {
     setYear,
   } = useGameStore();
 
-  const getEntityData = () => {
+  const getEntityData = (): EntityData => {
     if (!selectedEntity) return null;
     
     switch (selectedEntity.type) {
       case 'power':
-        return { type: 'power', data: powers.find(p => p.id === selectedEntity.id) };
+        return { type: 'power' as const, data: powers.find(p => p.id === selectedEntity.id) };
       case 'person':
-        return { type: 'person', data: people.find(p => p.id === selectedEntity.id) };
+        return { type: 'person' as const, data: people.find(p => p.id === selectedEntity.id) };
       case 'event':
-        return { type: 'event', data: events.find(e => e.id === selectedEntity.id) };
+        return { type: 'event' as const, data: events.find(e => e.id === selectedEntity.id) };
       case 'policy':
-        return { type: 'policy', data: policies.find(p => p.id === selectedEntity.id) };
+        return { type: 'policy' as const, data: policies.find(p => p.id === selectedEntity.id) };
       default:
         return null;
     }
@@ -39,7 +47,7 @@ export default function InfoPanel() {
   };
 
   const getRelatedEntities = () => {
-    if (!selectedEntity) return { powers: [], people: [], events: [] };
+    if (!selectedEntity) return { relatedPowers: [], relatedPeople: [], relatedEvents: [] };
     
     const relatedPowers = connections
       .filter(c => 
