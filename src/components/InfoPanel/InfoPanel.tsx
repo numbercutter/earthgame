@@ -1,411 +1,672 @@
 'use client';
 
-import { motion, AnimatePresence } from 'motion/react';
+import { useState, useEffect, useCallback } from 'react';
 import { useGameStore } from '@/store/useGameStore';
-import { powers, people, events, policies, connections } from '@/data/historical-data';
-import type { Power, Person, HistoricalEvent, Policy } from '@/types';
+import { powers, people, events, connections } from '@/data/historical-data';
 
-type EntityData = 
-  | { type: 'power'; data: Power | undefined }
-  | { type: 'person'; data: Person | undefined }
-  | { type: 'event'; data: HistoricalEvent | undefined }
-  | { type: 'policy'; data: Policy | undefined }
-  | null;
+type EntityRef = { id: string; type: 'power' | 'person' | 'event'; name: string };
 
 export default function InfoPanel() {
-  const { 
-    selectedEntity, 
-    selectEntity, 
-    showInfoPanel,
-    toggleInfoPanel,
-    currentYear,
-    setYear,
-  } = useGameStore();
+  const { selectedEntity, selectEntity, setYear } = useGameStore();
+  const [history, setHistory] = useState<EntityRef[]>([]);
 
-  const getEntityData = (): EntityData => {
+  const formatYear = (year: number) => year < 0 ? `${Math.abs(year)} BCE` : `${year} CE`;
+
+  const getEntityName = (id: string, type: string): string => {
+    if (type === 'power') return powers.find(p => p.id === id)?.name || 'Unknown';
+    if (type === 'person') return people.find(p => p.id === id)?.name || 'Unknown';
+    if (type === 'event') return events.find(e => e.id === id)?.name || 'Unknown';
+    return 'Unknown';
+  };
+
+  const getEntityData = () => {
     if (!selectedEntity) return null;
-    
     switch (selectedEntity.type) {
-      case 'power':
-        return { type: 'power' as const, data: powers.find(p => p.id === selectedEntity.id) };
-      case 'person':
-        return { type: 'person' as const, data: people.find(p => p.id === selectedEntity.id) };
-      case 'event':
-        return { type: 'event' as const, data: events.find(e => e.id === selectedEntity.id) };
-      case 'policy':
-        return { type: 'policy' as const, data: policies.find(p => p.id === selectedEntity.id) };
-      default:
-        return null;
+      case 'power': return { type: 'power' as const, data: powers.find(p => p.id === selectedEntity.id) };
+      case 'person': return { type: 'person' as const, data: people.find(p => p.id === selectedEntity.id) };
+      case 'event': return { type: 'event' as const, data: events.find(e => e.id === selectedEntity.id) };
+      default: return null;
     }
   };
 
   const entity = getEntityData();
 
-  const formatYear = (year: number) => {
-    if (year < 0) return `${Math.abs(year)} BCE`;
-    return `${year} CE`;
-  };
+  // Navigate to a new entity (adds to history)
+  const navigateTo = useCallback((ref: { id: string; type: 'power' | 'person' | 'event' }) => {
+    if (selectedEntity) {
+      const currentName = getEntityName(selectedEntity.id, selectedEntity.type);
+      setHistory(prev => [...prev, { ...selectedEntity, name: currentName }]);
+    }
+    selectEntity(ref);
+  }, [selectedEntity, selectEntity]);
+
+  // Navigate back to a specific point in history
+  const navigateToHistoryIndex = useCallback((index: number) => {
+    const target = history[index];
+    setHistory(prev => prev.slice(0, index));
+    selectEntity({ id: target.id, type: target.type });
+  }, [history, selectEntity]);
+
+  // Clear selection and history
+  const clearAll = useCallback(() => {
+    setHistory([]);
+    selectEntity(null);
+  }, [selectEntity]);
+
+  // Reset history when selection is cleared externally
+  useEffect(() => {
+    if (!selectedEntity) {
+      setHistory([]);
+    }
+  }, [selectedEntity]);
 
   const getRelatedEntities = () => {
     if (!selectedEntity) return { relatedPowers: [], relatedPeople: [], relatedEvents: [] };
     
     const relatedPowers = connections
-      .filter(c => 
-        (c.sourceId === selectedEntity.id || c.targetId === selectedEntity.id) &&
-        c.sourceType === 'power' && c.targetType === 'power'
-      )
-      .map(c => {
-        const otherId = c.sourceId === selectedEntity.id ? c.targetId : c.sourceId;
-        return { connection: c, power: powers.find(p => p.id === otherId) };
-      })
+      .filter(c => (c.sourceId === selectedEntity.id || c.targetId === selectedEntity.id) && c.sourceType === 'power' && c.targetType === 'power')
+      .map(c => ({ connection: c, power: powers.find(p => p.id === (c.sourceId === selectedEntity.id ? c.targetId : c.sourceId)) }))
       .filter(r => r.power);
 
-    const relatedPeople = people.filter(p => 
-      p.affiliations.includes(selectedEntity.id)
-    );
-
-    const relatedEvents = events.filter(e =>
-      e.participants.includes(selectedEntity.id) ||
-      e.keyFigures.includes(selectedEntity.id)
-    );
+    const relatedPeople = people.filter(p => p.affiliations.includes(selectedEntity.id));
+    const relatedEvents = events.filter(e => e.participants.includes(selectedEntity.id) || e.keyFigures.includes(selectedEntity.id));
 
     return { relatedPowers, relatedPeople, relatedEvents };
   };
 
   const related = getRelatedEntities();
 
-  return (
-    <AnimatePresence>
-      {showInfoPanel && (
-        <motion.div
-          className="info-panel"
-          initial={{ x: 400, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: 400, opacity: 0 }}
-          transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+  const impactColors: Record<string, { bg: string; text: string }> = {
+    minor: { bg: 'rgba(160, 160, 160, 0.12)', text: 'var(--theme-text-tertiary)' },
+    moderate: { bg: 'rgba(99, 102, 241, 0.12)', text: '#818cf8' },
+    major: { bg: 'rgba(251, 146, 60, 0.12)', text: '#fb923c' },
+    transformative: { bg: 'rgba(168, 85, 247, 0.12)', text: '#a855f7' },
+  };
+
+  // Breadcrumb component
+  const Breadcrumbs = () => {
+    if (history.length === 0 && !entity) return null;
+    
+    return (
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: '6px',
+        marginBottom: '16px',
+        flexWrap: 'wrap',
+        fontSize: '12px'
+      }}>
+        <button
+          onClick={clearAll}
+          style={{
+            background: 'none',
+            border: 'none',
+            padding: '4px 8px',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            color: 'var(--theme-text-tertiary)',
+            fontSize: '12px',
+            transition: 'all 100ms ease'
+          }}
+          onMouseEnter={e => e.currentTarget.style.background = 'var(--theme-bg-tertiary)'}
+          onMouseLeave={e => e.currentTarget.style.background = 'none'}
         >
-          <button 
-            className="info-panel-close"
-            onClick={toggleInfoPanel}
-          >
-            ×
-          </button>
+          Home
+        </button>
+        
+        {history.map((item, index) => (
+          <span key={`${item.id}-${index}`} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span style={{ color: 'var(--theme-text-tertiary)' }}>/</span>
+            <button
+              onClick={() => navigateToHistoryIndex(index)}
+              style={{
+                background: 'none',
+                border: 'none',
+                padding: '4px 8px',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                color: 'var(--theme-text-secondary)',
+                fontSize: '12px',
+                maxWidth: '120px',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+                transition: 'all 100ms ease'
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = 'var(--theme-bg-tertiary)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'none'}
+              title={item.name}
+            >
+              {item.name}
+            </button>
+          </span>
+        ))}
+        
+        {entity && (
+          <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span style={{ color: 'var(--theme-text-tertiary)' }}>/</span>
+            <span style={{ 
+              padding: '4px 8px',
+              borderRadius: '4px',
+              background: 'var(--theme-bg-tertiary)',
+              color: 'var(--theme-text-primary)',
+              fontWeight: 500,
+              fontSize: '12px',
+              maxWidth: '120px',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap'
+            }}>
+              {entity.data?.name || 'Current'}
+            </span>
+          </span>
+        )}
+      </div>
+    );
+  };
 
-          {!entity ? (
-            <div className="info-panel-empty">
-              <div className="empty-icon">🌍</div>
-              <h3>Select an Entity</h3>
-              <p>Click on any point on the globe to explore powers, events, and historical figures.</p>
-              
-              <div className="quick-explore">
-                <h4>Quick Explore</h4>
-                <div className="explore-grid">
-                  {powers.slice(0, 6).map(power => (
-                    <button
-                      key={power.id}
-                      className="explore-btn"
-                      style={{ borderColor: power.color }}
-                      onClick={() => selectEntity({ id: power.id, type: 'power' })}
-                    >
-                      {power.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
+  // Empty State
+  if (!entity) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '32px 0' }}>
+        <div 
+          style={{ 
+            width: '56px',
+            height: '56px',
+            borderRadius: '12px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '24px',
+            fontWeight: 700,
+            marginBottom: '16px',
+            background: 'var(--theme-bg-tertiary)',
+            color: 'var(--theme-accent-primary)'
+          }}
+        >
+          E
+        </div>
+        <h3 style={{ 
+          fontSize: '16px', 
+          fontWeight: 600,
+          marginBottom: '8px',
+          color: 'var(--theme-text-primary)'
+        }}>
+          Select an Entity
+        </h3>
+        <p style={{ 
+          fontSize: '13px', 
+          maxWidth: '220px',
+          marginBottom: '24px',
+          color: 'var(--theme-text-tertiary)',
+          lineHeight: '1.5'
+        }}>
+          Click on any point on the globe to explore powers, events, and historical figures.
+        </p>
+        
+        <div style={{ width: '100%' }}>
+          <h4 className="section-header" style={{ textAlign: 'left' }}>Quick Explore</h4>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+            {powers.slice(0, 6).map(power => (
+              <button
+                key={power.id}
+                onClick={() => navigateTo({ id: power.id, type: 'power' })}
+                className="tactile-card clickable"
+                style={{ 
+                  textAlign: 'left',
+                  borderLeft: `3px solid ${power.color}`,
+                  cursor: 'pointer'
+                }}
+              >
+                <span style={{ fontSize: '12px', fontWeight: 500, color: 'var(--theme-text-secondary)' }}>
+                  {power.name}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Power View
+  if (entity.type === 'power' && entity.data) {
+    const data = entity.data;
+    return (
+      <div>
+        <Breadcrumbs />
+
+        {/* Header */}
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'flex-start', 
+          gap: '12px',
+          paddingBottom: '16px',
+          marginBottom: '16px',
+          borderBottom: '1px solid var(--theme-border-tertiary)'
+        }}>
+          <div style={{ 
+            width: '12px', 
+            height: '12px', 
+            borderRadius: '50%', 
+            marginTop: '6px',
+            backgroundColor: data.color,
+            flexShrink: 0
+          }} />
+          <div>
+            <span className="badge" style={{ marginBottom: '6px' }}>{data.type}</span>
+            <h2 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--theme-text-primary)', margin: 0 }}>
+              {data.name}
+            </h2>
+          </div>
+        </div>
+
+        {/* Timeline Bar */}
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '10px',
+          fontSize: '12px',
+          color: 'var(--theme-text-tertiary)',
+          marginBottom: '16px'
+        }}>
+          <span>{formatYear(data.timeRange.start)}</span>
+          <div style={{ 
+            flex: 1, 
+            height: '4px', 
+            borderRadius: '2px',
+            background: 'var(--theme-bg-tertiary)',
+            overflow: 'hidden'
+          }}>
+            <div style={{ 
+              height: '100%', 
+              borderRadius: '2px',
+              backgroundColor: data.color, 
+              width: data.timeRange.end ? `${Math.min(100, ((data.timeRange.end - data.timeRange.start) / 2000) * 100)}%` : '100%'
+            }} />
+          </div>
+          <span>{data.timeRange.end ? formatYear(data.timeRange.end) : 'Present'}</span>
+        </div>
+
+        {/* Description */}
+        <p style={{ 
+          fontSize: '13px', 
+          lineHeight: '1.6',
+          color: 'var(--theme-text-secondary)',
+          marginBottom: '16px'
+        }}>
+          {data.description}
+        </p>
+
+        {/* Tags */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
+          {data.tags.map(tag => (
+            <span key={tag} className="chip" style={{ cursor: 'default' }}>{tag}</span>
+          ))}
+        </div>
+
+        {/* Connections */}
+        {related.relatedPowers.length > 0 && (
+          <div style={{ marginBottom: '20px' }}>
+            <h4 className="section-header">Connections</h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {related.relatedPowers.map(({ connection, power }) => (
+                <button
+                  key={connection.id}
+                  onClick={() => navigateTo({ id: power!.id, type: 'power' })}
+                  className="list-item"
+                  style={{ border: 'none', background: 'none', textAlign: 'left', width: '100%' }}
+                >
+                  <span className="badge" style={{ fontSize: '10px' }}>{connection.type}</span>
+                  <span style={{ fontSize: '13px', color: 'var(--theme-text-secondary)' }}>{power!.name}</span>
+                </button>
+              ))}
             </div>
-          ) : entity.type === 'power' && entity.data ? (
-            <div className="entity-content">
-              <div className="entity-header" style={{ borderColor: entity.data.color }}>
-                <span 
-                  className="entity-color-dot"
-                  style={{ backgroundColor: entity.data.color }}
-                />
-                <div>
-                  <span className="entity-type">{entity.data.type}</span>
-                  <h2>{entity.data.name}</h2>
-                </div>
-              </div>
+          </div>
+        )}
 
-              <div className="entity-timeline">
-                <span>{formatYear(entity.data.timeRange.start)}</span>
-                <div className="timeline-bar">
-                  <div 
-                    className="timeline-fill"
-                    style={{ 
-                      backgroundColor: entity.data.color,
-                      width: entity.data.timeRange.end 
-                        ? `${((entity.data.timeRange.end - entity.data.timeRange.start) / 5000) * 100}%`
-                        : '100%'
-                    }}
-                  />
-                </div>
-                <span>{entity.data.timeRange.end ? formatYear(entity.data.timeRange.end) : 'Present'}</span>
-              </div>
+        {/* Key Figures */}
+        {related.relatedPeople.length > 0 && (
+          <div style={{ marginBottom: '20px' }}>
+            <h4 className="section-header">Key Figures</h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {related.relatedPeople.map(person => (
+                <button
+                  key={person.id}
+                  onClick={() => navigateTo({ id: person.id, type: 'person' })}
+                  className="list-item"
+                  style={{ border: 'none', background: 'none', textAlign: 'left', width: '100%', justifyContent: 'space-between' }}
+                >
+                  <span style={{ fontSize: '13px', color: 'var(--theme-text-secondary)' }}>{person.name}</span>
+                  <span style={{ fontSize: '11px', color: 'var(--theme-text-tertiary)' }}>{formatYear(person.birth)}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
-              <p className="entity-description">{entity.data.description}</p>
-
-              <div className="entity-tags">
-                {entity.data.tags.map(tag => (
-                  <span key={tag} className="tag">{tag}</span>
-                ))}
-              </div>
-
-              {entity.data.parentPower && (
-                <div className="entity-section">
-                  <h4>Funded By / Parent</h4>
-                  <button 
-                    className="related-link"
-                    onClick={() => selectEntity({ id: entity.data!.parentPower!, type: 'power' })}
+        {/* Major Events */}
+        {related.relatedEvents.length > 0 && (
+          <div style={{ marginBottom: '20px' }}>
+            <h4 className="section-header">Major Events</h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {related.relatedEvents.map(event => {
+                const colors = impactColors[event.impact];
+                return (
+                  <button
+                    key={event.id}
+                    onClick={() => { navigateTo({ id: event.id, type: 'event' }); setYear(event.date); }}
+                    className="list-item"
+                    style={{ border: 'none', background: 'none', textAlign: 'left', width: '100%' }}
                   >
-                    {powers.find(p => p.id === entity.data!.parentPower)?.name}
+                    <span className="badge" style={{ fontSize: '10px', background: colors.bg, color: colors.text }}>{event.type}</span>
+                    <span style={{ fontSize: '13px', flex: 1, color: 'var(--theme-text-secondary)' }}>{event.name}</span>
+                    <span style={{ fontSize: '11px', color: 'var(--theme-text-tertiary)' }}>{formatYear(event.date)}</span>
                   </button>
-                </div>
-              )}
+                );
+              })}
+            </div>
+          </div>
+        )}
 
-              {related.relatedPowers.length > 0 && (
-                <div className="entity-section">
-                  <h4>Connections</h4>
-                  <div className="related-list">
-                    {related.relatedPowers.map(({ connection, power }) => (
-                      <button
-                        key={connection.id}
-                        className="related-item"
-                        onClick={() => selectEntity({ id: power!.id, type: 'power' })}
-                      >
-                        <span className="connection-type">{connection.type}</span>
-                        <span>{power!.name}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
+        {/* Jump Button */}
+        <button 
+          onClick={() => setYear(data.timeRange.start)} 
+          className="primary-button"
+          style={{ width: '100%' }}
+        >
+          Jump to {formatYear(data.timeRange.start)}
+        </button>
+      </div>
+    );
+  }
 
-              {related.relatedPeople.length > 0 && (
-                <div className="entity-section">
-                  <h4>Key Figures</h4>
-                  <div className="related-list">
-                    {related.relatedPeople.map(person => (
-                      <button
-                        key={person.id}
-                        className="related-item"
-                        onClick={() => selectEntity({ id: person.id, type: 'person' })}
-                      >
-                        {person.name}
-                        <span className="person-years">
-                          ({formatYear(person.birth)} - {person.death ? formatYear(person.death) : 'Present'})
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
+  // Person View
+  if (entity.type === 'person' && entity.data) {
+    const data = entity.data;
+    
+    // Get affiliations as powers
+    const affiliatedPowers = data.affiliations
+      .map(id => powers.find(p => p.id === id))
+      .filter(Boolean);
+    
+    return (
+      <div>
+        <Breadcrumbs />
 
-              {related.relatedEvents.length > 0 && (
-                <div className="entity-section">
-                  <h4>Major Events</h4>
-                  <div className="related-list">
-                    {related.relatedEvents.map(event => (
-                      <button
-                        key={event.id}
-                        className="related-item event-item"
-                        onClick={() => {
-                          selectEntity({ id: event.id, type: 'event' });
-                          setYear(event.date);
+        {/* Header */}
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'flex-start', 
+          gap: '12px',
+          paddingBottom: '16px',
+          marginBottom: '16px',
+          borderBottom: '1px solid var(--theme-border-tertiary)'
+        }}>
+          <div style={{ 
+            width: '40px',
+            height: '40px',
+            borderRadius: '8px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '14px',
+            fontWeight: 600,
+            background: 'var(--theme-bg-tertiary)',
+            color: 'var(--theme-accent-primary)',
+            flexShrink: 0
+          }}>
+            {data.name.split(' ').map(n => n[0]).join('')}
+          </div>
+          <div>
+            <span className="badge" style={{ marginBottom: '6px' }}>Historical Figure</span>
+            <h2 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--theme-text-primary)', margin: 0 }}>
+              {data.name}
+            </h2>
+          </div>
+        </div>
+
+        {/* Timeline Bar */}
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '10px',
+          fontSize: '12px',
+          color: 'var(--theme-text-tertiary)',
+          marginBottom: '16px'
+        }}>
+          <span>{formatYear(data.birth)}</span>
+          <div style={{ 
+            flex: 1, 
+            height: '4px', 
+            borderRadius: '2px',
+            background: 'var(--theme-bg-tertiary)',
+            overflow: 'hidden'
+          }}>
+            <div style={{ 
+              height: '100%', 
+              borderRadius: '2px',
+              background: 'var(--theme-accent-primary)', 
+              width: data.death ? `${Math.min(100, ((data.death - data.birth) / 100) * 100)}%` : '100%'
+            }} />
+          </div>
+          <span>{data.death ? formatYear(data.death) : 'Present'}</span>
+        </div>
+
+        {/* Description */}
+        <p style={{ 
+          fontSize: '13px', 
+          lineHeight: '1.6',
+          color: 'var(--theme-text-secondary)',
+          marginBottom: '16px'
+        }}>
+          {data.description}
+        </p>
+
+        {/* Tags */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
+          {data.tags.map(tag => (
+            <span key={tag} className="chip" style={{ cursor: 'default' }}>{tag}</span>
+          ))}
+        </div>
+
+        {/* Affiliations */}
+        {affiliatedPowers.length > 0 && (
+          <div style={{ marginBottom: '20px' }}>
+            <h4 className="section-header">Affiliations</h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {affiliatedPowers.map(power => power && (
+                <button
+                  key={power.id}
+                  onClick={() => navigateTo({ id: power.id, type: 'power' })}
+                  className="list-item"
+                  style={{ border: 'none', background: 'none', textAlign: 'left', width: '100%' }}
+                >
+                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: power.color }} />
+                  <span style={{ fontSize: '13px', color: 'var(--theme-text-secondary)' }}>{power.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Positions Held */}
+        {data.roles.length > 0 && (
+          <div style={{ marginBottom: '20px' }}>
+            <h4 className="section-header">Positions Held</h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {data.roles.map((role, i) => {
+                const rolePower = powers.find(p => p.id === role.powerId);
+                return (
+                  <div key={i} className="tactile-card">
+                    <div style={{ fontSize: '14px', fontWeight: 500, marginBottom: '4px', color: 'var(--theme-text-primary)' }}>
+                      {role.title}
+                    </div>
+                    {rolePower && (
+                      <button 
+                        onClick={() => navigateTo({ id: role.powerId, type: 'power' })} 
+                        style={{ 
+                          fontSize: '12px', 
+                          color: 'var(--theme-accent-primary)',
+                          background: 'none',
+                          border: 'none',
+                          padding: 0,
+                          cursor: 'pointer',
+                          textAlign: 'left'
                         }}
                       >
-                        <span className={`event-impact ${event.impact}`}>{event.type}</span>
-                        <span>{event.name}</span>
-                        <span className="event-year">{formatYear(event.date)}</span>
+                        {rolePower.name}
                       </button>
-                    ))}
+                    )}
+                    <div style={{ fontSize: '11px', marginTop: '6px', color: 'var(--theme-text-tertiary)' }}>
+                      {formatYear(role.timeRange.start)} – {role.timeRange.end ? formatYear(role.timeRange.end) : 'Present'}
+                    </div>
                   </div>
-                </div>
-              )}
-
-              <button 
-                className="jump-to-btn"
-                onClick={() => setYear(entity.data!.timeRange.start)}
-              >
-                Jump to {formatYear(entity.data.timeRange.start)}
-              </button>
+                );
+              })}
             </div>
-          ) : entity.type === 'person' && entity.data ? (
-            <div className="entity-content">
-              <div className="entity-header person-header">
-                <div className="person-avatar">
-                  {entity.data.name.split(' ').map(n => n[0]).join('')}
-                </div>
-                <div>
-                  <span className="entity-type">Historical Figure</span>
-                  <h2>{entity.data.name}</h2>
-                </div>
-              </div>
+          </div>
+        )}
 
-              <div className="entity-timeline">
-                <span>{formatYear(entity.data.birth)}</span>
-                <div className="timeline-bar">
-                  <div 
-                    className="timeline-fill person-fill"
-                    style={{ 
-                      width: entity.data.death 
-                        ? `${((entity.data.death - entity.data.birth) / 100) * 100}%`
-                        : '100%'
-                    }}
-                  />
-                </div>
-                <span>{entity.data.death ? formatYear(entity.data.death) : 'Present'}</span>
-              </div>
+        {/* Jump Button */}
+        <button 
+          onClick={() => setYear(data.birth)} 
+          className="primary-button"
+          style={{ width: '100%' }}
+        >
+          Jump to {formatYear(data.birth)}
+        </button>
+      </div>
+    );
+  }
 
-              <p className="entity-description">{entity.data.description}</p>
+  // Event View
+  if (entity.type === 'event' && entity.data) {
+    const data = entity.data;
+    const colors = impactColors[data.impact];
+    
+    // Get key figures as people
+    const keyFigures = data.keyFigures
+      .map(id => people.find(p => p.id === id))
+      .filter(Boolean);
+    
+    return (
+      <div>
+        <Breadcrumbs />
 
-              <div className="entity-tags">
-                {entity.data.tags.map(tag => (
-                  <span key={tag} className="tag">{tag}</span>
-                ))}
-              </div>
+        {/* Header */}
+        <div style={{ 
+          paddingBottom: '16px',
+          marginBottom: '16px',
+          borderBottom: '1px solid var(--theme-border-tertiary)'
+        }}>
+          <span className="badge" style={{ marginBottom: '8px', background: colors.bg, color: colors.text }}>{data.type}</span>
+          <h2 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--theme-text-primary)', margin: 0 }}>
+            {data.name}
+          </h2>
+        </div>
 
-              {entity.data.roles.length > 0 && (
-                <div className="entity-section">
-                  <h4>Positions Held</h4>
-                  <div className="roles-list">
-                    {entity.data.roles.map((role, i) => (
-                      <div key={i} className="role-item">
-                        <span className="role-title">{role.title}</span>
-                        <button 
-                          className="role-power"
-                          onClick={() => selectEntity({ id: role.powerId, type: 'power' })}
-                        >
-                          {powers.find(p => p.id === role.powerId)?.name}
-                        </button>
-                        <span className="role-years">
-                          {formatYear(role.timeRange.start)} - {role.timeRange.end ? formatYear(role.timeRange.end) : 'Present'}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+        {/* Date & Impact */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '16px' }}>
+          <span style={{ fontSize: '16px', fontWeight: 600, color: 'var(--theme-accent-primary)' }}>
+            {formatYear(data.date)}
+          </span>
+          {data.endDate && (
+            <span style={{ fontSize: '13px', color: 'var(--theme-text-tertiary)' }}>
+              to {formatYear(data.endDate)}
+            </span>
+          )}
+          <span className="badge" style={{ background: colors.bg, color: colors.text }}>{data.impact}</span>
+        </div>
 
-              {entity.data.affiliations.length > 0 && (
-                <div className="entity-section">
-                  <h4>Affiliations</h4>
-                  <div className="related-list">
-                    {entity.data.affiliations.map(affId => {
-                      const power = powers.find(p => p.id === affId);
-                      return power ? (
-                        <button
-                          key={affId}
-                          className="related-item"
-                          onClick={() => selectEntity({ id: affId, type: 'power' })}
-                        >
-                          <span 
-                            className="entity-color-dot small"
-                            style={{ backgroundColor: power.color }}
-                          />
-                          {power.name}
-                        </button>
-                      ) : null;
-                    })}
-                  </div>
-                </div>
-              )}
+        {/* Description */}
+        <p style={{ 
+          fontSize: '13px', 
+          lineHeight: '1.6',
+          color: 'var(--theme-text-secondary)',
+          marginBottom: '16px'
+        }}>
+          {data.description}
+        </p>
 
-              <button 
-                className="jump-to-btn"
-                onClick={() => setYear(entity.data!.birth)}
-              >
-                Jump to {formatYear(entity.data.birth)}
-              </button>
+        {/* Casualties */}
+        {data.casualties && (
+          <div style={{ 
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '12px 16px',
+            borderRadius: '8px',
+            marginBottom: '16px',
+            background: 'rgba(168, 85, 247, 0.08)',
+            border: '1px solid rgba(168, 85, 247, 0.15)'
+          }}>
+            <span style={{ fontSize: '12px', color: 'var(--theme-text-tertiary)' }}>Estimated Casualties</span>
+            <span style={{ fontSize: '18px', fontWeight: 600, color: '#a855f7' }}>{data.casualties.toLocaleString()}</span>
+          </div>
+        )}
+
+        {/* Tags */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
+          {data.tags.map(tag => (
+            <span key={tag} className="chip" style={{ cursor: 'default' }}>{tag}</span>
+          ))}
+        </div>
+
+        {/* Participants */}
+        {data.participants.length > 0 && (
+          <div style={{ marginBottom: '20px' }}>
+            <h4 className="section-header">Participants</h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {data.participants.map(pId => {
+                const power = powers.find(p => p.id === pId);
+                return power ? (
+                  <button 
+                    key={pId} 
+                    onClick={() => navigateTo({ id: pId, type: 'power' })} 
+                    className="list-item"
+                    style={{ border: 'none', background: 'none', textAlign: 'left', width: '100%' }}
+                  >
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: power.color }} />
+                    <span style={{ fontSize: '13px', color: 'var(--theme-text-secondary)' }}>{power.name}</span>
+                  </button>
+                ) : null;
+              })}
             </div>
-          ) : entity.type === 'event' && entity.data ? (
-            <div className="entity-content">
-              <div className="entity-header event-header">
-                <span className={`event-badge ${entity.data.impact}`}>
-                  {entity.data.type}
-                </span>
-                <h2>{entity.data.name}</h2>
-              </div>
+          </div>
+        )}
 
-              <div className="event-meta">
-                <span className="event-date">{formatYear(entity.data.date)}</span>
-                {entity.data.endDate && (
-                  <span className="event-date">to {formatYear(entity.data.endDate)}</span>
-                )}
-                <span className={`impact-badge ${entity.data.impact}`}>
-                  {entity.data.impact} impact
-                </span>
-              </div>
-
-              <p className="entity-description">{entity.data.description}</p>
-
-              {entity.data.casualties && (
-                <div className="casualty-stat">
-                  <span className="stat-label">Estimated Casualties</span>
-                  <span className="stat-value">{entity.data.casualties.toLocaleString()}</span>
-                </div>
-              )}
-
-              <div className="entity-tags">
-                {entity.data.tags.map(tag => (
-                  <span key={tag} className="tag">{tag}</span>
-                ))}
-              </div>
-
-              {entity.data.participants.length > 0 && (
-                <div className="entity-section">
-                  <h4>Participants</h4>
-                  <div className="related-list">
-                    {entity.data.participants.map(pId => {
-                      const power = powers.find(p => p.id === pId);
-                      return power ? (
-                        <button
-                          key={pId}
-                          className="related-item"
-                          onClick={() => selectEntity({ id: pId, type: 'power' })}
-                        >
-                          <span 
-                            className="entity-color-dot small"
-                            style={{ backgroundColor: power.color }}
-                          />
-                          {power.name}
-                        </button>
-                      ) : null;
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {entity.data.keyFigures.length > 0 && (
-                <div className="entity-section">
-                  <h4>Key Figures</h4>
-                  <div className="related-list">
-                    {entity.data.keyFigures.map(personId => {
-                      const person = people.find(p => p.id === personId);
-                      return person ? (
-                        <button
-                          key={personId}
-                          className="related-item"
-                          onClick={() => selectEntity({ id: personId, type: 'person' })}
-                        >
-                          {person.name}
-                        </button>
-                      ) : null;
-                    })}
-                  </div>
-                </div>
-              )}
-
-              <button 
-                className="jump-to-btn"
-                onClick={() => setYear(entity.data!.date)}
-              >
-                Jump to {formatYear(entity.data.date)}
-              </button>
+        {/* Key Figures */}
+        {keyFigures.length > 0 && (
+          <div style={{ marginBottom: '20px' }}>
+            <h4 className="section-header">Key Figures</h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {keyFigures.map(person => person && (
+                <button
+                  key={person.id}
+                  onClick={() => navigateTo({ id: person.id, type: 'person' })}
+                  className="list-item"
+                  style={{ border: 'none', background: 'none', textAlign: 'left', width: '100%', justifyContent: 'space-between' }}
+                >
+                  <span style={{ fontSize: '13px', color: 'var(--theme-text-secondary)' }}>{person.name}</span>
+                  <span style={{ fontSize: '11px', color: 'var(--theme-text-tertiary)' }}>{formatYear(person.birth)}</span>
+                </button>
+              ))}
             </div>
-          ) : null}
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
+          </div>
+        )}
+
+        {/* Jump Button */}
+        <button 
+          onClick={() => setYear(data.date)} 
+          className="primary-button"
+          style={{ width: '100%' }}
+        >
+          Jump to {formatYear(data.date)}
+        </button>
+      </div>
+    );
+  }
+
+  return null;
 }
-
