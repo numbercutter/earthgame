@@ -93,6 +93,9 @@ function getCachedWorldState(year: number) {
   return state;
 }
 
+// Pre-load initial data synchronously
+const initialWorldState = getCachedWorldState(2000);
+
 export const useGameStore = create<GameState>((set, get) => ({
   // Initial time state
   currentYear: 2000,
@@ -101,19 +104,19 @@ export const useGameStore = create<GameState>((set, get) => ({
   isPlaying: false,
   playbackSpeed: 1,
   
-  // Initial data - start with empty arrays, load async
-  activePowers: [],
-  activePeople: [],
-  activeEvents: [],
-  activeConnections: [],
-  activePolicies: [],
-  activeConflictZones: [],
-  activeCities: [],
-  activeResources: [],
-  activeTradeRoutes: [],
+  // Initial data - load synchronously from cache
+  activePowers: initialWorldState.powers,
+  activePeople: initialWorldState.people,
+  activeEvents: initialWorldState.events,
+  activeConnections: initialWorldState.connections,
+  activePolicies: initialWorldState.policies,
+  activeConflictZones: initialWorldState.conflictZones ?? [],
+  activeCities: initialWorldState.cities ?? [],
+  activeResources: initialWorldState.resources ?? [],
+  activeTradeRoutes: initialWorldState.tradeRoutes ?? [],
   
   // Data loading state
-  isDataLoading: true,
+  isDataLoading: false,
   dataError: null,
   
   // Selection
