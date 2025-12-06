@@ -1,0 +1,486 @@
+// Natural Resources and Mineral Deposits Throughout History
+// Tracks who controls strategic resources over time
+import { NaturalResource } from '@/types';
+
+export const naturalResources: NaturalResource[] = [
+  // ============================================================================
+  // GOLD DEPOSITS
+  // ============================================================================
+  {
+    id: 'nubian-gold',
+    name: 'Nubian Gold Mines',
+    type: 'gold',
+    coordinates: { lat: 22.0, lng: 33.0 },
+    radius: 500,
+    discoveredYear: -3000,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'ancient-egypt', timeRange: { start: -3000, end: -750 }, method: 'conquest', extractionRate: 'high', profitDestination: 'ancient-egypt' },
+      { controllerId: 'kush', timeRange: { start: -750, end: 350 }, method: 'native', extractionRate: 'medium' },
+    ],
+    strategicValue: 5,
+    description: 'Main gold source for ancient Egypt. Funded pyramid building and Egyptian power for 3,000 years.',
+    tags: ['ancient', 'gold', 'egypt', 'africa'],
+  },
+  {
+    id: 'west-african-gold',
+    name: 'West African Gold Fields',
+    type: 'gold',
+    coordinates: { lat: 11.0, lng: -6.0 },
+    radius: 1000,
+    discoveredYear: 300,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'ghana-empire', timeRange: { start: 300, end: 1200 }, method: 'native', extractionRate: 'high' },
+      { controllerId: 'mali-empire', timeRange: { start: 1235, end: 1500 }, method: 'conquest', extractionRate: 'high' },
+      { controllerId: 'songhai-empire', timeRange: { start: 1464, end: 1591 }, method: 'conquest', extractionRate: 'high' },
+      { controllerId: 'british-empire', timeRange: { start: 1874, end: 1957 }, method: 'conquest', extractionRate: 'intensive', profitDestination: 'british-empire' },
+      { controllerId: 'ghana', timeRange: { start: 1957, end: null }, method: 'independence', extractionRate: 'high' },
+    ],
+    strategicValue: 5,
+    description: 'Source of 2/3 of world\'s gold in medieval period. Made Mansa Musa richest person in history. Still major producer.',
+    tags: ['medieval', 'modern', 'gold', 'africa', 'mali'],
+  },
+  {
+    id: 'spanish-colonial-gold',
+    name: 'Colombian Gold Deposits',
+    type: 'gold',
+    coordinates: { lat: 6.0, lng: -75.0 },
+    radius: 500,
+    discoveredYear: 1500,
+    abundance: 'major',
+    controlHistory: [
+      { controllerId: 'muisca', timeRange: { start: -500, end: 1537 }, method: 'native', extractionRate: 'low' },
+      { controllerId: 'spanish-empire', timeRange: { start: 1537, end: 1819 }, method: 'conquest', extractionRate: 'intensive', profitDestination: 'spanish-empire' },
+      { controllerId: 'gran-colombia', timeRange: { start: 1819, end: null }, method: 'independence', extractionRate: 'high' },
+    ],
+    strategicValue: 4,
+    description: 'Inspired El Dorado legend. Spanish extraction funded European wars and caused inflation.',
+    tags: ['early-modern', 'gold', 'colombia', 'spanish', 'colonial'],
+  },
+  {
+    id: 'witwatersrand-gold',
+    name: 'Witwatersrand Gold Basin',
+    type: 'gold',
+    coordinates: { lat: -26.2, lng: 27.9 },
+    radius: 300,
+    discoveredYear: 1886,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'south-african-republic', timeRange: { start: 1886, end: 1902 }, method: 'native', extractionRate: 'medium' },
+      { controllerId: 'british-empire', timeRange: { start: 1902, end: 1961 }, method: 'conquest', extractionRate: 'intensive', profitDestination: 'british-empire' },
+      { controllerId: 'south-africa', timeRange: { start: 1961, end: null }, method: 'independence', extractionRate: 'high' },
+    ],
+    annualProduction: [
+      { year: 1900, amount: 100, unit: 'tons' },
+      { year: 1970, amount: 1000, unit: 'tons' },
+      { year: 2020, amount: 100, unit: 'tons' },
+    ],
+    strategicValue: 5,
+    description: 'Largest gold deposit ever found. Produced 40% of all gold ever mined. Caused Boer War.',
+    tags: ['modern', 'gold', 'south-africa', 'boer-war'],
+  },
+
+  // ============================================================================
+  // SILVER DEPOSITS
+  // ============================================================================
+  {
+    id: 'laurium-silver',
+    name: 'Laurium Silver Mines',
+    type: 'silver',
+    coordinates: { lat: 37.72, lng: 24.05 },
+    radius: 50,
+    discoveredYear: -3000,
+    depletedYear: 100,
+    abundance: 'major',
+    controlHistory: [
+      { controllerId: 'athens', timeRange: { start: -600, end: -322 }, method: 'native', extractionRate: 'high', profitDestination: 'athens' },
+      { controllerId: 'macedon', timeRange: { start: -322, end: -146 }, method: 'conquest', extractionRate: 'medium' },
+      { controllerId: 'roman-republic', timeRange: { start: -146, end: 100 }, method: 'conquest', extractionRate: 'low' },
+    ],
+    strategicValue: 5,
+    description: 'Funded Athenian navy that won at Salamis. Silver coins became Mediterranean currency standard.',
+    tags: ['ancient', 'silver', 'greece', 'athens', 'navy'],
+  },
+  {
+    id: 'potosi-silver',
+    name: 'Potosí Silver Mountain',
+    type: 'silver',
+    coordinates: { lat: -19.59, lng: -65.75 },
+    radius: 30,
+    discoveredYear: 1545,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'spanish-empire', timeRange: { start: 1545, end: 1825 }, method: 'conquest', extractionRate: 'intensive', profitDestination: 'spanish-empire' },
+      { controllerId: 'bolivia', timeRange: { start: 1825, end: null }, method: 'independence', extractionRate: 'medium' },
+    ],
+    annualProduction: [
+      { year: 1600, amount: 300, unit: 'tons' },
+      { year: 1700, amount: 200, unit: 'tons' },
+    ],
+    strategicValue: 5,
+    description: 'Largest silver deposit in history. Funded Spanish Empire. 8 million indigenous people died in mines.',
+    tags: ['early-modern', 'silver', 'bolivia', 'spanish', 'colonial', 'exploitation'],
+  },
+
+  // ============================================================================
+  // OIL & GAS
+  // ============================================================================
+  {
+    id: 'saudi-ghawar',
+    name: 'Ghawar Oil Field',
+    type: 'oil',
+    coordinates: { lat: 25.4, lng: 49.6 },
+    radius: 150,
+    discoveredYear: 1948,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'saudi-arabia', timeRange: { start: 1948, end: null }, method: 'native', extractionRate: 'intensive' },
+    ],
+    annualProduction: [
+      { year: 1960, amount: 500000000, unit: 'barrels' },
+      { year: 2020, amount: 1800000000, unit: 'barrels' },
+    ],
+    strategicValue: 5,
+    description: 'Largest conventional oil field on Earth. 5% of world\'s oil production. Saudi wealth source.',
+    tags: ['contemporary', 'oil', 'saudi-arabia', 'opec'],
+  },
+  {
+    id: 'texas-permian-basin',
+    name: 'Permian Basin',
+    type: 'oil',
+    coordinates: { lat: 31.9, lng: -102.1 },
+    radius: 300,
+    discoveredYear: 1920,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'usa', timeRange: { start: 1920, end: null }, method: 'native', extractionRate: 'intensive' },
+    ],
+    annualProduction: [
+      { year: 1950, amount: 500000000, unit: 'barrels' },
+      { year: 2020, amount: 1500000000, unit: 'barrels' },
+    ],
+    strategicValue: 5,
+    description: 'Largest US oil-producing region. Fracking revolution made US world\'s top oil producer.',
+    tags: ['modern', 'contemporary', 'oil', 'texas', 'fracking'],
+  },
+  {
+    id: 'russian-siberia-oil',
+    name: 'West Siberian Basin',
+    type: 'oil',
+    coordinates: { lat: 61.0, lng: 73.0 },
+    radius: 1000,
+    discoveredYear: 1961,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'ussr', timeRange: { start: 1961, end: 1991 }, method: 'native', extractionRate: 'intensive' },
+      { controllerId: 'russian-federation', timeRange: { start: 1991, end: null }, method: 'native', extractionRate: 'intensive' },
+    ],
+    annualProduction: [
+      { year: 1980, amount: 4000000000, unit: 'barrels' },
+      { year: 2020, amount: 3000000000, unit: 'barrels' },
+    ],
+    strategicValue: 5,
+    description: 'Largest Russian oil region. Funds Russian government and geopolitical power.',
+    tags: ['contemporary', 'oil', 'russia', 'siberia'],
+  },
+  {
+    id: 'venezuela-orinoco',
+    name: 'Orinoco Belt',
+    type: 'oil',
+    coordinates: { lat: 8.5, lng: -65.0 },
+    radius: 400,
+    discoveredYear: 1930,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'venezuela', timeRange: { start: 1930, end: 1975 }, method: 'native', extractionRate: 'medium', profitDestination: 'western-oil-companies' },
+      { controllerId: 'venezuela', timeRange: { start: 1975, end: null }, method: 'nationalization', extractionRate: 'low' },
+    ],
+    strategicValue: 5,
+    description: 'Largest oil reserves in world. Nationalized 1975. Mismanagement caused economic collapse.',
+    tags: ['contemporary', 'oil', 'venezuela', 'nationalization'],
+  },
+  {
+    id: 'north-sea-oil',
+    name: 'North Sea Oil Fields',
+    type: 'oil',
+    coordinates: { lat: 58.0, lng: 2.0 },
+    radius: 500,
+    discoveredYear: 1969,
+    abundance: 'major',
+    controlHistory: [
+      { controllerId: 'united-kingdom', timeRange: { start: 1975, end: null }, method: 'native', extractionRate: 'intensive' },
+      { controllerId: 'norway', timeRange: { start: 1969, end: null }, method: 'native', extractionRate: 'high' },
+    ],
+    annualProduction: [
+      { year: 1985, amount: 2500000000, unit: 'barrels' },
+      { year: 2020, amount: 700000000, unit: 'barrels' },
+    ],
+    strategicValue: 4,
+    description: 'Transformed UK and Norway economies. Norway sovereign wealth fund now $1.4 trillion.',
+    tags: ['contemporary', 'oil', 'norway', 'uk', 'north-sea'],
+  },
+
+  // ============================================================================
+  // STRATEGIC MINERALS
+  // ============================================================================
+  {
+    id: 'congo-cobalt',
+    name: 'Congolese Cobalt Belt',
+    type: 'cobalt',
+    coordinates: { lat: -10.5, lng: 26.0 },
+    radius: 400,
+    discoveredYear: 1900,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'belgian-congo', timeRange: { start: 1900, end: 1960 }, method: 'colonial', extractionRate: 'high', profitDestination: 'belgium' },
+      { controllerId: 'drc', timeRange: { start: 1960, end: null }, method: 'independence', extractionRate: 'intensive', profitDestination: 'china' },
+    ],
+    annualProduction: [
+      { year: 2020, amount: 100000, unit: 'tons' },
+    ],
+    strategicValue: 5,
+    description: '70% of world\'s cobalt. Critical for EV batteries. Chinese companies control most production.',
+    tags: ['contemporary', 'cobalt', 'congo', 'batteries', 'china', 'colonial'],
+  },
+  {
+    id: 'china-rare-earths',
+    name: 'Chinese Rare Earth Deposits',
+    type: 'rare-earths',
+    coordinates: { lat: 41.0, lng: 110.0 },
+    radius: 500,
+    discoveredYear: 1927,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'republic-china', timeRange: { start: 1927, end: 1949 }, method: 'native', extractionRate: 'low' },
+      { controllerId: 'prc', timeRange: { start: 1949, end: null }, method: 'native', extractionRate: 'intensive' },
+    ],
+    annualProduction: [
+      { year: 2020, amount: 140000, unit: 'tons' },
+    ],
+    strategicValue: 5,
+    description: '60% of world production, 90% of processing. Critical for electronics, defense, green energy. Strategic weapon.',
+    tags: ['contemporary', 'rare-earths', 'china', 'strategic', 'electronics'],
+  },
+  {
+    id: 'australian-lithium',
+    name: 'Western Australia Lithium',
+    type: 'lithium',
+    coordinates: { lat: -33.0, lng: 121.0 },
+    radius: 300,
+    discoveredYear: 1960,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'australia', timeRange: { start: 1960, end: null }, method: 'native', extractionRate: 'intensive' },
+    ],
+    annualProduction: [
+      { year: 2020, amount: 40000, unit: 'tons' },
+    ],
+    strategicValue: 5,
+    description: 'World\'s largest lithium producer. Critical for EV batteries and energy storage.',
+    tags: ['contemporary', 'lithium', 'australia', 'batteries', 'ev'],
+  },
+  {
+    id: 'chile-lithium',
+    name: 'Atacama Lithium',
+    type: 'lithium',
+    coordinates: { lat: -23.5, lng: -68.0 },
+    radius: 200,
+    discoveredYear: 1970,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'chile', timeRange: { start: 1970, end: null }, method: 'native', extractionRate: 'high' },
+    ],
+    strategicValue: 5,
+    description: 'Largest lithium reserves. "Lithium Triangle" with Argentina and Bolivia.',
+    tags: ['contemporary', 'lithium', 'chile', 'batteries'],
+  },
+
+  // ============================================================================
+  // IRON & COAL (Industrial Revolution)
+  // ============================================================================
+  {
+    id: 'ruhr-coal',
+    name: 'Ruhr Valley Coal',
+    type: 'coal',
+    coordinates: { lat: 51.5, lng: 7.5 },
+    radius: 100,
+    discoveredYear: 1800,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'kingdom-prussia', timeRange: { start: 1800, end: 1871 }, method: 'native', extractionRate: 'high' },
+      { controllerId: 'german-empire', timeRange: { start: 1871, end: 1918 }, method: 'native', extractionRate: 'intensive' },
+      { controllerId: 'weimar-germany', timeRange: { start: 1918, end: 1933 }, method: 'native', extractionRate: 'high' },
+      { controllerId: 'nazi-germany', timeRange: { start: 1933, end: 1945 }, method: 'native', extractionRate: 'intensive' },
+      { controllerId: 'west-germany', timeRange: { start: 1949, end: 1990 }, method: 'native', extractionRate: 'medium' },
+    ],
+    strategicValue: 5,
+    description: 'Powered German industrialization. Krupp steel came from here. French occupation after WWI.',
+    tags: ['modern', 'coal', 'germany', 'industrial-revolution', 'krupp'],
+  },
+  {
+    id: 'welsh-coal',
+    name: 'South Wales Coalfield',
+    type: 'coal',
+    coordinates: { lat: 51.7, lng: -3.5 },
+    radius: 80,
+    discoveredYear: 1750,
+    abundance: 'major',
+    controlHistory: [
+      { controllerId: 'british-empire', timeRange: { start: 1750, end: 1947 }, method: 'native', extractionRate: 'intensive' },
+      { controllerId: 'united-kingdom', timeRange: { start: 1947, end: null }, method: 'nationalization', extractionRate: 'low' },
+    ],
+    strategicValue: 4,
+    description: 'Powered British Industrial Revolution. Coal exports fueled Royal Navy. Mines closed 1980s.',
+    tags: ['modern', 'coal', 'wales', 'industrial-revolution', 'british'],
+  },
+  {
+    id: 'mesabi-iron',
+    name: 'Mesabi Iron Range',
+    type: 'iron',
+    coordinates: { lat: 47.4, lng: -92.5 },
+    radius: 100,
+    discoveredYear: 1890,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'usa', timeRange: { start: 1890, end: null }, method: 'native', extractionRate: 'intensive' },
+    ],
+    annualProduction: [
+      { year: 1900, amount: 10000000, unit: 'tons' },
+      { year: 1950, amount: 100000000, unit: 'tons' },
+    ],
+    strategicValue: 5,
+    description: 'Built American steel industry. Carnegie\'s fortune. Made US industrial superpower.',
+    tags: ['modern', 'iron', 'minnesota', 'carnegie', 'steel'],
+  },
+
+  // ============================================================================
+  // ANCIENT/MEDIEVAL STRATEGIC RESOURCES
+  // ============================================================================
+  {
+    id: 'cornwall-tin',
+    name: 'Cornwall Tin Mines',
+    type: 'tin',
+    coordinates: { lat: 50.3, lng: -5.0 },
+    radius: 50,
+    discoveredYear: -2000,
+    abundance: 'major',
+    controlHistory: [
+      { controllerId: 'celtic-tribes', timeRange: { start: -2000, end: 43 }, method: 'native', extractionRate: 'medium' },
+      { controllerId: 'roman-empire', timeRange: { start: 43, end: 410 }, method: 'conquest', extractionRate: 'high' },
+      { controllerId: 'kingdom-england', timeRange: { start: 927, end: 1707 }, method: 'native', extractionRate: 'high' },
+    ],
+    strategicValue: 5,
+    description: 'Bronze Age trade connected Britain to Mediterranean. Phoenicians traded here. Essential for bronze weapons.',
+    tags: ['ancient', 'medieval', 'tin', 'bronze-age', 'cornwall', 'trade'],
+  },
+  {
+    id: 'cyprus-copper',
+    name: 'Cyprus Copper Deposits',
+    type: 'copper',
+    coordinates: { lat: 35.0, lng: 33.0 },
+    radius: 50,
+    discoveredYear: -3500,
+    abundance: 'major',
+    controlHistory: [
+      { controllerId: 'minoan', timeRange: { start: -2500, end: -1450 }, method: 'trade', extractionRate: 'high' },
+      { controllerId: 'egyptian-empire', timeRange: { start: -1450, end: -1100 }, method: 'conquest', extractionRate: 'high' },
+      { controllerId: 'achaemenid-persia', timeRange: { start: -545, end: -332 }, method: 'conquest', extractionRate: 'medium' },
+      { controllerId: 'roman-empire', timeRange: { start: -58, end: 395 }, method: 'conquest', extractionRate: 'high' },
+    ],
+    strategicValue: 5,
+    description: 'Name "copper" comes from Cyprus (Cuprum). Critical Bronze Age resource. Mediterranean powers fought for control.',
+    tags: ['ancient', 'copper', 'bronze-age', 'cyprus', 'mediterranean'],
+  },
+  {
+    id: 'silk-road-jade',
+    name: 'Khotan Jade',
+    type: 'jade',
+    coordinates: { lat: 37.1, lng: 79.9 },
+    radius: 100,
+    discoveredYear: -3000,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'khotan', timeRange: { start: -200, end: 1006 }, method: 'native', extractionRate: 'high' },
+      { controllerId: 'qing-dynasty', timeRange: { start: 1759, end: 1911 }, method: 'conquest', extractionRate: 'high' },
+      { controllerId: 'prc', timeRange: { start: 1949, end: null }, method: 'native', extractionRate: 'high' },
+    ],
+    strategicValue: 3,
+    description: 'Source of jade for Chinese civilization for 5,000 years. More valuable than gold in ancient China.',
+    tags: ['ancient', 'medieval', 'jade', 'china', 'silk-road'],
+  },
+  {
+    id: 'arabian-spices',
+    name: 'Arabian Spice Routes',
+    type: 'spices',
+    coordinates: { lat: 15.0, lng: 44.0 },
+    radius: 500,
+    discoveredYear: -1000,
+    abundance: 'major',
+    controlHistory: [
+      { controllerId: 'nabataeans', timeRange: { start: -400, end: 106 }, method: 'trade', extractionRate: 'high' },
+      { controllerId: 'roman-empire', timeRange: { start: 106, end: 395 }, method: 'conquest', extractionRate: 'high' },
+      { controllerId: 'rashidun-caliphate', timeRange: { start: 632, end: 750 }, method: 'conquest', extractionRate: 'high' },
+    ],
+    strategicValue: 4,
+    description: 'Frankincense and myrrh route. Made Petra wealthy. Controlled trade between India and Rome.',
+    tags: ['ancient', 'spices', 'arabia', 'trade', 'frankincense'],
+  },
+
+  // ============================================================================
+  // COLONIAL EXPLOITATION RESOURCES
+  // ============================================================================
+  {
+    id: 'bengal-jute',
+    name: 'Bengal Jute Fields',
+    type: 'fertile-land',
+    coordinates: { lat: 24.0, lng: 90.0 },
+    radius: 300,
+    discoveredYear: 1800,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'mughal-empire', timeRange: { start: 1576, end: 1757 }, method: 'native', extractionRate: 'low' },
+      { controllerId: 'british-empire', timeRange: { start: 1757, end: 1947 }, method: 'conquest', extractionRate: 'intensive', profitDestination: 'british-empire' },
+      { controllerId: 'pakistan', timeRange: { start: 1947, end: 1971 }, method: 'independence', extractionRate: 'high' },
+      { controllerId: 'bangladesh', timeRange: { start: 1971, end: null }, method: 'independence', extractionRate: 'high' },
+    ],
+    strategicValue: 4,
+    description: 'Jute provided sacking for global trade. British mills in Dundee. Exploitation contributed to famines.',
+    tags: ['modern', 'jute', 'bengal', 'colonial', 'british'],
+  },
+  {
+    id: 'congo-rubber',
+    name: 'Congo Rubber Forests',
+    type: 'rubber',
+    coordinates: { lat: -2.0, lng: 21.0 },
+    radius: 800,
+    discoveredYear: 1885,
+    depletedYear: 1910,
+    abundance: 'major',
+    controlHistory: [
+      { controllerId: 'belgian-congo', timeRange: { start: 1885, end: 1960 }, method: 'colonial', extractionRate: 'intensive', profitDestination: 'leopold-ii' },
+    ],
+    strategicValue: 5,
+    description: 'King Leopold\'s rubber terror killed 10 million Congolese. Hands cut off for quotas. First modern genocide.',
+    tags: ['modern', 'rubber', 'congo', 'colonial', 'genocide', 'leopold'],
+  },
+  {
+    id: 'south-africa-diamonds',
+    name: 'Kimberley Diamond Fields',
+    type: 'diamonds',
+    coordinates: { lat: -28.73, lng: 24.76 },
+    radius: 50,
+    discoveredYear: 1871,
+    abundance: 'world-class',
+    controlHistory: [
+      { controllerId: 'british-empire', timeRange: { start: 1871, end: 1961 }, method: 'conquest', extractionRate: 'intensive', profitDestination: 'de-beers' },
+      { controllerId: 'south-africa', timeRange: { start: 1961, end: null }, method: 'independence', extractionRate: 'high' },
+    ],
+    strategicValue: 4,
+    description: 'Created De Beers monopoly. Cecil Rhodes built fortune. Apartheid funded by diamond wealth.',
+    tags: ['modern', 'diamonds', 'south-africa', 'de-beers', 'colonial'],
+  },
+];
+
+export default naturalResources;
+

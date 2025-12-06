@@ -1,0 +1,562 @@
+// Major Historical Cities Throughout Time
+import { City } from '@/types';
+
+export const historicalCities: City[] = [
+  // ============================================================================
+  // ANCIENT CITIES - Mesopotamia
+  // ============================================================================
+  {
+    id: 'uruk',
+    name: 'Uruk',
+    nativeName: 'Unug',
+    coordinates: { lat: 31.32, lng: 45.64 },
+    founded: -4000,
+    destroyed: 700,
+    type: 'major-city',
+    powerId: 'sumer',
+    controlHistory: [
+      { powerId: 'sumer', timeRange: { start: -4000, end: -2334 }, method: 'founded' },
+      { powerId: 'akkadian-empire', timeRange: { start: -2334, end: -2154 }, method: 'conquest' },
+      { powerId: 'babylon', timeRange: { start: -1894, end: -539 }, method: 'conquest' },
+      { powerId: 'achaemenid-persia', timeRange: { start: -539, end: -330 }, method: 'conquest' },
+    ],
+    population: [
+      { year: -3000, population: 40000 },
+      { year: -2500, population: 80000 },
+      { year: -2000, population: 50000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'temple', name: 'White Temple of Anu', builtYear: -3200 },
+      { type: 'wall', name: 'Walls of Uruk', builtYear: -2900 },
+    ],
+    description: 'First major city in human history. Birthplace of writing. Home of legendary king Gilgamesh.',
+    tags: ['ancient', 'mesopotamia', 'sumer', 'first-city', 'writing'],
+  },
+  {
+    id: 'babylon',
+    name: 'Babylon',
+    nativeName: 'Bābili',
+    coordinates: { lat: 32.54, lng: 44.42 },
+    founded: -2300,
+    destroyed: 275,
+    type: 'capital',
+    powerId: 'babylon',
+    controlHistory: [
+      { powerId: 'akkadian-empire', timeRange: { start: -2300, end: -2154 }, method: 'founded' },
+      { powerId: 'babylon', timeRange: { start: -1894, end: -1595 }, method: 'conquest' },
+      { powerId: 'neo-babylonian', timeRange: { start: -626, end: -539 }, method: 'conquest' },
+      { powerId: 'achaemenid-persia', timeRange: { start: -539, end: -330 }, method: 'conquest' },
+      { powerId: 'macedon', timeRange: { start: -330, end: -312 }, method: 'conquest' },
+      { powerId: 'seleucid', timeRange: { start: -312, end: -141 }, method: 'conquest' },
+    ],
+    population: [
+      { year: -1770, population: 60000 },
+      { year: -600, population: 200000 },
+      { year: -500, population: 150000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'temple', name: 'Esagila (Temple of Marduk)', builtYear: -1800 },
+      { type: 'palace', name: 'Hanging Gardens', builtYear: -600 },
+      { type: 'wall', name: 'Walls of Babylon', builtYear: -575 },
+    ],
+    description: 'Greatest city of ancient Mesopotamia. Hammurabi\'s Code written here. Hanging Gardens one of Seven Wonders.',
+    tags: ['ancient', 'mesopotamia', 'babylon', 'wonder', 'law'],
+  },
+  {
+    id: 'nineveh',
+    name: 'Nineveh',
+    coordinates: { lat: 36.36, lng: 43.15 },
+    founded: -6000,
+    destroyed: -612,
+    type: 'capital',
+    powerId: 'assyria',
+    controlHistory: [
+      { powerId: 'assyria', timeRange: { start: -2500, end: -612 }, method: 'native' },
+    ],
+    population: [
+      { year: -700, population: 120000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'palace', name: 'Palace of Sennacherib', builtYear: -700 },
+      { type: 'wall', name: 'Walls of Nineveh', builtYear: -700 },
+    ],
+    description: 'Capital of Assyrian Empire. Had world\'s first great library. Destroyed by Babylonians and Medes.',
+    tags: ['ancient', 'mesopotamia', 'assyria', 'library'],
+  },
+
+  // ============================================================================
+  // ANCIENT CITIES - Egypt
+  // ============================================================================
+  {
+    id: 'memphis-egypt',
+    name: 'Memphis',
+    nativeName: 'Ineb-Hedj',
+    coordinates: { lat: 29.85, lng: 31.25 },
+    founded: -3100,
+    type: 'capital',
+    powerId: 'ancient-egypt',
+    controlHistory: [
+      { powerId: 'ancient-egypt', timeRange: { start: -3100, end: -332 }, method: 'founded' },
+      { powerId: 'ptolemaic-egypt', timeRange: { start: -332, end: -30 }, method: 'conquest' },
+    ],
+    population: [
+      { year: -2500, population: 30000 },
+      { year: -1200, population: 50000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'temple', name: 'Temple of Ptah', builtYear: -3000 },
+      { type: 'palace', name: 'White Walls', builtYear: -3100 },
+    ],
+    description: 'First capital of unified Egypt. Near the pyramids of Giza. Religious center for 3,000 years.',
+    tags: ['ancient', 'egypt', 'capital', 'pyramids'],
+  },
+  {
+    id: 'thebes-egypt',
+    name: 'Thebes',
+    nativeName: 'Waset',
+    coordinates: { lat: 25.70, lng: 32.65 },
+    founded: -3200,
+    type: 'capital',
+    powerId: 'ancient-egypt',
+    controlHistory: [
+      { powerId: 'ancient-egypt', timeRange: { start: -3200, end: -30 }, method: 'native' },
+    ],
+    population: [
+      { year: -1350, population: 80000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'temple', name: 'Karnak Temple', builtYear: -2055 },
+      { type: 'temple', name: 'Luxor Temple', builtYear: -1400 },
+    ],
+    description: 'Religious capital of New Kingdom Egypt. Valley of the Kings nearby. Homer called it "hundred-gated Thebes."',
+    tags: ['ancient', 'egypt', 'religious-center', 'new-kingdom'],
+  },
+  {
+    id: 'alexandria',
+    name: 'Alexandria',
+    coordinates: { lat: 31.20, lng: 29.92 },
+    founded: -331,
+    type: 'capital',
+    powerId: 'ptolemaic-egypt',
+    controlHistory: [
+      { powerId: 'macedon', timeRange: { start: -331, end: -305 }, method: 'founded' },
+      { powerId: 'ptolemaic-egypt', timeRange: { start: -305, end: -30 }, method: 'inheritance' },
+      { powerId: 'roman-empire', timeRange: { start: -30, end: 641 }, method: 'conquest' },
+      { powerId: 'rashidun-caliphate', timeRange: { start: 641, end: 661 }, method: 'conquest' },
+    ],
+    population: [
+      { year: -100, population: 500000 },
+      { year: 100, population: 400000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'port', name: 'Great Harbor', builtYear: -331 },
+      { type: 'temple', name: 'Library of Alexandria', builtYear: -283 },
+    ],
+    description: 'Founded by Alexander. Greatest center of learning in ancient world. Lighthouse was one of Seven Wonders.',
+    tags: ['ancient', 'hellenistic', 'egypt', 'library', 'wonder'],
+  },
+
+  // ============================================================================
+  // ANCIENT CITIES - Greece & Rome
+  // ============================================================================
+  {
+    id: 'athens',
+    name: 'Athens',
+    nativeName: 'Athēnai',
+    coordinates: { lat: 37.98, lng: 23.73 },
+    founded: -3000,
+    type: 'capital',
+    powerId: 'athens',
+    controlHistory: [
+      { powerId: 'mycenaean', timeRange: { start: -1600, end: -1100 }, method: 'native' },
+      { powerId: 'athens', timeRange: { start: -508, end: -322 }, method: 'native' },
+      { powerId: 'macedon', timeRange: { start: -322, end: -146 }, method: 'conquest' },
+      { powerId: 'roman-republic', timeRange: { start: -146, end: -27 }, method: 'conquest' },
+      { powerId: 'roman-empire', timeRange: { start: -27, end: 395 }, method: 'inheritance' },
+      { powerId: 'eastern-roman-empire', timeRange: { start: 395, end: 1458 }, method: 'inheritance' },
+      { powerId: 'ottoman-empire', timeRange: { start: 1458, end: 1833 }, method: 'conquest' },
+    ],
+    population: [
+      { year: -430, population: 300000 },
+      { year: 100, population: 100000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'temple', name: 'Parthenon', builtYear: -447 },
+      { type: 'market', name: 'Agora', builtYear: -600 },
+      { type: 'university', name: 'Academy of Plato', builtYear: -387 },
+    ],
+    description: 'Birthplace of democracy, philosophy, theater, and Western civilization. The "School of Hellas."',
+    tags: ['ancient', 'greece', 'democracy', 'philosophy', 'classical'],
+  },
+  {
+    id: 'rome',
+    name: 'Rome',
+    nativeName: 'Roma',
+    coordinates: { lat: 41.90, lng: 12.50 },
+    founded: -753,
+    type: 'capital',
+    powerId: 'roman-empire',
+    controlHistory: [
+      { powerId: 'roman-kingdom', timeRange: { start: -753, end: -509 }, method: 'founded' },
+      { powerId: 'roman-republic', timeRange: { start: -509, end: -27 }, method: 'native' },
+      { powerId: 'roman-empire', timeRange: { start: -27, end: 476 }, method: 'native' },
+      { powerId: 'ostrogothic-kingdom', timeRange: { start: 476, end: 553 }, method: 'conquest' },
+      { powerId: 'eastern-roman-empire', timeRange: { start: 553, end: 751 }, method: 'conquest' },
+      { powerId: 'papal-states', timeRange: { start: 756, end: 1870 }, method: 'conquest' },
+      { powerId: 'kingdom-italy', timeRange: { start: 1870, end: 1946 }, method: 'conquest' },
+    ],
+    population: [
+      { year: -100, population: 500000 },
+      { year: 100, population: 1000000 },
+      { year: 400, population: 800000 },
+      { year: 600, population: 30000 },
+      { year: 1500, population: 50000 },
+      { year: 1900, population: 500000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'temple', name: 'Pantheon', builtYear: -27 },
+      { type: 'fortress', name: 'Colosseum', builtYear: 80 },
+      { type: 'wall', name: 'Aurelian Walls', builtYear: 275 },
+    ],
+    description: 'Eternal City. Capital of Roman Republic and Empire. Center of Christianity. First city to reach 1 million.',
+    tags: ['ancient', 'rome', 'capital', 'empire', 'christianity'],
+  },
+  {
+    id: 'constantinople',
+    name: 'Constantinople',
+    historicalNames: [
+      { name: 'Byzantium', timeRange: { start: -667, end: 330 } },
+      { name: 'Constantinople', timeRange: { start: 330, end: 1930 } },
+      { name: 'Istanbul', timeRange: { start: 1930, end: null } },
+    ],
+    coordinates: { lat: 41.01, lng: 28.98 },
+    founded: -667,
+    type: 'capital',
+    powerId: 'eastern-roman-empire',
+    controlHistory: [
+      { powerId: 'greek-city-states', timeRange: { start: -667, end: -146 }, method: 'founded' },
+      { powerId: 'roman-republic', timeRange: { start: -146, end: -27 }, method: 'conquest' },
+      { powerId: 'roman-empire', timeRange: { start: -27, end: 330 }, method: 'inheritance' },
+      { powerId: 'eastern-roman-empire', timeRange: { start: 330, end: 1204 }, method: 'native' },
+      { powerId: 'latin-empire', timeRange: { start: 1204, end: 1261 }, method: 'conquest' },
+      { powerId: 'eastern-roman-empire', timeRange: { start: 1261, end: 1453 }, method: 'conquest' },
+      { powerId: 'ottoman-empire', timeRange: { start: 1453, end: 1922 }, method: 'conquest' },
+      { powerId: 'turkey-republic', timeRange: { start: 1922, end: null }, method: 'native' },
+    ],
+    population: [
+      { year: 500, population: 500000 },
+      { year: 1000, population: 400000 },
+      { year: 1500, population: 200000 },
+      { year: 1900, population: 900000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'temple', name: 'Hagia Sophia', builtYear: 537 },
+      { type: 'wall', name: 'Theodosian Walls', builtYear: 413 },
+      { type: 'palace', name: 'Topkapi Palace', builtYear: 1465 },
+    ],
+    description: 'Capital of Byzantine and Ottoman Empires. Strategic position between Europe and Asia. Holy city for Orthodox Christianity.',
+    tags: ['ancient', 'medieval', 'byzantine', 'ottoman', 'strategic'],
+  },
+
+  // ============================================================================
+  // ANCIENT CITIES - Asia
+  // ============================================================================
+  {
+    id: 'changan',
+    name: 'Chang\'an',
+    historicalNames: [
+      { name: 'Chang\'an', timeRange: { start: -202, end: 904 } },
+      { name: 'Xi\'an', timeRange: { start: 1369, end: null } },
+    ],
+    coordinates: { lat: 34.27, lng: 108.90 },
+    founded: -202,
+    type: 'capital',
+    powerId: 'han-dynasty',
+    controlHistory: [
+      { powerId: 'han-dynasty', timeRange: { start: -202, end: 220 }, method: 'founded' },
+      { powerId: 'sui-dynasty', timeRange: { start: 581, end: 618 }, method: 'conquest' },
+      { powerId: 'tang-dynasty', timeRange: { start: 618, end: 907 }, method: 'native' },
+    ],
+    population: [
+      { year: -100, population: 250000 },
+      { year: 100, population: 400000 },
+      { year: 750, population: 1000000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'palace', name: 'Weiyang Palace', builtYear: -200 },
+      { type: 'market', name: 'Western Market', builtYear: 618 },
+    ],
+    description: 'Eastern terminus of Silk Road. Capital of 13 Chinese dynasties. World\'s largest city in Tang Dynasty.',
+    tags: ['ancient', 'china', 'silk-road', 'capital', 'han', 'tang'],
+  },
+  {
+    id: 'persepolis',
+    name: 'Persepolis',
+    nativeName: 'Pārsa',
+    coordinates: { lat: 29.94, lng: 52.89 },
+    founded: -518,
+    destroyed: -330,
+    type: 'capital',
+    powerId: 'achaemenid-persia',
+    controlHistory: [
+      { powerId: 'achaemenid-persia', timeRange: { start: -518, end: -330 }, method: 'founded' },
+    ],
+    population: [
+      { year: -480, population: 50000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'palace', name: 'Apadana Palace', builtYear: -515 },
+      { type: 'palace', name: 'Gate of All Nations', builtYear: -470 },
+    ],
+    description: 'Ceremonial capital of Persian Empire. Burned by Alexander. Now UNESCO World Heritage Site.',
+    tags: ['ancient', 'persia', 'achaemenid', 'capital'],
+  },
+
+  // ============================================================================
+  // MEDIEVAL CITIES
+  // ============================================================================
+  {
+    id: 'baghdad',
+    name: 'Baghdad',
+    nativeName: 'Madinat al-Salam',
+    coordinates: { lat: 33.32, lng: 44.37 },
+    founded: 762,
+    type: 'capital',
+    powerId: 'abbasid-caliphate',
+    controlHistory: [
+      { powerId: 'abbasid-caliphate', timeRange: { start: 762, end: 1258 }, method: 'founded' },
+      { powerId: 'ilkhanate', timeRange: { start: 1258, end: 1335 }, method: 'conquest' },
+      { powerId: 'ottoman-empire', timeRange: { start: 1534, end: 1918 }, method: 'conquest' },
+      { powerId: 'british-empire', timeRange: { start: 1918, end: 1932 }, method: 'conquest' },
+      { powerId: 'iraq', timeRange: { start: 1932, end: null }, method: 'independence' },
+    ],
+    population: [
+      { year: 900, population: 1000000 },
+      { year: 1258, population: 1500000 },
+      { year: 1300, population: 100000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'palace', name: 'House of Wisdom', builtYear: 830 },
+      { type: 'market', name: 'Round City', builtYear: 762 },
+    ],
+    description: 'Center of Islamic Golden Age. Largest city in world by 900 CE. Devastated by Mongol siege in 1258.',
+    tags: ['medieval', 'islamic', 'abbasid', 'golden-age', 'mongol-destruction'],
+  },
+  {
+    id: 'venice',
+    name: 'Venice',
+    nativeName: 'Venezia',
+    coordinates: { lat: 45.44, lng: 12.32 },
+    founded: 421,
+    type: 'capital',
+    powerId: 'republic-venice',
+    controlHistory: [
+      { powerId: 'republic-venice', timeRange: { start: 697, end: 1797 }, method: 'native' },
+      { powerId: 'napoleonic-france', timeRange: { start: 1797, end: 1815 }, method: 'conquest' },
+      { powerId: 'habsburg-austria', timeRange: { start: 1815, end: 1866 }, method: 'treaty' },
+      { powerId: 'kingdom-italy', timeRange: { start: 1866, end: 1946 }, method: 'conquest' },
+    ],
+    population: [
+      { year: 1300, population: 110000 },
+      { year: 1500, population: 180000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'palace', name: 'Doge\'s Palace', builtYear: 814 },
+      { type: 'temple', name: 'St. Mark\'s Basilica', builtYear: 832 },
+      { type: 'arsenal', name: 'Venetian Arsenal', builtYear: 1104 },
+    ],
+    description: 'Maritime republic that dominated Mediterranean trade. Built on lagoon islands. Never conquered until Napoleon.',
+    tags: ['medieval', 'italy', 'maritime', 'trade', 'republic'],
+  },
+  {
+    id: 'samarkand',
+    name: 'Samarkand',
+    coordinates: { lat: 39.65, lng: 66.96 },
+    founded: -700,
+    type: 'capital',
+    powerId: 'timurid-empire',
+    controlHistory: [
+      { powerId: 'achaemenid-persia', timeRange: { start: -550, end: -330 }, method: 'conquest' },
+      { powerId: 'macedon', timeRange: { start: -329, end: -312 }, method: 'conquest' },
+      { powerId: 'arab-caliphate', timeRange: { start: 712, end: 999 }, method: 'conquest' },
+      { powerId: 'mongol-empire', timeRange: { start: 1220, end: 1370 }, method: 'conquest' },
+      { powerId: 'timurid-empire', timeRange: { start: 1370, end: 1507 }, method: 'conquest' },
+      { powerId: 'russian-empire', timeRange: { start: 1868, end: 1917 }, method: 'conquest' },
+    ],
+    population: [
+      { year: 1400, population: 150000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'temple', name: 'Registan', builtYear: 1420 },
+      { type: 'palace', name: 'Gur-e-Amir', builtYear: 1404 },
+    ],
+    description: 'Jewel of Silk Road. Timur\'s capital. Major center of Islamic art and architecture.',
+    tags: ['medieval', 'silk-road', 'timurid', 'central-asia'],
+  },
+  {
+    id: 'timbuktu',
+    name: 'Timbuktu',
+    coordinates: { lat: 16.77, lng: -3.01 },
+    founded: 1100,
+    type: 'trade-hub',
+    powerId: 'mali-empire',
+    controlHistory: [
+      { powerId: 'mali-empire', timeRange: { start: 1285, end: 1468 }, method: 'conquest' },
+      { powerId: 'songhai-empire', timeRange: { start: 1468, end: 1591 }, method: 'conquest' },
+    ],
+    population: [
+      { year: 1500, population: 100000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'temple', name: 'Djinguereber Mosque', builtYear: 1327 },
+      { type: 'university', name: 'University of Sankore', builtYear: 989 },
+    ],
+    description: 'Center of trans-Saharan trade and Islamic learning. Mansa Musa\'s golden age. 25,000 students at university.',
+    tags: ['medieval', 'africa', 'mali', 'trade', 'islamic-learning'],
+  },
+
+  // ============================================================================
+  // EARLY MODERN & MODERN CITIES
+  // ============================================================================
+  {
+    id: 'london',
+    name: 'London',
+    nativeName: 'Londinium',
+    coordinates: { lat: 51.51, lng: -0.13 },
+    founded: 43,
+    type: 'capital',
+    powerId: 'united-kingdom',
+    controlHistory: [
+      { powerId: 'roman-empire', timeRange: { start: 43, end: 410 }, method: 'founded' },
+      { powerId: 'anglo-saxon-heptarchy', timeRange: { start: 600, end: 1066 }, method: 'native' },
+      { powerId: 'kingdom-england', timeRange: { start: 1066, end: 1707 }, method: 'conquest' },
+      { powerId: 'british-empire', timeRange: { start: 1707, end: 1949 }, method: 'native' },
+      { powerId: 'united-kingdom', timeRange: { start: 1949, end: null }, method: 'native' },
+    ],
+    population: [
+      { year: 1100, population: 15000 },
+      { year: 1500, population: 50000 },
+      { year: 1700, population: 575000 },
+      { year: 1800, population: 1000000 },
+      { year: 1900, population: 6500000 },
+      { year: 2020, population: 9000000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'fortress', name: 'Tower of London', builtYear: 1078 },
+      { type: 'palace', name: 'Westminster', builtYear: 1045 },
+      { type: 'port', name: 'Port of London', builtYear: 43 },
+    ],
+    description: 'Capital of largest empire in history. World\'s financial center. Largest city in world 1825-1925.',
+    tags: ['modern', 'england', 'empire', 'finance', 'capital'],
+  },
+  {
+    id: 'paris',
+    name: 'Paris',
+    nativeName: 'Lutetia',
+    coordinates: { lat: 48.86, lng: 2.35 },
+    founded: -250,
+    type: 'capital',
+    powerId: 'france',
+    controlHistory: [
+      { powerId: 'gallic-tribes', timeRange: { start: -250, end: -52 }, method: 'founded' },
+      { powerId: 'roman-empire', timeRange: { start: -52, end: 486 }, method: 'conquest' },
+      { powerId: 'frankish-kingdom', timeRange: { start: 486, end: 843 }, method: 'conquest' },
+      { powerId: 'kingdom-france', timeRange: { start: 843, end: 1792 }, method: 'native' },
+      { powerId: 'nazi-germany', timeRange: { start: 1940, end: 1944 }, method: 'conquest' },
+      { powerId: 'france', timeRange: { start: 1944, end: null }, method: 'liberation' },
+    ],
+    population: [
+      { year: 1300, population: 200000 },
+      { year: 1700, population: 500000 },
+      { year: 1900, population: 2700000 },
+      { year: 2020, population: 2100000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'temple', name: 'Notre-Dame', builtYear: 1163 },
+      { type: 'palace', name: 'Louvre', builtYear: 1190 },
+      { type: 'palace', name: 'Versailles', builtYear: 1682 },
+    ],
+    description: 'City of Light. Cultural capital of Europe. Center of Enlightenment and multiple revolutions.',
+    tags: ['modern', 'france', 'culture', 'revolution', 'capital'],
+  },
+  {
+    id: 'new-york',
+    name: 'New York',
+    historicalNames: [
+      { name: 'New Amsterdam', timeRange: { start: 1626, end: 1664 } },
+      { name: 'New York', timeRange: { start: 1664, end: null } },
+    ],
+    coordinates: { lat: 40.71, lng: -74.01 },
+    founded: 1626,
+    type: 'major-city',
+    powerId: 'usa',
+    controlHistory: [
+      { powerId: 'dutch-republic', timeRange: { start: 1626, end: 1664 }, method: 'founded' },
+      { powerId: 'kingdom-england', timeRange: { start: 1664, end: 1783 }, method: 'conquest' },
+      { powerId: 'usa', timeRange: { start: 1783, end: null }, method: 'independence' },
+    ],
+    population: [
+      { year: 1700, population: 5000 },
+      { year: 1800, population: 60000 },
+      { year: 1900, population: 3400000 },
+      { year: 2020, population: 8300000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'port', name: 'Port of New York', builtYear: 1626 },
+      { type: 'market', name: 'Wall Street', builtYear: 1792 },
+    ],
+    description: 'Largest US city. Global financial capital. Ellis Island gateway for immigrants.',
+    tags: ['modern', 'america', 'finance', 'immigration', 'metropolis'],
+  },
+  {
+    id: 'tokyo',
+    name: 'Tokyo',
+    historicalNames: [
+      { name: 'Edo', timeRange: { start: 1457, end: 1868 } },
+      { name: 'Tokyo', timeRange: { start: 1868, end: null } },
+    ],
+    coordinates: { lat: 35.68, lng: 139.76 },
+    founded: 1457,
+    type: 'capital',
+    powerId: 'japan',
+    controlHistory: [
+      { powerId: 'tokugawa-shogunate', timeRange: { start: 1603, end: 1868 }, method: 'native' },
+      { powerId: 'empire-japan', timeRange: { start: 1868, end: 1947 }, method: 'native' },
+      { powerId: 'usa', timeRange: { start: 1945, end: 1952 }, method: 'occupation' },
+      { powerId: 'japan', timeRange: { start: 1952, end: null }, method: 'treaty' },
+    ],
+    population: [
+      { year: 1700, population: 1000000 },
+      { year: 1900, population: 2000000 },
+      { year: 2020, population: 14000000 },
+    ],
+    significance: 'global',
+    features: [
+      { type: 'palace', name: 'Imperial Palace', builtYear: 1457 },
+      { type: 'temple', name: 'Senso-ji', builtYear: 645 },
+    ],
+    description: 'World\'s largest metropolitan area. Largest city on Earth in 1700s as Edo. Economic powerhouse.',
+    tags: ['modern', 'japan', 'capital', 'metropolis', 'economic'],
+  },
+];
+
+export default historicalCities;
+
