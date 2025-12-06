@@ -28,9 +28,11 @@ export interface Power {
 export interface Territory {
   id: string;
   name: string;
-  coordinates: GeoCoordinates[];
+  coordinates: GeoCoordinates[]; // Simple polygon outline
+  geoJson?: any; // Full GeoJSON geometry for complex shapes
   powerId: string;
   timeRange: TimeRange;
+  type?: "core" | "colony" | "vassal" | "occupation"; // Type of control
 }
 
 // Historical figures - politicians, leaders, key players
@@ -149,6 +151,12 @@ export interface FilterState {
   eventTypes: HistoricalEvent["type"][];
   impactLevels: HistoricalEvent["impact"][];
   tags: string[];
+  // Visual aid toggles
+  showElevation: boolean;
+  showEquator: boolean;
+  showTropics: boolean;
+  showPolarCircles: boolean;
+  showGraticules: boolean;
 }
 
 // Data source metadata

@@ -51,6 +51,12 @@ const defaultFilters: FilterState = {
   eventTypes: ['war', 'treaty', 'revolution', 'election', 'assassination', 'discovery', 'founding', 'collapse', 'policy', 'economic', 'disaster'],
   impactLevels: ['minor', 'moderate', 'major', 'transformative'],
   tags: [],
+  // Visual aids
+  showElevation: true,
+  showEquator: true,
+  showTropics: true,
+  showPolarCircles: true,
+  showGraticules: true,
 };
 
 export const useGameStore = create<GameState>((set, get) => ({

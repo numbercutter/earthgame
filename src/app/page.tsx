@@ -39,8 +39,8 @@ export default function Home() {
         {/* Left Sidebar */}
         <aside 
           style={{ 
-            width: filtersOpen ? '280px' : '52px',
-            minWidth: filtersOpen ? '280px' : '52px',
+            width: filtersOpen ? '220px' : '40px',
+            minWidth: filtersOpen ? '220px' : '40px',
             display: 'flex',
             flexDirection: 'column',
             borderRight: '1px solid var(--theme-border-tertiary)',
@@ -51,11 +51,11 @@ export default function Home() {
           {/* Header */}
           <div 
             style={{ 
-              height: '52px',
+              height: '40px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: filtersOpen ? 'space-between' : 'center',
-              padding: '0 12px',
+              padding: '0 10px',
               borderBottom: '1px solid var(--theme-border-tertiary)',
               flexShrink: 0
             }}
@@ -63,13 +63,11 @@ export default function Home() {
             {filtersOpen && (
               <span 
                 style={{ 
-                  fontSize: '12px', 
+                  fontSize: '10px', 
                   fontWeight: 600, 
                   textTransform: 'uppercase', 
-                  letterSpacing: '0.05em',
-                  color: 'var(--theme-text-tertiary)',
-                  opacity: filtersOpen ? 1 : 0,
-                  transition: 'opacity 200ms ease'
+                  letterSpacing: '0.06em',
+                  color: 'var(--theme-text-tertiary)'
                 }}
               >
                 Filters
@@ -78,18 +76,17 @@ export default function Home() {
             <button
               onClick={() => setFiltersOpen(!filtersOpen)}
               style={{ 
-                width: '28px',
-                height: '28px',
+                width: '24px',
+                height: '24px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                borderRadius: '6px',
-                fontSize: '14px',
-                background: 'var(--theme-bg-button)',
-                color: 'var(--theme-text-secondary)',
-                border: '1px solid var(--theme-border-secondary)',
-                cursor: 'pointer',
-                flexShrink: 0
+                borderRadius: '4px',
+                fontSize: '12px',
+                background: 'none',
+                color: 'var(--theme-text-tertiary)',
+                border: 'none',
+                cursor: 'pointer'
               }}
             >
               {filtersOpen ? '‹' : '›'}
@@ -102,8 +99,8 @@ export default function Home() {
               flex: 1,
               overflow: filtersOpen ? 'auto' : 'hidden',
               opacity: filtersOpen ? 1 : 0,
-              transition: 'opacity 200ms ease',
-              padding: filtersOpen ? '16px' : '0'
+              transition: 'opacity 150ms ease',
+              padding: filtersOpen ? '12px' : '0'
             }}
           >
             <FilterPanel />
@@ -124,8 +121,8 @@ export default function Home() {
         {/* Right Sidebar */}
         <aside 
           style={{ 
-            width: detailsOpen ? '340px' : '52px',
-            minWidth: detailsOpen ? '340px' : '52px',
+            width: detailsOpen ? '280px' : '40px',
+            minWidth: detailsOpen ? '280px' : '40px',
             display: 'flex',
             flexDirection: 'column',
             borderLeft: '1px solid var(--theme-border-tertiary)',
@@ -136,12 +133,12 @@ export default function Home() {
           {/* Header */}
           <div 
             style={{ 
-              height: '52px',
+              height: '40px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: detailsOpen ? 'flex-start' : 'center',
-              padding: '0 12px',
-              gap: '10px',
+              padding: '0 10px',
+              gap: '8px',
               borderBottom: '1px solid var(--theme-border-tertiary)',
               flexShrink: 0
             }}
@@ -149,18 +146,17 @@ export default function Home() {
             <button
               onClick={() => setDetailsOpen(!detailsOpen)}
               style={{ 
-                width: '28px',
-                height: '28px',
+                width: '24px',
+                height: '24px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                borderRadius: '6px',
-                fontSize: '14px',
-                background: 'var(--theme-bg-button)',
-                color: 'var(--theme-text-secondary)',
-                border: '1px solid var(--theme-border-secondary)',
-                cursor: 'pointer',
-                flexShrink: 0
+                borderRadius: '4px',
+                fontSize: '12px',
+                background: 'none',
+                color: 'var(--theme-text-tertiary)',
+                border: 'none',
+                cursor: 'pointer'
               }}
             >
               {detailsOpen ? '›' : '‹'}
@@ -168,13 +164,11 @@ export default function Home() {
             {detailsOpen && (
               <span 
                 style={{ 
-                  fontSize: '12px', 
+                  fontSize: '10px', 
                   fontWeight: 600, 
                   textTransform: 'uppercase', 
-                  letterSpacing: '0.05em',
-                  color: 'var(--theme-text-tertiary)',
-                  opacity: detailsOpen ? 1 : 0,
-                  transition: 'opacity 200ms ease'
+                  letterSpacing: '0.06em',
+                  color: 'var(--theme-text-tertiary)'
                 }}
               >
                 Details
@@ -188,8 +182,8 @@ export default function Home() {
               flex: 1,
               overflow: detailsOpen ? 'auto' : 'hidden',
               opacity: detailsOpen ? 1 : 0,
-              transition: 'opacity 200ms ease',
-              padding: detailsOpen ? '16px' : '0'
+              transition: 'opacity 150ms ease',
+              padding: detailsOpen ? '12px' : '0'
             }}
           >
             <InfoPanel />

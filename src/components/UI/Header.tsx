@@ -27,30 +27,28 @@ export default function Header() {
     }
   };
 
-  const formatYear = (year: number) => {
-    if (year < 0) return `${Math.abs(year)} BCE`;
-    return `${year} CE`;
-  };
+  const formatYear = (year: number) => year < 0 ? `${Math.abs(year)} BCE` : `${year} CE`;
 
   return (
     <header 
-      className="h-14 flex items-center justify-between shrink-0 border-b glass-effect relative z-50"
+      className="flex items-center justify-between shrink-0 border-b glass-effect relative z-50"
       style={{ 
+        height: '48px',
         borderColor: 'var(--theme-border-tertiary)',
-        padding: '0 20px'
+        padding: '0 16px'
       }}
     >
-      {/* Logo & Title */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+      {/* Logo */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <div 
           style={{ 
-            width: '32px',
-            height: '32px',
-            borderRadius: '8px',
+            width: '28px',
+            height: '28px',
+            borderRadius: '6px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: '16px',
+            fontSize: '13px',
             fontWeight: 700,
             color: 'var(--theme-accent-primary)',
             background: 'var(--theme-bg-tertiary)'
@@ -59,114 +57,98 @@ export default function Header() {
           E
         </div>
         <div>
-          <h1 style={{ 
-            fontSize: '14px', 
-            fontWeight: 600,
-            color: 'var(--theme-text-primary)',
-            margin: 0
-          }}>
+          <h1 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--theme-text-primary)', margin: 0, lineHeight: 1.2 }}>
             Earth Game
           </h1>
-          <p style={{ 
-            fontSize: '10px', 
-            textTransform: 'uppercase', 
-            letterSpacing: '0.04em',
-            color: 'var(--theme-text-tertiary)',
-            margin: 0
-          }}>
+          <p style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-text-tertiary)', margin: 0 }}>
             Interactive History
           </p>
         </div>
       </div>
 
-      {/* Center Stats Panel */}
+      {/* Center Stats */}
       <div 
         className="absolute left-1/2 -translate-x-1/2"
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '24px',
-          padding: '10px 20px',
-          borderRadius: '10px',
+          gap: '16px',
+          padding: '6px 14px',
+          borderRadius: '6px',
           background: 'var(--theme-bg-card)',
           border: '1px solid var(--theme-border-tertiary)',
           boxShadow: 'var(--theme-shadow-card)'
         }}
       >
         <div style={{ textAlign: 'center' }}>
-          <div style={{ 
-            fontSize: '14px', 
-            fontWeight: 600, 
-            fontVariantNumeric: 'tabular-nums',
-            color: 'var(--theme-text-primary)'
-          }}>
+          <div style={{ fontSize: '12px', fontWeight: 600, fontVariantNumeric: 'tabular-nums', color: 'var(--theme-text-primary)' }}>
             {activePowers.length}
           </div>
-          <div style={{ 
-            fontSize: '10px', 
-            textTransform: 'uppercase', 
-            letterSpacing: '0.04em',
-            color: 'var(--theme-text-tertiary)'
-          }}>
+          <div style={{ fontSize: '8px', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-text-tertiary)' }}>
             Powers
           </div>
         </div>
         
-        <div style={{ width: '1px', height: '32px', background: 'var(--theme-border-tertiary)' }} />
+        <div style={{ width: '1px', height: '24px', background: 'var(--theme-border-tertiary)' }} />
         
-        <div style={{ textAlign: 'center', minWidth: '80px' }}>
-          <div style={{ 
-            fontSize: '16px', 
-            fontWeight: 600, 
-            fontVariantNumeric: 'tabular-nums',
-            color: 'var(--theme-accent-primary)'
-          }}>
+        <div style={{ textAlign: 'center', minWidth: '70px' }}>
+          <div style={{ fontSize: '14px', fontWeight: 600, fontVariantNumeric: 'tabular-nums', color: 'var(--theme-accent-primary)' }}>
             {formatYear(currentYear)}
           </div>
-          <div style={{ 
-            fontSize: '10px', 
-            textTransform: 'uppercase', 
-            letterSpacing: '0.04em',
-            color: 'var(--theme-text-tertiary)'
-          }}>
+          <div style={{ fontSize: '8px', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-text-tertiary)' }}>
             Year
           </div>
         </div>
         
-        <div style={{ width: '1px', height: '32px', background: 'var(--theme-border-tertiary)' }} />
+        <div style={{ width: '1px', height: '24px', background: 'var(--theme-border-tertiary)' }} />
         
         <div style={{ textAlign: 'center' }}>
-          <div style={{ 
-            fontSize: '14px', 
-            fontWeight: 600, 
-            fontVariantNumeric: 'tabular-nums',
-            color: 'var(--theme-text-primary)'
-          }}>
+          <div style={{ fontSize: '12px', fontWeight: 600, fontVariantNumeric: 'tabular-nums', color: 'var(--theme-text-primary)' }}>
             {activeEvents.length}
           </div>
-          <div style={{ 
-            fontSize: '10px', 
-            textTransform: 'uppercase', 
-            letterSpacing: '0.04em',
-            color: 'var(--theme-text-tertiary)'
-          }}>
+          <div style={{ fontSize: '8px', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--theme-text-tertiary)' }}>
             Events
           </div>
         </div>
       </div>
 
-      {/* Right Side */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+      {/* Right */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         <button
           onClick={toggleTheme}
-          className="tactile-button"
+          style={{ 
+            width: '28px', 
+            height: '28px', 
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: '6px',
+            fontSize: '10px',
+            fontWeight: 500,
+            background: 'var(--theme-bg-button)',
+            color: 'var(--theme-text-secondary)',
+            border: '1px solid var(--theme-border-secondary)',
+            cursor: 'pointer'
+          }}
           title={isDark ? 'Light mode' : 'Dark mode'}
-          style={{ width: '32px', height: '32px', padding: 0, fontSize: '11px' }}
         >
           {isDark ? 'L' : 'D'}
         </button>
         
-        <div className="badge accent">Beta</div>
+        <span 
+          style={{ 
+            padding: '3px 6px',
+            borderRadius: '4px',
+            fontSize: '9px',
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.04em',
+            background: 'rgba(6, 182, 212, 0.1)',
+            color: 'var(--theme-accent-primary)'
+          }}
+        >
+          Beta
+        </span>
       </div>
     </header>
   );

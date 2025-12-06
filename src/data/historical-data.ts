@@ -1,7 +1,141 @@
 // Sample historical data - this would grow significantly over time
 // Data should be sourced from multiple perspectives to avoid bias
 
-import { Power, Person, HistoricalEvent, Connection, Policy } from '@/types';
+import { Power, Person, HistoricalEvent, Connection, Policy, Territory } from '@/types';
+
+// Sample historical territories - in a full app, this would be much more detailed
+// These are simplified polygon coordinates for demonstration
+export const territories: Territory[] = [
+  // Roman Empire territories
+  {
+    id: 'roman-italia',
+    name: 'Italia',
+    powerId: 'roman-empire',
+    timeRange: { start: -27, end: 476 },
+    type: 'core',
+    coordinates: [
+      { lat: 46.5, lng: 6.6 }, { lat: 47.0, lng: 13.8 }, { lat: 45.5, lng: 13.7 },
+      { lat: 42.0, lng: 18.5 }, { lat: 38.0, lng: 15.6 }, { lat: 37.5, lng: 12.5 },
+      { lat: 39.0, lng: 8.2 }, { lat: 43.8, lng: 7.5 }, { lat: 46.5, lng: 6.6 },
+    ],
+  },
+  {
+    id: 'roman-gaul',
+    name: 'Gaul',
+    powerId: 'roman-empire',
+    timeRange: { start: -50, end: 476 },
+    type: 'colony',
+    coordinates: [
+      { lat: 51.0, lng: -4.5 }, { lat: 51.0, lng: 8.0 }, { lat: 46.5, lng: 6.6 },
+      { lat: 43.8, lng: 7.5 }, { lat: 42.5, lng: -1.8 }, { lat: 43.3, lng: -8.0 },
+      { lat: 48.0, lng: -4.5 }, { lat: 51.0, lng: -4.5 },
+    ],
+  },
+  {
+    id: 'roman-britannia',
+    name: 'Britannia',
+    powerId: 'roman-empire',
+    timeRange: { start: 43, end: 410 },
+    type: 'colony',
+    coordinates: [
+      { lat: 55.0, lng: -5.5 }, { lat: 55.0, lng: 0.0 }, { lat: 51.0, lng: 1.4 },
+      { lat: 50.0, lng: -5.5 }, { lat: 52.0, lng: -5.5 }, { lat: 55.0, lng: -5.5 },
+    ],
+  },
+  // Mongol Empire territories
+  {
+    id: 'mongol-core',
+    name: 'Mongolia',
+    powerId: 'mongol-empire',
+    timeRange: { start: 1206, end: 1368 },
+    type: 'core',
+    coordinates: [
+      { lat: 52.0, lng: 87.0 }, { lat: 52.0, lng: 120.0 }, { lat: 42.0, lng: 120.0 },
+      { lat: 42.0, lng: 87.0 }, { lat: 52.0, lng: 87.0 },
+    ],
+  },
+  {
+    id: 'mongol-china',
+    name: 'Yuan China',
+    powerId: 'mongol-empire',
+    timeRange: { start: 1271, end: 1368 },
+    type: 'colony',
+    coordinates: [
+      { lat: 42.0, lng: 87.0 }, { lat: 42.0, lng: 120.0 }, { lat: 22.0, lng: 115.0 },
+      { lat: 22.0, lng: 100.0 }, { lat: 35.0, lng: 87.0 }, { lat: 42.0, lng: 87.0 },
+    ],
+  },
+  {
+    id: 'mongol-persia',
+    name: 'Ilkhanate',
+    powerId: 'mongol-empire',
+    timeRange: { start: 1256, end: 1335 },
+    type: 'vassal',
+    coordinates: [
+      { lat: 40.0, lng: 44.0 }, { lat: 40.0, lng: 70.0 }, { lat: 25.0, lng: 65.0 },
+      { lat: 25.0, lng: 44.0 }, { lat: 40.0, lng: 44.0 },
+    ],
+  },
+  // British Empire territories
+  {
+    id: 'british-india',
+    name: 'British India',
+    powerId: 'british-empire',
+    timeRange: { start: 1858, end: 1947 },
+    type: 'colony',
+    coordinates: [
+      { lat: 35.0, lng: 70.0 }, { lat: 35.0, lng: 97.0 }, { lat: 8.0, lng: 97.0 },
+      { lat: 8.0, lng: 68.0 }, { lat: 24.0, lng: 68.0 }, { lat: 35.0, lng: 70.0 },
+    ],
+  },
+  {
+    id: 'british-canada',
+    name: 'Canada',
+    powerId: 'british-empire',
+    timeRange: { start: 1763, end: 1867 },
+    type: 'colony',
+    coordinates: [
+      { lat: 70.0, lng: -141.0 }, { lat: 70.0, lng: -52.0 }, { lat: 42.0, lng: -52.0 },
+      { lat: 42.0, lng: -141.0 }, { lat: 70.0, lng: -141.0 },
+    ],
+  },
+  {
+    id: 'british-australia',
+    name: 'Australia',
+    powerId: 'british-empire',
+    timeRange: { start: 1788, end: 1901 },
+    type: 'colony',
+    coordinates: [
+      { lat: -10.0, lng: 113.0 }, { lat: -10.0, lng: 154.0 }, { lat: -44.0, lng: 154.0 },
+      { lat: -44.0, lng: 113.0 }, { lat: -10.0, lng: 113.0 },
+    ],
+  },
+  // Nazi Germany territories
+  {
+    id: 'nazi-germany-core',
+    name: 'Greater Germany',
+    powerId: 'nazi-germany',
+    timeRange: { start: 1938, end: 1945 },
+    type: 'core',
+    coordinates: [
+      { lat: 55.0, lng: 6.0 }, { lat: 55.0, lng: 15.0 }, { lat: 50.0, lng: 19.0 },
+      { lat: 47.0, lng: 17.0 }, { lat: 47.0, lng: 10.0 }, { lat: 47.5, lng: 6.0 },
+      { lat: 55.0, lng: 6.0 },
+    ],
+  },
+  {
+    id: 'nazi-occupied-france',
+    name: 'Occupied France',
+    powerId: 'nazi-germany',
+    timeRange: { start: 1940, end: 1944 },
+    type: 'occupation',
+    coordinates: [
+      { lat: 51.0, lng: -4.5 }, { lat: 51.0, lng: 8.0 }, { lat: 46.5, lng: 6.6 },
+      { lat: 43.8, lng: 7.5 }, { lat: 42.5, lng: -1.8 }, { lat: 43.3, lng: -8.0 },
+      { lat: 48.0, lng: -4.5 }, { lat: 51.0, lng: -4.5 },
+    ],
+  },
+];
 
 export const powers: Power[] = [
   {
