@@ -9,12 +9,21 @@ export {
   allConnections as connections,
   allPolicies as policies,
   allTerritories as territories,
+  allOrganizations,
+  allConflictZones,
+  allCities,
+  allResources,
+  allTradeRoutes,
   
   // Helper functions
   getWorldStateForYear,
   getEventsInRange,
   getPowersInRange,
   getPeopleAliveInYear,
+  getResourceControllerForYear,
+  getCityControllerForYear,
+  getConflictsForYear,
+  getConflictHeatMapForYear,
   
   // Metadata
   allTags,
@@ -29,4 +38,9 @@ export type {
   Connection,
   Policy,
   Territory,
+  Organization,
+  ConflictZone,
+  City,
+  NaturalResource,
+  TradeRoute,
 } from '@/types';

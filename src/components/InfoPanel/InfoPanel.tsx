@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useGameStore } from '@/store/useGameStore';
-import { powers, people, events, connections } from '@/data/historical-data';
+import { powers, people, events, connections, policies, allOrganizations } from '@/data/historical-data';
 
-type EntityRef = { id: string; type: 'power' | 'person' | 'event'; name: string };
+type EntityRef = { id: string; type: 'power' | 'person' | 'event' | 'policy' | 'organization'; name: string };
 
 export default function InfoPanel() {
   const { selectedEntity, selectEntity, setYear } = useGameStore();
@@ -16,7 +16,20 @@ export default function InfoPanel() {
     if (type === 'power') return powers.find(p => p.id === id)?.name || 'Unknown';
     if (type === 'person') return people.find(p => p.id === id)?.name || 'Unknown';
     if (type === 'event') return events.find(e => e.id === id)?.name || 'Unknown';
+    if (type === 'policy') return policies.find(p => p.id === id)?.name || 'Unknown';
+    if (type === 'organization') return allOrganizations.find(o => o.id === id)?.name || 'Unknown';
     return 'Unknown';
+  };
+
+  const getEntityIcon = (type: string): string => {
+    switch (type) {
+      case 'power': return '🏛';
+      case 'person': return '👤';
+      case 'event': return '⚡';
+      case 'policy': return '📜';
+      case 'organization': return '🏢';
+      default: return '•';
+    }
   };
 
   const getEntityData = () => {
@@ -25,27 +38,40 @@ export default function InfoPanel() {
       case 'power': return { type: 'power' as const, data: powers.find(p => p.id === selectedEntity.id) };
       case 'person': return { type: 'person' as const, data: people.find(p => p.id === selectedEntity.id) };
       case 'event': return { type: 'event' as const, data: events.find(e => e.id === selectedEntity.id) };
+      case 'policy': return { type: 'policy' as const, data: policies.find(p => p.id === selectedEntity.id) };
       default: return null;
     }
   };
 
   const entity = getEntityData();
 
-  const navigateTo = useCallback((ref: { id: string; type: 'power' | 'person' | 'event' }) => {
-    if (selectedEntity && (selectedEntity.type === 'power' || selectedEntity.type === 'person' || selectedEntity.type === 'event')) {
+  const navigateTo = useCallback((ref: { id: string; type: 'power' | 'person' | 'event' | 'policy' | 'organization' }) => {
+    if (selectedEntity && ['power', 'person', 'event', 'policy', 'organization'].includes(selectedEntity.type)) {
       const currentId = selectedEntity.id;
-      const currentType = selectedEntity.type;
+      const currentType = selectedEntity.type as EntityRef['type'];
       const currentName = getEntityName(currentId, currentType);
       setHistory(prev => [...prev, { id: currentId, type: currentType, name: currentName }]);
     }
-    selectEntity(ref);
+    selectEntity(ref as any);
   }, [selectedEntity, selectEntity]);
+
+  const navigateToIndex = useCallback((index: number) => {
+    if (index < 0) {
+      // Go to home/deselect
+      selectEntity(null);
+      setHistory([]);
+    } else if (index < history.length) {
+      const target = history[index];
+      setHistory(h => h.slice(0, index));
+      selectEntity({ id: target.id, type: target.type } as any);
+    }
+  }, [history, selectEntity]);
 
   const navigateBack = useCallback(() => {
     if (history.length > 0) {
       const prev = history[history.length - 1];
       setHistory(h => h.slice(0, -1));
-      selectEntity({ id: prev.id, type: prev.type });
+      selectEntity({ id: prev.id, type: prev.type } as any);
     } else {
       selectEntity(null);
     }
@@ -54,6 +80,103 @@ export default function InfoPanel() {
   useEffect(() => {
     if (!selectedEntity) setHistory([]);
   }, [selectedEntity]);
+
+  // Breadcrumb Component
+  const Breadcrumbs = () => {
+    if (history.length === 0 && !selectedEntity) return null;
+    
+    const currentName = selectedEntity ? getEntityName(selectedEntity.id, selectedEntity.type) : '';
+    const currentType = selectedEntity?.type || '';
+    
+    return (
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '4px',
+        marginBottom: '12px',
+        padding: '8px 10px',
+        background: 'var(--theme-bg-tertiary)',
+        borderRadius: '6px',
+        fontSize: '10px',
+        flexWrap: 'wrap',
+        lineHeight: 1.6,
+      }}>
+        {/* Home */}
+        <button
+          onClick={() => navigateToIndex(-1)}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: 'var(--theme-accent-primary)',
+            cursor: 'pointer',
+            padding: '2px 4px',
+            borderRadius: '3px',
+            fontSize: '10px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '3px',
+          }}
+          title="Back to start"
+        >
+          🏠
+        </button>
+        
+        {/* History items */}
+        {history.map((item, index) => (
+          <span key={`${item.id}-${index}`} style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <span style={{ color: 'var(--theme-text-tertiary)' }}>›</span>
+            <button
+              onClick={() => navigateToIndex(index)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--theme-accent-primary)',
+                cursor: 'pointer',
+                padding: '2px 4px',
+                borderRadius: '3px',
+                fontSize: '10px',
+                maxWidth: '80px',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '3px',
+              }}
+              title={item.name}
+            >
+              <span>{getEntityIcon(item.type)}</span>
+              <span>{item.name.length > 12 ? item.name.slice(0, 12) + '…' : item.name}</span>
+            </button>
+          </span>
+        ))}
+        
+        {/* Current item */}
+        {selectedEntity && (
+          <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <span style={{ color: 'var(--theme-text-tertiary)' }}>›</span>
+            <span style={{
+              color: 'var(--theme-text-primary)',
+              fontWeight: 600,
+              padding: '2px 4px',
+              background: 'var(--theme-bg-secondary)',
+              borderRadius: '3px',
+              maxWidth: '100px',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '3px',
+            }} title={currentName}>
+              <span>{getEntityIcon(currentType)}</span>
+              <span>{currentName.length > 15 ? currentName.slice(0, 15) + '…' : currentName}</span>
+            </span>
+          </span>
+        )}
+      </div>
+    );
+  };
 
   const getRelatedEntities = () => {
     if (!selectedEntity) return { relatedPowers: [], relatedPeople: [], relatedEvents: [] };
@@ -103,12 +226,8 @@ export default function InfoPanel() {
     const data = entity.data;
     return (
       <div>
-        {/* Back button */}
-        {(history.length > 0 || selectedEntity) && (
-          <button onClick={navigateBack} className="reset-btn" style={{ marginBottom: '12px', padding: '6px 10px' }}>
-            ← Back
-          </button>
-        )}
+        {/* Breadcrumb navigation */}
+        <Breadcrumbs />
 
         {/* Header */}
         <div className="entity-header">
@@ -203,11 +322,8 @@ export default function InfoPanel() {
     
     return (
       <div>
-        {(history.length > 0 || selectedEntity) && (
-          <button onClick={navigateBack} className="reset-btn" style={{ marginBottom: '12px', padding: '6px 10px' }}>
-            ← Back
-          </button>
-        )}
+        {/* Breadcrumb navigation */}
+        <Breadcrumbs />
 
         <div className="entity-header">
           <div style={{ 
@@ -294,11 +410,8 @@ export default function InfoPanel() {
     
     return (
       <div>
-        {(history.length > 0 || selectedEntity) && (
-          <button onClick={navigateBack} className="reset-btn" style={{ marginBottom: '12px', padding: '6px 10px' }}>
-            ← Back
-          </button>
-        )}
+        {/* Breadcrumb navigation */}
+        <Breadcrumbs />
 
         <div style={{ paddingBottom: '12px', marginBottom: '12px', borderBottom: '1px solid var(--theme-border-tertiary)' }}>
           <span className="entity-badge">{data.type}</span>
@@ -365,6 +478,173 @@ export default function InfoPanel() {
 
         <button onClick={() => setYear(data.date)} className="action-btn">
           Jump to {formatYear(data.date)}
+        </button>
+      </div>
+    );
+  }
+
+  // Policy View
+  if (entity.type === 'policy' && entity.data) {
+    const data = entity.data;
+    const sponsorPeople = data.sponsors.map(id => people.find(p => p.id === id)).filter(Boolean);
+    const policyPower = powers.find(p => p.id === data.powerId);
+    
+    return (
+      <div>
+        {/* Breadcrumb navigation */}
+        <Breadcrumbs />
+
+        <div style={{ paddingBottom: '12px', marginBottom: '12px', borderBottom: '1px solid var(--theme-border-tertiary)' }}>
+          <span className="entity-badge">{data.type}</span>
+          <h2 className="entity-title">{data.name}</h2>
+          {data.officialName && (
+            <div style={{ fontSize: '10px', color: 'var(--theme-text-tertiary)', marginTop: '4px' }}>
+              {data.officialName}
+            </div>
+          )}
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px', flexWrap: 'wrap' }}>
+          <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--theme-accent-primary)' }}>
+            Enacted {formatYear(data.enacted)}
+          </span>
+          {data.repealed && (
+            <span style={{ fontSize: '10px', color: 'var(--theme-text-tertiary)' }}>
+              Repealed {formatYear(data.repealed)}
+            </span>
+          )}
+        </div>
+
+        <p className="entity-desc">{data.description}</p>
+
+        {/* Effects */}
+        {data.effects.length > 0 && (
+          <div className="info-section">
+            <div className="info-section-label">Effects</div>
+            <div className="info-list">
+              {data.effects.map((effect, i) => (
+                <div key={i} style={{ 
+                  padding: '8px', 
+                  background: 'var(--theme-bg-tertiary)', 
+                  borderRadius: '4px', 
+                  marginBottom: '4px',
+                  borderLeft: '2px solid var(--theme-accent-primary)'
+                }}>
+                  <span className="entity-badge" style={{ marginBottom: '4px' }}>{effect.category}</span>
+                  <div style={{ fontSize: '11px', color: 'var(--theme-text-primary)' }}>{effect.description}</div>
+                  <div style={{ fontSize: '9px', color: 'var(--theme-text-tertiary)', marginTop: '4px' }}>
+                    Intent: {effect.intendedBenefit}
+                  </div>
+                  {effect.unintendedConsequences && effect.unintendedConsequences.length > 0 && (
+                    <div style={{ fontSize: '9px', color: '#f87171', marginTop: '2px' }}>
+                      ⚠ {effect.unintendedConsequences.join(', ')}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Sponsors */}
+        {sponsorPeople.length > 0 && (
+          <div className="info-section">
+            <div className="info-section-label">Sponsors</div>
+            <div className="info-list">
+              {sponsorPeople.map(person => person && (
+                <button key={person.id} onClick={() => navigateTo({ id: person.id, type: 'person' })} className="info-list-item">
+                  <span className="name">{person.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Lobbyists */}
+        {data.lobbyists && data.lobbyists.length > 0 && (
+          <div className="info-section">
+            <div className="info-section-label">Lobbying</div>
+            <div className="info-list">
+              {data.lobbyists.slice(0, 5).map((lobby, i) => (
+                <div key={i} style={{ 
+                  padding: '8px', 
+                  background: lobby.position === 'support' ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)', 
+                  borderRadius: '4px', 
+                  marginBottom: '4px',
+                  borderLeft: `2px solid ${lobby.position === 'support' ? '#22c55e' : '#ef4444'}`
+                }}>
+                  <div style={{ fontSize: '10px', color: 'var(--theme-text-primary)', fontWeight: 500 }}>
+                    {lobby.lobbyistId}
+                  </div>
+                  <div style={{ fontSize: '9px', color: 'var(--theme-text-tertiary)' }}>
+                    ${(lobby.amount / 1000000).toFixed(1)}M • {lobby.position}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Votes */}
+        {data.votes && (
+          <div style={{ 
+            display: 'flex', 
+            gap: '8px', 
+            marginBottom: '12px',
+            padding: '10px',
+            background: 'var(--theme-bg-tertiary)',
+            borderRadius: '6px'
+          }}>
+            <div style={{ flex: 1, textAlign: 'center' }}>
+              <div style={{ fontSize: '16px', fontWeight: 600, color: '#22c55e' }}>{data.votes.yeas}</div>
+              <div style={{ fontSize: '9px', color: 'var(--theme-text-tertiary)' }}>Yea</div>
+            </div>
+            <div style={{ flex: 1, textAlign: 'center' }}>
+              <div style={{ fontSize: '16px', fontWeight: 600, color: '#ef4444' }}>{data.votes.nays}</div>
+              <div style={{ fontSize: '9px', color: 'var(--theme-text-tertiary)' }}>Nay</div>
+            </div>
+            <div style={{ flex: 1, textAlign: 'center' }}>
+              <div style={{ fontSize: '16px', fontWeight: 600, color: 'var(--theme-text-tertiary)' }}>{data.votes.abstentions}</div>
+              <div style={{ fontSize: '9px', color: 'var(--theme-text-tertiary)' }}>Abstain</div>
+            </div>
+          </div>
+        )}
+
+        {/* Funding */}
+        {data.funding && (
+          <div style={{ 
+            padding: '8px 12px', 
+            borderRadius: '4px', 
+            marginBottom: '12px',
+            background: 'rgba(168, 85, 247, 0.08)', 
+            border: '1px solid rgba(168, 85, 247, 0.12)'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontSize: '10px', color: 'var(--theme-text-tertiary)' }}>Cost</span>
+              <span style={{ fontSize: '13px', fontWeight: 600, color: '#a855f7' }}>
+                ${(data.funding.initialCost / 1000000000).toFixed(1)}B
+              </span>
+            </div>
+          </div>
+        )}
+
+        <div className="tag-list">
+          {data.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
+        </div>
+
+        {/* Associated Power */}
+        {policyPower && (
+          <div className="info-section">
+            <div className="info-section-label">Enacted By</div>
+            <button onClick={() => navigateTo({ id: policyPower.id, type: 'power' })} className="info-list-item">
+              <div className="dot" style={{ backgroundColor: policyPower.color }} />
+              <span className="name">{policyPower.name}</span>
+            </button>
+          </div>
+        )}
+
+        <button onClick={() => setYear(data.enacted)} className="action-btn">
+          Jump to {formatYear(data.enacted)}
         </button>
       </div>
     );
