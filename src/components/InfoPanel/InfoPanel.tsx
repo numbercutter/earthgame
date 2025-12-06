@@ -32,9 +32,11 @@ export default function InfoPanel() {
   const entity = getEntityData();
 
   const navigateTo = useCallback((ref: { id: string; type: 'power' | 'person' | 'event' }) => {
-    if (selectedEntity) {
-      const currentName = getEntityName(selectedEntity.id, selectedEntity.type);
-      setHistory(prev => [...prev, { ...selectedEntity, name: currentName }]);
+    if (selectedEntity && (selectedEntity.type === 'power' || selectedEntity.type === 'person' || selectedEntity.type === 'event')) {
+      const currentId = selectedEntity.id;
+      const currentType = selectedEntity.type;
+      const currentName = getEntityName(currentId, currentType);
+      setHistory(prev => [...prev, { id: currentId, type: currentType, name: currentName }]);
     }
     selectEntity(ref);
   }, [selectedEntity, selectEntity]);
