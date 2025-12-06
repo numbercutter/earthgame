@@ -600,5 +600,457 @@ export const modernPeople: Person[] = [
     description: 'Emperor during Japan\'s rapid modernization and rise to power.',
     tags: ['emperor', 'japan', 'meiji-restoration'],
   },
+
+  // MORE SCIENTISTS
+  {
+    id: 'louis-pasteur',
+    name: 'Louis Pasteur',
+    birth: 1822,
+    death: 1895,
+    birthPlace: { lat: 47.08, lng: 5.48 }, // Dole
+    roles: [],
+    affiliations: ['french-third-republic'],
+    description: 'Father of microbiology, developed pasteurization and vaccines.',
+    tags: ['scientist', 'medicine', 'microbiology', 'vaccines'],
+  },
+  {
+    id: 'michael-faraday',
+    name: 'Michael Faraday',
+    birth: 1791,
+    death: 1867,
+    birthPlace: { lat: 51.5, lng: -0.1 },
+    roles: [],
+    affiliations: ['british-empire'],
+    description: 'Discovered electromagnetic induction, built first electric motor.',
+    tags: ['scientist', 'physicist', 'electricity', 'magnetism'],
+  },
+  {
+    id: 'james-clerk-maxwell',
+    name: 'James Clerk Maxwell',
+    birth: 1831,
+    death: 1879,
+    birthPlace: { lat: 55.95, lng: -3.19 }, // Edinburgh
+    roles: [],
+    affiliations: ['british-empire'],
+    description: 'Unified electricity, magnetism, and light in electromagnetic theory.',
+    tags: ['scientist', 'physicist', 'electromagnetism'],
+  },
+  {
+    id: 'max-planck',
+    name: 'Max Planck',
+    birth: 1858,
+    death: 1947,
+    birthPlace: { lat: 54.35, lng: 10.13 }, // Kiel
+    roles: [],
+    affiliations: ['german-empire'],
+    description: 'Father of quantum theory, revolutionized understanding of energy.',
+    tags: ['scientist', 'physicist', 'quantum'],
+  },
+  {
+    id: 'niels-bohr',
+    name: 'Niels Bohr',
+    birth: 1885,
+    death: 1962,
+    birthPlace: { lat: 55.68, lng: 12.57 }, // Copenhagen
+    roles: [],
+    affiliations: [],
+    description: 'Developed atomic model, key figure in quantum mechanics.',
+    tags: ['scientist', 'physicist', 'atomic', 'quantum'],
+  },
+  {
+    id: 'sigmund-freud',
+    name: 'Sigmund Freud',
+    birth: 1856,
+    death: 1939,
+    birthPlace: { lat: 49.78, lng: 18.17 }, // Freiberg
+    roles: [],
+    affiliations: ['austria-hungary'],
+    description: 'Father of psychoanalysis, transformed understanding of the human mind.',
+    tags: ['scientist', 'psychologist', 'psychoanalysis'],
+  },
+  {
+    id: 'nikola-tesla',
+    name: 'Nikola Tesla',
+    birth: 1856,
+    death: 1943,
+    birthPlace: { lat: 44.57, lng: 15.37 }, // Smiljan
+    roles: [],
+    affiliations: ['usa'],
+    description: 'Inventor of AC electrical system, visionary engineer.',
+    tags: ['inventor', 'engineer', 'electricity', 'ac-current'],
+  },
+  {
+    id: 'guglielmo-marconi',
+    name: 'Guglielmo Marconi',
+    birth: 1874,
+    death: 1937,
+    birthPlace: { lat: 44.49, lng: 11.34 }, // Bologna
+    roles: [],
+    affiliations: ['kingdom-italy'],
+    description: 'Invented radio communication, Nobel Prize winner.',
+    tags: ['inventor', 'radio', 'communication'],
+  },
+  {
+    id: 'alexander-graham-bell',
+    name: 'Alexander Graham Bell',
+    birth: 1847,
+    death: 1922,
+    birthPlace: { lat: 55.95, lng: -3.19 }, // Edinburgh
+    roles: [],
+    affiliations: ['usa', 'british-empire'],
+    description: 'Invented the telephone, revolutionized communication.',
+    tags: ['inventor', 'telephone', 'communication'],
+  },
+  {
+    id: 'wright-brothers-wilbur',
+    name: 'Wilbur Wright',
+    birth: 1867,
+    death: 1912,
+    birthPlace: { lat: 40.19, lng: -76.75 }, // Millville
+    roles: [],
+    affiliations: ['usa'],
+    description: 'With brother Orville, achieved first powered flight.',
+    tags: ['inventor', 'aviation', 'flight'],
+  },
+
+  // INDUSTRIALISTS & ENTREPRENEURS
+  {
+    id: 'john-rockefeller',
+    name: 'John D. Rockefeller',
+    birth: 1839,
+    death: 1937,
+    birthPlace: { lat: 42.09, lng: -79.24 }, // Richford
+    roles: [],
+    affiliations: ['usa'],
+    description: 'Founded Standard Oil, richest American ever, major philanthropist.',
+    tags: ['industrialist', 'oil', 'wealth', 'philanthropy'],
+  },
+  {
+    id: 'andrew-carnegie',
+    name: 'Andrew Carnegie',
+    birth: 1835,
+    death: 1919,
+    birthPlace: { lat: 56.07, lng: -3.47 }, // Dunfermline
+    roles: [],
+    affiliations: ['usa'],
+    description: 'Steel magnate, philanthropist who funded libraries worldwide.',
+    tags: ['industrialist', 'steel', 'philanthropy'],
+  },
+  {
+    id: 'j-p-morgan',
+    name: 'J.P. Morgan',
+    birth: 1837,
+    death: 1913,
+    birthPlace: { lat: 41.31, lng: -72.93 }, // Hartford
+    roles: [],
+    affiliations: ['usa'],
+    description: 'Banker who dominated American finance, bailed out US government.',
+    tags: ['banker', 'finance', 'wall-street'],
+  },
+  {
+    id: 'henry-ford',
+    name: 'Henry Ford',
+    birth: 1863,
+    death: 1947,
+    birthPlace: { lat: 42.31, lng: -83.24 }, // Dearborn
+    roles: [],
+    affiliations: ['usa'],
+    description: 'Pioneered assembly line production, made automobiles affordable.',
+    tags: ['industrialist', 'automobile', 'assembly-line'],
+  },
+  {
+    id: 'alfred-krupp',
+    name: 'Alfred Krupp',
+    birth: 1812,
+    death: 1887,
+    birthPlace: { lat: 51.45, lng: 7.01 }, // Essen
+    roles: [],
+    affiliations: ['german-empire'],
+    description: 'German steel magnate, "Cannon King" who armed European militaries.',
+    tags: ['industrialist', 'steel', 'arms'],
+  },
+
+  // WRITERS & ARTISTS
+  {
+    id: 'charles-dickens',
+    name: 'Charles Dickens',
+    birth: 1812,
+    death: 1870,
+    birthPlace: { lat: 50.8, lng: -1.09 }, // Portsmouth
+    roles: [],
+    affiliations: ['british-empire'],
+    description: 'Greatest Victorian novelist, social critic, wrote Oliver Twist.',
+    tags: ['writer', 'novelist', 'victorian'],
+  },
+  {
+    id: 'leo-tolstoy',
+    name: 'Leo Tolstoy',
+    birth: 1828,
+    death: 1910,
+    birthPlace: { lat: 54.08, lng: 37.52 }, // Yasnaya Polyana
+    roles: [],
+    affiliations: ['russian-empire'],
+    description: 'Russian novelist, wrote War and Peace and Anna Karenina.',
+    tags: ['writer', 'novelist', 'russia'],
+  },
+  {
+    id: 'fyodor-dostoevsky',
+    name: 'Fyodor Dostoevsky',
+    birth: 1821,
+    death: 1881,
+    birthPlace: { lat: 55.76, lng: 37.62 },
+    roles: [],
+    affiliations: ['russian-empire'],
+    description: 'Russian novelist, philosopher, wrote Crime and Punishment.',
+    tags: ['writer', 'novelist', 'russia', 'philosophy'],
+  },
+  {
+    id: 'mark-twain',
+    name: 'Mark Twain',
+    birth: 1835,
+    death: 1910,
+    birthPlace: { lat: 39.72, lng: -91.36 }, // Florida, MO
+    roles: [],
+    affiliations: ['usa'],
+    description: 'American humorist, wrote Tom Sawyer and Huckleberry Finn.',
+    tags: ['writer', 'novelist', 'humor', 'america'],
+  },
+  {
+    id: 'victor-hugo',
+    name: 'Victor Hugo',
+    birth: 1802,
+    death: 1885,
+    birthPlace: { lat: 47.32, lng: 5.04 }, // Besançon
+    roles: [],
+    affiliations: ['french-third-republic'],
+    description: 'French romantic author, wrote Les Misérables and Notre-Dame.',
+    tags: ['writer', 'novelist', 'poet', 'france'],
+  },
+  {
+    id: 'oscar-wilde',
+    name: 'Oscar Wilde',
+    birth: 1854,
+    death: 1900,
+    birthPlace: { lat: 53.35, lng: -6.26 }, // Dublin
+    roles: [],
+    affiliations: ['british-empire'],
+    description: 'Irish wit and playwright, wrote The Importance of Being Earnest.',
+    tags: ['writer', 'playwright', 'wit', 'ireland'],
+  },
+  {
+    id: 'franz-kafka',
+    name: 'Franz Kafka',
+    birth: 1883,
+    death: 1924,
+    birthPlace: { lat: 50.09, lng: 14.42 }, // Prague
+    roles: [],
+    affiliations: ['austria-hungary'],
+    description: 'Author of surreal, existentialist fiction including The Metamorphosis.',
+    tags: ['writer', 'novelist', 'existentialist'],
+  },
+  {
+    id: 'claude-monet',
+    name: 'Claude Monet',
+    birth: 1840,
+    death: 1926,
+    birthPlace: { lat: 48.86, lng: 2.35 },
+    roles: [],
+    affiliations: ['french-third-republic'],
+    description: 'Founder of Impressionism, painted Water Lilies series.',
+    tags: ['artist', 'painter', 'impressionism', 'france'],
+  },
+  {
+    id: 'vincent-van-gogh',
+    name: 'Vincent van Gogh',
+    birth: 1853,
+    death: 1890,
+    birthPlace: { lat: 51.59, lng: 5.26 }, // Groot-Zundert
+    roles: [],
+    affiliations: [],
+    description: 'Post-impressionist master, painted Starry Night, suffered mental illness.',
+    tags: ['artist', 'painter', 'post-impressionism', 'dutch'],
+  },
+  {
+    id: 'pablo-picasso',
+    name: 'Pablo Picasso',
+    birth: 1881,
+    death: 1973,
+    birthPlace: { lat: 36.72, lng: -4.42 }, // Málaga
+    roles: [],
+    affiliations: [],
+    description: 'Most influential artist of 20th century, co-founded Cubism.',
+    tags: ['artist', 'painter', 'cubism', 'spain'],
+  },
+  {
+    id: 'richard-wagner',
+    name: 'Richard Wagner',
+    birth: 1813,
+    death: 1883,
+    birthPlace: { lat: 51.34, lng: 12.37 }, // Leipzig
+    roles: [],
+    affiliations: ['german-empire'],
+    description: 'Revolutionary composer, wrote Ring Cycle, influenced modern music.',
+    tags: ['composer', 'opera', 'germany'],
+  },
+  {
+    id: 'pyotr-tchaikovsky',
+    name: 'Pyotr Tchaikovsky',
+    birth: 1840,
+    death: 1893,
+    birthPlace: { lat: 57.17, lng: 48.27 }, // Votkinsk
+    roles: [],
+    affiliations: ['russian-empire'],
+    description: 'Russian composer of Swan Lake, Nutcracker, iconic symphonies.',
+    tags: ['composer', 'romantic', 'russia', 'ballet'],
+  },
+
+  // MORE MILITARY FIGURES
+  {
+    id: 'horatio-nelson',
+    name: 'Horatio Nelson',
+    birth: 1758,
+    death: 1805,
+    birthPlace: { lat: 52.73, lng: 0.67 }, // Burnham Thorpe
+    roles: [],
+    affiliations: ['british-empire'],
+    description: 'British admiral who won Battle of Trafalgar, died in victory.',
+    tags: ['admiral', 'trafalgar', 'naval', 'britain'],
+  },
+  {
+    id: 'erwin-rommel',
+    name: 'Erwin Rommel',
+    birth: 1891,
+    death: 1944,
+    birthPlace: { lat: 48.74, lng: 9.32 }, // Heidenheim
+    roles: [],
+    affiliations: ['nazi-germany'],
+    description: 'Desert Fox, respected German general, forced to commit suicide.',
+    tags: ['general', 'wwii', 'africa', 'germany'],
+  },
+  {
+    id: 'george-patton',
+    name: 'George S. Patton',
+    birth: 1885,
+    death: 1945,
+    birthPlace: { lat: 34.14, lng: -118.15 }, // San Gabriel
+    roles: [],
+    affiliations: ['usa'],
+    description: 'Aggressive American general, led Third Army across Europe.',
+    tags: ['general', 'wwii', 'tanks', 'america'],
+  },
+  {
+    id: 'bernard-montgomery',
+    name: 'Bernard Montgomery',
+    birth: 1887,
+    death: 1976,
+    birthPlace: { lat: 51.49, lng: -0.17 }, // London
+    roles: [],
+    affiliations: ['british-empire'],
+    description: 'British field marshal, won Battle of El Alamein.',
+    tags: ['general', 'wwii', 'el-alamein', 'britain'],
+  },
+  {
+    id: 'douglas-macarthur',
+    name: 'Douglas MacArthur',
+    birth: 1880,
+    death: 1964,
+    birthPlace: { lat: 38.54, lng: -90.50 }, // Little Rock
+    roles: [],
+    affiliations: ['usa'],
+    description: 'American general, Pacific commander in WWII, led Korea.',
+    tags: ['general', 'wwii', 'pacific', 'korea'],
+  },
+  {
+    id: 'isoroku-yamamoto',
+    name: 'Isoroku Yamamoto',
+    birth: 1884,
+    death: 1943,
+    birthPlace: { lat: 37.92, lng: 139.04 }, // Nagaoka
+    roles: [],
+    affiliations: ['empire-japan'],
+    description: 'Japanese admiral who planned Pearl Harbor, killed by US ambush.',
+    tags: ['admiral', 'wwii', 'pearl-harbor', 'japan'],
+  },
+  {
+    id: 'georgy-zhukov',
+    name: 'Georgy Zhukov',
+    birth: 1896,
+    death: 1974,
+    birthPlace: { lat: 55.92, lng: 37.0 }, // Strelkovka
+    roles: [],
+    affiliations: ['ussr'],
+    description: 'Soviet marshal who won Stalingrad, Berlin, greatest WWII general.',
+    tags: ['marshal', 'wwii', 'stalingrad', 'soviet'],
+  },
+
+  // REFORMERS & ACTIVISTS
+  {
+    id: 'frederick-douglass',
+    name: 'Frederick Douglass',
+    birth: 1818,
+    death: 1895,
+    birthPlace: { lat: 38.59, lng: -76.13 }, // Talbot County
+    roles: [],
+    affiliations: ['usa'],
+    description: 'Escaped slave who became leading abolitionist and orator.',
+    tags: ['abolitionist', 'orator', 'slavery', 'civil-rights'],
+  },
+  {
+    id: 'harriet-tubman',
+    name: 'Harriet Tubman',
+    birth: 1822,
+    death: 1913,
+    birthPlace: { lat: 38.59, lng: -76.13 }, // Dorchester County
+    roles: [],
+    affiliations: ['usa'],
+    description: 'Escaped slave who led hundreds to freedom on Underground Railroad.',
+    tags: ['abolitionist', 'underground-railroad', 'slavery', 'hero'],
+  },
+  {
+    id: 'susan-b-anthony',
+    name: 'Susan B. Anthony',
+    birth: 1820,
+    death: 1906,
+    birthPlace: { lat: 42.45, lng: -73.24 }, // Adams, MA
+    roles: [],
+    affiliations: ['usa'],
+    description: 'Leader of women\'s suffrage movement in America.',
+    tags: ['suffragette', 'women-rights', 'voting', 'activist'],
+  },
+  {
+    id: 'emmeline-pankhurst',
+    name: 'Emmeline Pankhurst',
+    birth: 1858,
+    death: 1928,
+    birthPlace: { lat: 53.48, lng: -2.24 }, // Manchester
+    roles: [],
+    affiliations: ['british-empire'],
+    description: 'British suffragette leader, used militant tactics for women\'s vote.',
+    tags: ['suffragette', 'women-rights', 'britain', 'activist'],
+  },
+
+  // PHILOSOPHERS
+  {
+    id: 'friedrich-nietzsche',
+    name: 'Friedrich Nietzsche',
+    birth: 1844,
+    death: 1900,
+    birthPlace: { lat: 51.18, lng: 12.14 }, // Röcken
+    roles: [],
+    affiliations: [],
+    description: 'Philosopher who declared "God is dead," influenced existentialism.',
+    tags: ['philosopher', 'existentialism', 'germany'],
+  },
+  {
+    id: 'john-stuart-mill',
+    name: 'John Stuart Mill',
+    birth: 1806,
+    death: 1873,
+    birthPlace: { lat: 51.51, lng: -0.13 },
+    roles: [],
+    affiliations: ['british-empire'],
+    description: 'Philosopher of liberalism and utilitarianism, advocated women\'s rights.',
+    tags: ['philosopher', 'liberal', 'utilitarianism'],
+  },
 ];
 

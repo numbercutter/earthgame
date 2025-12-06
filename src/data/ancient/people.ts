@@ -1244,4 +1244,874 @@ export const ancientPeople: Person[] = [
       'Theologian and philosopher, one of the most important Church Fathers, wrote "Confessions" and "City of God".',
     tags: ["philosopher", "theologian", "christianity", "church-father"],
   },
+
+  // GREEK DRAMATISTS & ARTISTS
+  {
+    id: "aeschylus",
+    name: "Aeschylus",
+    birth: -525,
+    death: -456,
+    birthPlace: { lat: 38.04, lng: 23.54 }, // Eleusis
+    roles: [],
+    affiliations: ["athens"],
+    description:
+      "Father of tragedy, fought at Marathon, wrote the Oresteia trilogy.",
+    tags: ["playwright", "dramatist", "athens", "tragedy"],
+  },
+  {
+    id: "sophocles",
+    name: "Sophocles",
+    birth: -497,
+    death: -406,
+    birthPlace: { lat: 37.95, lng: 23.7 }, // Colonus
+    roles: [],
+    affiliations: ["athens"],
+    description:
+      "Master tragedian who wrote Oedipus Rex, Antigone, and Electra.",
+    tags: ["playwright", "dramatist", "athens", "tragedy"],
+  },
+  {
+    id: "euripides",
+    name: "Euripides",
+    birth: -480,
+    death: -406,
+    birthPlace: { lat: 37.79, lng: 23.42 }, // Salamis
+    roles: [],
+    affiliations: ["athens"],
+    description:
+      "Innovative tragedian known for complex characters, wrote Medea and The Bacchae.",
+    tags: ["playwright", "dramatist", "athens", "tragedy"],
+  },
+  {
+    id: "aristophanes",
+    name: "Aristophanes",
+    birth: -446,
+    death: -386,
+    birthPlace: { lat: 37.98, lng: 23.73 },
+    roles: [],
+    affiliations: ["athens"],
+    description:
+      "Father of Comedy, satirized Athenian politics and philosophy in plays like The Clouds.",
+    tags: ["playwright", "comedy", "athens", "satire"],
+  },
+  {
+    id: "phidias",
+    name: "Phidias",
+    birth: -480,
+    death: -430,
+    birthPlace: { lat: 37.98, lng: 23.73 },
+    roles: [],
+    affiliations: ["athens"],
+    description:
+      "Greatest ancient Greek sculptor, created the statue of Zeus at Olympia and supervised Parthenon sculptures.",
+    tags: ["sculptor", "artist", "athens", "parthenon"],
+  },
+  {
+    id: "praxiteles",
+    name: "Praxiteles",
+    birth: -395,
+    death: -330,
+    birthPlace: { lat: 37.98, lng: 23.73 },
+    roles: [],
+    affiliations: ["athens"],
+    description:
+      "Revolutionary sculptor known for the Aphrodite of Knidos, first life-size female nude.",
+    tags: ["sculptor", "artist", "athens", "hellenistic"],
+  },
+
+  // MORE GREEK SCIENTISTS & PHILOSOPHERS
+  {
+    id: "thales",
+    name: "Thales of Miletus",
+    birth: -624,
+    death: -546,
+    birthPlace: { lat: 37.53, lng: 27.28 }, // Miletus
+    roles: [],
+    affiliations: [],
+    description:
+      "First Western philosopher, predicted solar eclipse, proposed water as the basic element.",
+    tags: ["philosopher", "scientist", "pre-socratic", "miletus"],
+  },
+  {
+    id: "anaximander",
+    name: "Anaximander",
+    birth: -610,
+    death: -546,
+    birthPlace: { lat: 37.53, lng: 27.28 },
+    roles: [],
+    affiliations: [],
+    description:
+      "Early philosopher who proposed the apeiron (infinite), created first world map.",
+    tags: ["philosopher", "scientist", "pre-socratic", "cartographer"],
+  },
+  {
+    id: "heraclitus",
+    name: "Heraclitus",
+    birth: -535,
+    death: -475,
+    birthPlace: { lat: 37.95, lng: 27.37 }, // Ephesus
+    roles: [],
+    affiliations: [],
+    description:
+      'The "Weeping Philosopher" who taught that everything flows (panta rhei) and fire is the primary element.',
+    tags: ["philosopher", "pre-socratic", "ephesus"],
+  },
+  {
+    id: "parmenides",
+    name: "Parmenides",
+    birth: -515,
+    death: -450,
+    birthPlace: { lat: 40.15, lng: 15.13 }, // Elea
+    roles: [],
+    affiliations: [],
+    description:
+      "Founder of Eleatic school, argued that change is an illusion and Being is one.",
+    tags: ["philosopher", "pre-socratic", "eleatic"],
+  },
+  {
+    id: "zeno-elea",
+    name: "Zeno of Elea",
+    birth: -495,
+    death: -430,
+    birthPlace: { lat: 40.15, lng: 15.13 },
+    roles: [],
+    affiliations: [],
+    description:
+      "Famous for paradoxes like Achilles and the Tortoise, defended Parmenides' philosophy.",
+    tags: ["philosopher", "pre-socratic", "paradoxes"],
+  },
+  {
+    id: "empedocles",
+    name: "Empedocles",
+    birth: -494,
+    death: -434,
+    birthPlace: { lat: 37.31, lng: 13.58 }, // Akragas (Sicily)
+    roles: [],
+    affiliations: [],
+    description:
+      "Proposed four classical elements (earth, water, air, fire), early theory of evolution.",
+    tags: ["philosopher", "scientist", "pre-socratic", "elements"],
+  },
+  {
+    id: "democritus",
+    name: "Democritus",
+    birth: -460,
+    death: -370,
+    birthPlace: { lat: 40.85, lng: 24.87 }, // Abdera
+    roles: [],
+    affiliations: [],
+    description:
+      'The "Laughing Philosopher" who developed atomic theory with Leucippus.',
+    tags: ["philosopher", "scientist", "atomism", "abdera"],
+  },
+  {
+    id: "anaxagoras",
+    name: "Anaxagoras",
+    birth: -500,
+    death: -428,
+    birthPlace: { lat: 38.46, lng: 27.12 }, // Clazomenae
+    roles: [],
+    affiliations: ["athens"],
+    description:
+      "Introduced philosophy to Athens, proposed Nous (Mind) as cosmic principle.",
+    tags: ["philosopher", "pre-socratic", "athens"],
+  },
+  {
+    id: "protagoras",
+    name: "Protagoras",
+    birth: -490,
+    death: -420,
+    birthPlace: { lat: 40.85, lng: 24.87 }, // Abdera
+    roles: [],
+    affiliations: ["athens"],
+    description:
+      'First and greatest Sophist, declared "Man is the measure of all things."',
+    tags: ["philosopher", "sophist", "relativism"],
+  },
+  {
+    id: "diogenes",
+    name: "Diogenes of Sinope",
+    birth: -412,
+    death: -323,
+    birthPlace: { lat: 42.03, lng: 35.15 }, // Sinope
+    roles: [],
+    affiliations: ["athens"],
+    description:
+      "Cynic philosopher who lived in a barrel, searched for an honest man with a lantern.",
+    tags: ["philosopher", "cynic", "athens"],
+  },
+  {
+    id: "epicurus",
+    name: "Epicurus",
+    birth: -341,
+    death: -270,
+    birthPlace: { lat: 37.75, lng: 26.98 }, // Samos
+    roles: [],
+    affiliations: ["athens"],
+    description:
+      "Founded Epicureanism, taught that pleasure (absence of pain) is the highest good.",
+    tags: ["philosopher", "epicurean", "atomism", "pleasure"],
+  },
+  {
+    id: "zeno-citium",
+    name: "Zeno of Citium",
+    birth: -334,
+    death: -262,
+    birthPlace: { lat: 34.88, lng: 33.58 }, // Cyprus
+    roles: [],
+    affiliations: ["athens"],
+    description:
+      "Founder of Stoicism, taught virtue as the highest good and acceptance of fate.",
+    tags: ["philosopher", "stoic", "athens"],
+  },
+  {
+    id: "eratosthenes",
+    name: "Eratosthenes",
+    birth: -276,
+    death: -194,
+    birthPlace: { lat: 32.91, lng: 21.97 }, // Cyrene
+    roles: [],
+    affiliations: ["ptolemaic-egypt"],
+    description:
+      "Calculated Earth's circumference with remarkable accuracy, invented prime number sieve.",
+    tags: ["mathematician", "geographer", "alexandria", "library"],
+  },
+  {
+    id: "aristarchus",
+    name: "Aristarchus of Samos",
+    birth: -310,
+    death: -230,
+    birthPlace: { lat: 37.75, lng: 26.98 },
+    roles: [],
+    affiliations: [],
+    description:
+      "First to propose heliocentric model of the solar system, 1800 years before Copernicus.",
+    tags: ["astronomer", "mathematician", "heliocentric"],
+  },
+  {
+    id: "hipparchus",
+    name: "Hipparchus",
+    birth: -190,
+    death: -120,
+    birthPlace: { lat: 40.73, lng: 29.92 }, // Nicaea
+    roles: [],
+    affiliations: [],
+    description:
+      "Greatest ancient astronomer, discovered precession of equinoxes, created star catalog.",
+    tags: ["astronomer", "mathematician", "trigonometry"],
+  },
+  {
+    id: "ptolemy-astronomer",
+    name: "Claudius Ptolemy",
+    birth: 100,
+    death: 170,
+    birthPlace: { lat: 31.2, lng: 29.92 }, // Alexandria
+    roles: [],
+    affiliations: ["roman-empire"],
+    description:
+      "Author of Almagest, geocentric model dominated astronomy for 1400 years.",
+    tags: ["astronomer", "geographer", "mathematician", "alexandria"],
+  },
+  {
+    id: "galen",
+    name: "Galen",
+    birth: 129,
+    death: 216,
+    birthPlace: { lat: 39.12, lng: 27.18 }, // Pergamon
+    roles: [],
+    affiliations: ["roman-empire"],
+    description:
+      "Most influential physician after Hippocrates, his works dominated medicine for 1500 years.",
+    tags: ["physician", "anatomist", "rome"],
+  },
+  {
+    id: "hero-alexandria",
+    name: "Hero of Alexandria",
+    birth: 10,
+    death: 70,
+    birthPlace: { lat: 31.2, lng: 29.92 },
+    roles: [],
+    affiliations: ["roman-empire"],
+    description:
+      "Inventor who created the first steam engine (aeolipile), vending machine, and automata.",
+    tags: ["inventor", "engineer", "alexandria", "steam"],
+  },
+
+  // MORE ROMAN FIGURES
+  {
+    id: "cato-elder",
+    name: "Cato the Elder",
+    birth: -234,
+    death: -149,
+    birthPlace: { lat: 41.67, lng: 13.07 }, // Tusculum
+    roles: [],
+    affiliations: ["roman-republic"],
+    description:
+      '"Carthago delenda est" - relentlessly advocated for Carthage\'s destruction, wrote on agriculture.',
+    tags: ["senator", "censor", "rome", "carthage"],
+  },
+  {
+    id: "gracchi-tiberius",
+    name: "Tiberius Gracchus",
+    birth: -163,
+    death: -133,
+    birthPlace: { lat: 41.9, lng: 12.5 },
+    roles: [
+      {
+        title: "Tribune",
+        powerId: "roman-republic",
+        timeRange: { start: -133, end: -133 },
+      },
+    ],
+    affiliations: ["roman-republic"],
+    description:
+      "Reformer who proposed land redistribution, killed by senators - beginning of the end for Republic.",
+    tags: ["tribune", "reformer", "rome", "populares"],
+  },
+  {
+    id: "gracchi-gaius",
+    name: "Gaius Gracchus",
+    birth: -154,
+    death: -121,
+    birthPlace: { lat: 41.9, lng: 12.5 },
+    roles: [
+      {
+        title: "Tribune",
+        powerId: "roman-republic",
+        timeRange: { start: -123, end: -121 },
+      },
+    ],
+    affiliations: ["roman-republic"],
+    description:
+      "Continued his brother's reforms, established grain dole, also killed in political violence.",
+    tags: ["tribune", "reformer", "rome", "populares"],
+  },
+  {
+    id: "crassus",
+    name: "Marcus Licinius Crassus",
+    birth: -115,
+    death: -53,
+    birthPlace: { lat: 41.9, lng: 12.5 },
+    roles: [],
+    affiliations: ["roman-republic"],
+    description:
+      "Richest Roman, member of First Triumvirate, defeated Spartacus, died fighting Parthia.",
+    tags: ["triumvirate", "wealth", "rome", "carrhae"],
+  },
+  {
+    id: "brutus",
+    name: "Marcus Junius Brutus",
+    birth: -85,
+    death: -42,
+    birthPlace: { lat: 41.9, lng: 12.5 },
+    roles: [],
+    affiliations: ["roman-republic"],
+    description:
+      'Caesar\'s friend and assassin - "Et tu, Brute?" - committed suicide after Philippi.',
+    tags: ["assassin", "rome", "republic", "caesar"],
+  },
+  {
+    id: "catiline",
+    name: "Catiline",
+    birth: -108,
+    death: -62,
+    birthPlace: { lat: 41.9, lng: 12.5 },
+    roles: [],
+    affiliations: ["roman-republic"],
+    description:
+      "Conspirator whose plot to overthrow the Republic was exposed by Cicero.",
+    tags: ["conspirator", "rome", "cicero"],
+  },
+  {
+    id: "lucretius",
+    name: "Lucretius",
+    birth: -99,
+    death: -55,
+    birthPlace: { lat: 41.9, lng: 12.5 },
+    roles: [],
+    affiliations: ["roman-republic"],
+    description:
+      'Poet-philosopher who wrote "On the Nature of Things" explaining Epicurean physics and atomism.',
+    tags: ["poet", "philosopher", "epicurean", "rome"],
+  },
+  {
+    id: "catullus",
+    name: "Catullus",
+    birth: -84,
+    death: -54,
+    birthPlace: { lat: 45.44, lng: 10.99 }, // Verona
+    roles: [],
+    affiliations: ["roman-republic"],
+    description:
+      "Greatest Roman lyric poet, known for passionate love poems to Lesbia.",
+    tags: ["poet", "literature", "rome", "love-poetry"],
+  },
+  {
+    id: "virgil",
+    name: "Virgil",
+    birth: -70,
+    death: -19,
+    birthPlace: { lat: 45.16, lng: 10.79 }, // Mantua
+    roles: [],
+    affiliations: ["roman-empire"],
+    description:
+      "Greatest Roman poet, wrote the Aeneid founding epic of Rome, and pastoral Eclogues.",
+    tags: ["poet", "epic", "rome", "aeneid"],
+  },
+  {
+    id: "horace",
+    name: "Horace",
+    birth: -65,
+    death: -8,
+    birthPlace: { lat: 40.98, lng: 15.55 }, // Venusia
+    roles: [],
+    affiliations: ["roman-empire"],
+    description:
+      'Leading poet of Augustan age, created "carpe diem" philosophy, wrote Odes and Satires.',
+    tags: ["poet", "satire", "rome", "augustan"],
+  },
+  {
+    id: "ovid",
+    name: "Ovid",
+    birth: -43,
+    death: 17,
+    birthPlace: { lat: 42.09, lng: 13.73 }, // Sulmo
+    roles: [],
+    affiliations: ["roman-empire"],
+    description:
+      "Poet who wrote Metamorphoses, exiled by Augustus for mysterious reasons.",
+    tags: ["poet", "mythology", "rome", "exile"],
+  },
+  {
+    id: "livy",
+    name: "Livy",
+    birth: -59,
+    death: 17,
+    birthPlace: { lat: 45.41, lng: 11.88 }, // Patavium
+    roles: [],
+    affiliations: ["roman-empire"],
+    description:
+      'Historian who wrote "Ab Urbe Condita," massive history of Rome from its founding.',
+    tags: ["historian", "rome", "literature"],
+  },
+  {
+    id: "seneca",
+    name: "Seneca the Younger",
+    birth: -4,
+    death: 65,
+    birthPlace: { lat: 37.88, lng: -4.78 }, // Corduba
+    roles: [],
+    affiliations: ["roman-empire"],
+    description:
+      "Stoic philosopher, tutor to Nero, forced to commit suicide, wrote tragedies and moral essays.",
+    tags: ["philosopher", "stoic", "rome", "tutor"],
+  },
+  {
+    id: "pliny-elder",
+    name: "Pliny the Elder",
+    birth: 23,
+    death: 79,
+    birthPlace: { lat: 45.8, lng: 9.08 }, // Como
+    roles: [],
+    affiliations: ["roman-empire"],
+    description:
+      "Wrote Natural History encyclopedia, died investigating Vesuvius eruption.",
+    tags: ["naturalist", "encyclopedist", "rome", "vesuvius"],
+  },
+  {
+    id: "pliny-younger",
+    name: "Pliny the Younger",
+    birth: 61,
+    death: 113,
+    birthPlace: { lat: 45.8, lng: 9.08 },
+    roles: [],
+    affiliations: ["roman-empire"],
+    description:
+      "Nephew of Pliny the Elder, governor and letter-writer, described Vesuvius eruption and early Christians.",
+    tags: ["writer", "governor", "rome", "letters"],
+  },
+  {
+    id: "tacitus",
+    name: "Tacitus",
+    birth: 56,
+    death: 120,
+    birthPlace: { lat: 43.0, lng: 12.0 }, // Unknown
+    roles: [],
+    affiliations: ["roman-empire"],
+    description:
+      "Greatest Roman historian, wrote Annals and Histories chronicling early Empire.",
+    tags: ["historian", "rome", "literature"],
+  },
+  {
+    id: "epictetus",
+    name: "Epictetus",
+    birth: 50,
+    death: 135,
+    birthPlace: { lat: 40.18, lng: 29.06 }, // Hierapolis
+    roles: [],
+    affiliations: ["roman-empire"],
+    description:
+      "Born a slave, became influential Stoic philosopher, taught Marcus Aurelius through his Discourses.",
+    tags: ["philosopher", "stoic", "slave", "rome"],
+  },
+  {
+    id: "plotinus",
+    name: "Plotinus",
+    birth: 204,
+    death: 270,
+    birthPlace: { lat: 28.1, lng: 30.75 }, // Lycopolis
+    roles: [],
+    affiliations: ["roman-empire"],
+    description:
+      "Founder of Neoplatonism, influenced Christian, Jewish, and Islamic philosophy.",
+    tags: ["philosopher", "neoplatonism", "rome"],
+  },
+
+  // PERSIAN/IRANIAN FIGURES
+  {
+    id: "mani",
+    name: "Mani",
+    birth: 216,
+    death: 274,
+    birthPlace: { lat: 33.1, lng: 44.1 }, // Mesopotamia
+    roles: [],
+    affiliations: ["sassanid-empire"],
+    description:
+      "Prophet who founded Manichaeism, a major world religion that spread from Rome to China.",
+    tags: ["prophet", "founder", "manichaeism", "persia"],
+  },
+  {
+    id: "shapur-i",
+    name: "Shapur I",
+    birth: 215,
+    death: 270,
+    birthPlace: { lat: 29.87, lng: 52.89 },
+    roles: [
+      {
+        title: "Shahanshah",
+        powerId: "sassanid-empire",
+        timeRange: { start: 240, end: 270 },
+      },
+    ],
+    affiliations: ["sassanid-empire"],
+    description:
+      "Captured Roman Emperor Valerian, greatest of early Sassanid kings.",
+    tags: ["emperor", "persia", "sassanid", "military"],
+  },
+  {
+    id: "khosrow-i",
+    name: "Khosrow I (Anushirvan)",
+    birth: 501,
+    death: 579,
+    birthPlace: { lat: 33.09, lng: 44.11 },
+    roles: [
+      {
+        title: "Shahanshah",
+        powerId: "sassanid-empire",
+        timeRange: { start: 531, end: 579 },
+      },
+    ],
+    affiliations: ["sassanid-empire"],
+    description:
+      '"The Just" - greatest Sassanid king, reformed administration, patronized learning.',
+    tags: ["emperor", "persia", "sassanid", "reformer"],
+  },
+
+  // INDIAN FIGURES
+  {
+    id: "panini",
+    name: "Pāṇini",
+    birth: -520,
+    death: -460,
+    birthPlace: { lat: 34.0, lng: 72.0 }, // Gandhara
+    roles: [],
+    affiliations: [],
+    description:
+      "Father of linguistics, wrote Ashtadhyayi grammar of Sanskrit using formal rules.",
+    tags: ["grammarian", "linguist", "india", "sanskrit"],
+  },
+  {
+    id: "aryabhata",
+    name: "Aryabhata",
+    birth: 476,
+    death: 550,
+    birthPlace: { lat: 25.61, lng: 85.14 }, // Kusumapura
+    roles: [],
+    affiliations: ["gupta-empire"],
+    description:
+      "Mathematician-astronomer who calculated pi accurately, proposed Earth's rotation.",
+    tags: ["mathematician", "astronomer", "india", "gupta"],
+  },
+  {
+    id: "kalidasa",
+    name: "Kālidāsa",
+    birth: 350,
+    death: 450,
+    birthPlace: { lat: 23.18, lng: 75.78 }, // Ujjain area
+    roles: [],
+    affiliations: ["gupta-empire"],
+    description:
+      "Greatest Sanskrit poet and playwright, wrote Shakuntala and Meghaduta.",
+    tags: ["poet", "playwright", "india", "gupta", "sanskrit"],
+  },
+  {
+    id: "varahamihira",
+    name: "Varāhamihira",
+    birth: 505,
+    death: 587,
+    birthPlace: { lat: 23.18, lng: 75.78 },
+    roles: [],
+    affiliations: ["gupta-empire"],
+    description:
+      "Polymath astronomer who compiled Pancha-Siddhantika and contributed to astrology.",
+    tags: ["astronomer", "mathematician", "india", "gupta"],
+  },
+
+  // CHINESE FIGURES
+  {
+    id: "mencius",
+    name: "Mencius (Mengzi)",
+    birth: -372,
+    death: -289,
+    birthPlace: { lat: 35.56, lng: 117.01 },
+    roles: [],
+    affiliations: ["zhou-dynasty"],
+    description:
+      "Second Sage of Confucianism, argued humans are innately good.",
+    tags: ["philosopher", "confucian", "china"],
+  },
+  {
+    id: "xunzi",
+    name: "Xunzi",
+    birth: -310,
+    death: -235,
+    birthPlace: { lat: 35.0, lng: 118.0 },
+    roles: [],
+    affiliations: ["zhou-dynasty"],
+    description:
+      "Confucian philosopher who argued humans are innately selfish, taught Legalist founders.",
+    tags: ["philosopher", "confucian", "china"],
+  },
+  {
+    id: "han-feizi",
+    name: "Han Feizi",
+    birth: -280,
+    death: -233,
+    birthPlace: { lat: 34.0, lng: 114.0 },
+    roles: [],
+    affiliations: ["zhou-dynasty"],
+    description:
+      "Founder of Legalism, advocated strict laws and absolute ruler power.",
+    tags: ["philosopher", "legalist", "china"],
+  },
+  {
+    id: "shang-yang",
+    name: "Shang Yang",
+    birth: -390,
+    death: -338,
+    birthPlace: { lat: 34.5, lng: 112.0 },
+    roles: [],
+    affiliations: ["qin-dynasty"],
+    description:
+      "Legalist reformer who transformed Qin into the power that unified China.",
+    tags: ["reformer", "legalist", "qin", "china"],
+  },
+  {
+    id: "sima-qian",
+    name: "Sima Qian",
+    birth: -145,
+    death: -86,
+    birthPlace: { lat: 35.09, lng: 110.08 },
+    roles: [],
+    affiliations: ["han-dynasty"],
+    description:
+      "Father of Chinese historiography, wrote Records of the Grand Historian despite castration.",
+    tags: ["historian", "china", "han"],
+  },
+  {
+    id: "ban-zhao",
+    name: "Ban Zhao",
+    birth: 45,
+    death: 116,
+    birthPlace: { lat: 34.27, lng: 108.9 },
+    roles: [],
+    affiliations: ["han-dynasty"],
+    description:
+      "First known female Chinese historian, completed her brother's history of Han dynasty.",
+    tags: ["historian", "scholar", "female", "han", "china"],
+  },
+  {
+    id: "cai-lun",
+    name: "Cai Lun",
+    birth: 50,
+    death: 121,
+    birthPlace: { lat: 27.42, lng: 112.09 },
+    roles: [],
+    affiliations: ["han-dynasty"],
+    description:
+      "Court official who improved papermaking process, revolutionizing writing.",
+    tags: ["inventor", "paper", "han", "china"],
+  },
+  {
+    id: "zhang-heng",
+    name: "Zhang Heng",
+    birth: 78,
+    death: 139,
+    birthPlace: { lat: 33.0, lng: 112.53 },
+    roles: [],
+    affiliations: ["han-dynasty"],
+    description:
+      "Polymath who invented seismoscope, improved water clock, calculated pi.",
+    tags: ["inventor", "astronomer", "mathematician", "han", "china"],
+  },
+
+  // JEWISH FIGURES
+  {
+    id: "hillel",
+    name: "Hillel the Elder",
+    birth: -110,
+    death: 10,
+    birthPlace: { lat: 32.0, lng: 35.0 }, // Babylon
+    roles: [],
+    affiliations: [],
+    description:
+      "Greatest Jewish sage, founder of the School of Hillel, taught the Golden Rule.",
+    tags: ["rabbi", "sage", "judaism", "ethics"],
+  },
+  {
+    id: "josephus",
+    name: "Flavius Josephus",
+    birth: 37,
+    death: 100,
+    birthPlace: { lat: 31.77, lng: 35.21 },
+    roles: [],
+    affiliations: ["roman-empire"],
+    description:
+      "Jewish historian who chronicled the Jewish War and Antiquities of the Jews.",
+    tags: ["historian", "jewish", "rome"],
+  },
+  {
+    id: "rabbi-akiva",
+    name: "Rabbi Akiva",
+    birth: 50,
+    death: 135,
+    birthPlace: { lat: 32.0, lng: 35.0 },
+    roles: [],
+    affiliations: [],
+    description:
+      "Greatest Talmudic sage, supported Bar Kokhba revolt, martyred by Romans.",
+    tags: ["rabbi", "sage", "judaism", "martyr"],
+  },
+
+  // CARTHAGINIAN
+  {
+    id: "hanno-navigator",
+    name: "Hanno the Navigator",
+    birth: -500,
+    death: -440,
+    birthPlace: { lat: 36.85, lng: 10.32 },
+    roles: [],
+    affiliations: ["carthage"],
+    description:
+      "Carthaginian explorer who sailed down the West African coast, possibly reaching Cameroon.",
+    tags: ["explorer", "navigator", "carthage", "africa"],
+  },
+
+  // CELTIC
+  {
+    id: "vercingetorix",
+    name: "Vercingetorix",
+    birth: -82,
+    death: -46,
+    birthPlace: { lat: 45.78, lng: 3.08 }, // Auvergne
+    roles: [],
+    affiliations: ["celtic-gaul"],
+    description:
+      "Gallic chieftain who united Gaul against Caesar, defeated at Alesia, executed in Rome.",
+    tags: ["chieftain", "gaul", "celtic", "resistance"],
+  },
+  {
+    id: "boudicca",
+    name: "Boudicca",
+    birth: 30,
+    death: 61,
+    birthPlace: { lat: 52.5, lng: 1.0 }, // East Anglia
+    roles: [],
+    affiliations: [],
+    description:
+      "Queen of the Iceni who led a massive revolt against Roman Britain, destroyed Londinium.",
+    tags: ["queen", "warrior", "celtic", "britain", "revolt"],
+  },
+
+  // ARMENIAN
+  {
+    id: "tigranes-great",
+    name: "Tigranes the Great",
+    birth: -140,
+    death: -55,
+    birthPlace: { lat: 40.0, lng: 44.5 },
+    roles: [
+      {
+        title: "King",
+        powerId: "roman-republic",
+        timeRange: { start: -95, end: -55 },
+      },
+    ],
+    affiliations: [],
+    description:
+      "Created Armenian Empire from the Caspian to Mediterranean, briefly king of kings.",
+    tags: ["king", "armenia", "empire"],
+  },
+
+  // NUBIAN
+  {
+    id: "piye",
+    name: "Piye",
+    birth: -770,
+    death: -714,
+    birthPlace: { lat: 18.54, lng: 31.82 },
+    roles: [
+      {
+        title: "Pharaoh",
+        powerId: "kush",
+        timeRange: { start: -744, end: -714 },
+      },
+    ],
+    affiliations: ["kush"],
+    description:
+      "Nubian king who conquered Egypt, founding the Twenty-fifth Dynasty.",
+    tags: ["pharaoh", "nubia", "kush", "egypt"],
+  },
+  {
+    id: "taharqa",
+    name: "Taharqa",
+    birth: -710,
+    death: -664,
+    birthPlace: { lat: 18.54, lng: 31.82 },
+    roles: [
+      {
+        title: "Pharaoh",
+        powerId: "kush",
+        timeRange: { start: -690, end: -664 },
+      },
+    ],
+    affiliations: ["kush"],
+    description:
+      "Greatest of the Nubian pharaohs, builder and warrior, mentioned in Bible.",
+    tags: ["pharaoh", "nubia", "kush", "egypt", "builder"],
+  },
+
+  // HITTITE
+  {
+    id: "suppiluliuma-i",
+    name: "Suppiluliuma I",
+    birth: -1380,
+    death: -1322,
+    birthPlace: { lat: 40.02, lng: 34.61 }, // Hattusa
+    roles: [],
+    affiliations: [],
+    description:
+      "Greatest Hittite king, expanded empire, rival of Egypt, died of plague from prisoners.",
+    tags: ["king", "hittite", "empire", "anatolia"],
+  },
 ];

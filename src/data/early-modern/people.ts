@@ -676,5 +676,502 @@ export const earlyModernPeople: Person[] = [
     description: 'Last Inca emperor, captured and executed by Pizarro despite ransom.',
     tags: ['emperor', 'inca', 'conquest', 'peru'],
   },
+
+  // MORE SCIENTISTS
+  {
+    id: 'johannes-kepler',
+    name: 'Johannes Kepler',
+    birth: 1571,
+    death: 1630,
+    birthPlace: { lat: 48.78, lng: 8.93 }, // Weil der Stadt
+    roles: [],
+    affiliations: ['holy-roman-empire'],
+    description: 'Discovered laws of planetary motion, confirmed heliocentric model.',
+    tags: ['scientist', 'astronomer', 'mathematics', 'planetary-motion'],
+  },
+  {
+    id: 'tycho-brahe',
+    name: 'Tycho Brahe',
+    birth: 1546,
+    death: 1601,
+    birthPlace: { lat: 55.96, lng: 12.79 }, // Scania
+    roles: [],
+    affiliations: ['viking-denmark'],
+    description: 'Greatest observational astronomer before telescopes, employed Kepler.',
+    tags: ['astronomer', 'observation', 'denmark', 'precision'],
+  },
+  {
+    id: 'william-harvey',
+    name: 'William Harvey',
+    birth: 1578,
+    death: 1657,
+    birthPlace: { lat: 51.28, lng: 1.08 }, // Folkestone
+    roles: [],
+    affiliations: ['kingdom-england'],
+    description: 'Discovered circulation of blood through the body.',
+    tags: ['physician', 'anatomy', 'circulation', 'medicine'],
+  },
+  {
+    id: 'robert-boyle',
+    name: 'Robert Boyle',
+    birth: 1627,
+    death: 1691,
+    birthPlace: { lat: 52.27, lng: -7.51 }, // Lismore
+    roles: [],
+    affiliations: ['kingdom-england'],
+    description: 'Father of modern chemistry, established Boyle\'s Law of gases.',
+    tags: ['scientist', 'chemist', 'physics', 'gas-laws'],
+  },
+  {
+    id: 'christiaan-huygens',
+    name: 'Christiaan Huygens',
+    birth: 1629,
+    death: 1695,
+    birthPlace: { lat: 52.08, lng: 4.30 }, // The Hague
+    roles: [],
+    affiliations: ['dutch-republic'],
+    description: 'Discovered Saturn\'s rings and Titan, invented pendulum clock.',
+    tags: ['scientist', 'astronomer', 'physicist', 'inventor'],
+  },
+  {
+    id: 'gottfried-leibniz',
+    name: 'Gottfried Wilhelm Leibniz',
+    birth: 1646,
+    death: 1716,
+    birthPlace: { lat: 51.34, lng: 12.37 }, // Leipzig
+    roles: [],
+    affiliations: ['holy-roman-empire'],
+    description: 'Co-invented calculus, polymath philosopher and mathematician.',
+    tags: ['philosopher', 'mathematician', 'calculus', 'germany'],
+  },
+  {
+    id: 'robert-hooke',
+    name: 'Robert Hooke',
+    birth: 1635,
+    death: 1703,
+    birthPlace: { lat: 50.60, lng: -1.20 }, // Isle of Wight
+    roles: [],
+    affiliations: ['kingdom-england'],
+    description: 'Discovered cells, created Hooke\'s Law, Renaissance man of science.',
+    tags: ['scientist', 'microscopy', 'physics', 'architecture'],
+  },
+  {
+    id: 'antoine-lavoisier',
+    name: 'Antoine Lavoisier',
+    birth: 1743,
+    death: 1794,
+    birthPlace: { lat: 48.86, lng: 2.35 },
+    roles: [],
+    affiliations: ['kingdom-france-early-modern'],
+    description: 'Father of modern chemistry, identified oxygen, guillotined in Revolution.',
+    tags: ['chemist', 'scientist', 'oxygen', 'revolution'],
+  },
+  {
+    id: 'carl-linnaeus',
+    name: 'Carl Linnaeus',
+    birth: 1707,
+    death: 1778,
+    birthPlace: { lat: 56.88, lng: 14.81 }, // Småland
+    roles: [],
+    affiliations: ['viking-sweden'],
+    description: 'Created binomial nomenclature system for naming species.',
+    tags: ['biologist', 'taxonomist', 'sweden', 'classification'],
+  },
+  {
+    id: 'edward-jenner',
+    name: 'Edward Jenner',
+    birth: 1749,
+    death: 1823,
+    birthPlace: { lat: 51.75, lng: -2.22 }, // Berkeley
+    roles: [],
+    affiliations: ['british-empire'],
+    description: 'Invented vaccination using cowpox to prevent smallpox.',
+    tags: ['physician', 'vaccination', 'smallpox', 'medicine'],
+  },
+
+  // MORE PHILOSOPHERS
+  {
+    id: 'baruch-spinoza',
+    name: 'Baruch Spinoza',
+    birth: 1632,
+    death: 1677,
+    birthPlace: { lat: 52.37, lng: 4.90 }, // Amsterdam
+    roles: [],
+    affiliations: ['dutch-republic'],
+    description: 'Rationalist philosopher, laid groundwork for Enlightenment, excommunicated by Jews.',
+    tags: ['philosopher', 'rationalist', 'dutch', 'pantheism'],
+  },
+  {
+    id: 'thomas-hobbes',
+    name: 'Thomas Hobbes',
+    birth: 1588,
+    death: 1679,
+    birthPlace: { lat: 51.43, lng: -2.13 }, // Malmesbury
+    roles: [],
+    affiliations: ['kingdom-england'],
+    description: 'Political philosopher, wrote Leviathan, "nasty, brutish, and short."',
+    tags: ['philosopher', 'political', 'leviathan', 'social-contract'],
+  },
+  {
+    id: 'david-hume',
+    name: 'David Hume',
+    birth: 1711,
+    death: 1776,
+    birthPlace: { lat: 55.95, lng: -3.19 }, // Edinburgh
+    roles: [],
+    affiliations: ['british-empire'],
+    description: 'Empiricist philosopher, skeptic, historian of England.',
+    tags: ['philosopher', 'empiricist', 'skeptic', 'scotland'],
+  },
+  {
+    id: 'montesquieu',
+    name: 'Montesquieu',
+    birth: 1689,
+    death: 1755,
+    birthPlace: { lat: 44.66, lng: -0.39 }, // Bordeaux
+    roles: [],
+    affiliations: ['kingdom-france-early-modern'],
+    description: 'Political philosopher who influenced separation of powers.',
+    tags: ['philosopher', 'political', 'separation-of-powers', 'france'],
+  },
+  {
+    id: 'denis-diderot',
+    name: 'Denis Diderot',
+    birth: 1713,
+    death: 1784,
+    birthPlace: { lat: 47.97, lng: 5.18 }, // Langres
+    roles: [],
+    affiliations: ['kingdom-france-early-modern'],
+    description: 'Editor of the Encyclopédie, central figure of Enlightenment.',
+    tags: ['philosopher', 'writer', 'encyclopedist', 'enlightenment'],
+  },
+  {
+    id: 'edmund-burke',
+    name: 'Edmund Burke',
+    birth: 1729,
+    death: 1797,
+    birthPlace: { lat: 53.35, lng: -6.26 }, // Dublin
+    roles: [],
+    affiliations: ['british-empire'],
+    description: 'Father of conservatism, critic of French Revolution.',
+    tags: ['philosopher', 'conservative', 'political', 'ireland'],
+  },
+
+  // MORE ARTISTS
+  {
+    id: 'raphael',
+    name: 'Raphael',
+    birth: 1483,
+    death: 1520,
+    birthPlace: { lat: 43.72, lng: 12.63 }, // Urbino
+    roles: [],
+    affiliations: ['papal-states'],
+    description: 'Master painter of High Renaissance, painted School of Athens.',
+    tags: ['artist', 'painter', 'renaissance', 'vatican'],
+  },
+  {
+    id: 'titian',
+    name: 'Titian',
+    birth: 1488,
+    death: 1576,
+    birthPlace: { lat: 46.42, lng: 12.25 }, // Pieve di Cadore
+    roles: [],
+    affiliations: ['republic-venice'],
+    description: 'Greatest Venetian painter, master of color and portraits.',
+    tags: ['artist', 'painter', 'renaissance', 'venice'],
+  },
+  {
+    id: 'caravaggio',
+    name: 'Caravaggio',
+    birth: 1571,
+    death: 1610,
+    birthPlace: { lat: 45.48, lng: 9.63 }, // Milan
+    roles: [],
+    affiliations: ['papal-states'],
+    description: 'Revolutionary painter with dramatic chiaroscuro, violent life.',
+    tags: ['artist', 'painter', 'baroque', 'chiaroscuro'],
+  },
+  {
+    id: 'peter-paul-rubens',
+    name: 'Peter Paul Rubens',
+    birth: 1577,
+    death: 1640,
+    birthPlace: { lat: 50.94, lng: 6.96 }, // Siegen
+    roles: [],
+    affiliations: [],
+    description: 'Flemish Baroque master, diplomat, prolific painter.',
+    tags: ['artist', 'painter', 'baroque', 'flanders'],
+  },
+  {
+    id: 'diego-velazquez',
+    name: 'Diego Velázquez',
+    birth: 1599,
+    death: 1660,
+    birthPlace: { lat: 37.39, lng: -5.99 }, // Seville
+    roles: [],
+    affiliations: ['habsburg-spain'],
+    description: 'Court painter to Philip IV, painted Las Meninas.',
+    tags: ['artist', 'painter', 'baroque', 'spain'],
+  },
+  {
+    id: 'johannes-vermeer',
+    name: 'Johannes Vermeer',
+    birth: 1632,
+    death: 1675,
+    birthPlace: { lat: 52.01, lng: 4.36 }, // Delft
+    roles: [],
+    affiliations: ['dutch-republic'],
+    description: 'Dutch master of light and domestic scenes, Girl with a Pearl Earring.',
+    tags: ['artist', 'painter', 'dutch', 'golden-age'],
+  },
+  {
+    id: 'el-greco',
+    name: 'El Greco',
+    birth: 1541,
+    death: 1614,
+    birthPlace: { lat: 35.22, lng: 24.90 }, // Crete
+    roles: [],
+    affiliations: ['habsburg-spain'],
+    description: 'Distinctive painter of elongated figures, worked in Toledo.',
+    tags: ['artist', 'painter', 'mannerist', 'spain'],
+  },
+  {
+    id: 'albrecht-durer',
+    name: 'Albrecht Dürer',
+    birth: 1471,
+    death: 1528,
+    birthPlace: { lat: 49.45, lng: 11.07 }, // Nuremberg
+    roles: [],
+    affiliations: ['holy-roman-empire'],
+    description: 'Northern Renaissance master, greatest German artist, printmaker.',
+    tags: ['artist', 'painter', 'printmaker', 'germany'],
+  },
+
+  // MORE MUSICIANS
+  {
+    id: 'antonio-vivaldi',
+    name: 'Antonio Vivaldi',
+    birth: 1678,
+    death: 1741,
+    birthPlace: { lat: 45.44, lng: 12.32 }, // Venice
+    roles: [],
+    affiliations: ['republic-venice'],
+    description: 'Baroque composer of The Four Seasons, virtuoso violinist.',
+    tags: ['composer', 'baroque', 'violin', 'venice'],
+  },
+  {
+    id: 'george-handel',
+    name: 'George Frideric Handel',
+    birth: 1685,
+    death: 1759,
+    birthPlace: { lat: 51.48, lng: 11.97 }, // Halle
+    roles: [],
+    affiliations: ['kingdom-england'],
+    description: 'German-British composer of Messiah and baroque operas.',
+    tags: ['composer', 'baroque', 'messiah', 'opera'],
+  },
+  {
+    id: 'ludwig-beethoven',
+    name: 'Ludwig van Beethoven',
+    birth: 1770,
+    death: 1827,
+    birthPlace: { lat: 50.73, lng: 7.10 }, // Bonn
+    roles: [],
+    affiliations: ['habsburg-austria'],
+    description: 'Revolutionary composer who bridged Classical and Romantic eras, composed while deaf.',
+    tags: ['composer', 'classical', 'romantic', 'symphonies'],
+  },
+  {
+    id: 'franz-joseph-haydn',
+    name: 'Joseph Haydn',
+    birth: 1732,
+    death: 1809,
+    birthPlace: { lat: 48.06, lng: 16.92 }, // Rohrau
+    roles: [],
+    affiliations: ['habsburg-austria'],
+    description: 'Father of the symphony and string quartet, teacher of Beethoven.',
+    tags: ['composer', 'classical', 'symphony', 'austria'],
+  },
+
+  // WRITERS
+  {
+    id: 'miguel-cervantes',
+    name: 'Miguel de Cervantes',
+    birth: 1547,
+    death: 1616,
+    birthPlace: { lat: 40.48, lng: -3.36 }, // Alcalá de Henares
+    roles: [],
+    affiliations: ['habsburg-spain'],
+    description: 'Author of Don Quixote, considered first modern novel.',
+    tags: ['writer', 'novelist', 'spain', 'don-quixote'],
+  },
+  {
+    id: 'john-milton',
+    name: 'John Milton',
+    birth: 1608,
+    death: 1674,
+    birthPlace: { lat: 51.51, lng: -0.09 },
+    roles: [],
+    affiliations: ['kingdom-england'],
+    description: 'Author of Paradise Lost, defender of liberty and English Commonwealth.',
+    tags: ['poet', 'writer', 'paradise-lost', 'england'],
+  },
+  {
+    id: 'jonathan-swift',
+    name: 'Jonathan Swift',
+    birth: 1667,
+    death: 1745,
+    birthPlace: { lat: 53.34, lng: -6.26 },
+    roles: [],
+    affiliations: ['kingdom-england'],
+    description: 'Satirist who wrote Gulliver\'s Travels and A Modest Proposal.',
+    tags: ['writer', 'satirist', 'ireland', 'gulliver'],
+  },
+  {
+    id: 'johann-wolfgang-goethe',
+    name: 'Johann Wolfgang von Goethe',
+    birth: 1749,
+    death: 1832,
+    birthPlace: { lat: 50.11, lng: 8.68 }, // Frankfurt
+    roles: [],
+    affiliations: ['holy-roman-empire'],
+    description: 'Germany\'s greatest writer, author of Faust, polymath genius.',
+    tags: ['writer', 'poet', 'faust', 'germany'],
+  },
+
+  // MORE RULERS
+  {
+    id: 'francis-i-france',
+    name: 'Francis I of France',
+    birth: 1494,
+    death: 1547,
+    birthPlace: { lat: 45.72, lng: -0.33 }, // Cognac
+    roles: [
+      { title: 'King', powerId: 'kingdom-france', timeRange: { start: 1515, end: 1547 } },
+    ],
+    affiliations: ['kingdom-france'],
+    description: 'Renaissance king, patron of Leonardo da Vinci, rival of Charles V.',
+    tags: ['king', 'france', 'renaissance', 'patron'],
+  },
+  {
+    id: 'mary-queen-scots',
+    name: 'Mary Queen of Scots',
+    birth: 1542,
+    death: 1587,
+    birthPlace: { lat: 55.98, lng: -3.18 }, // Linlithgow
+    roles: [
+      { title: 'Queen', powerId: 'kingdom-scotland', timeRange: { start: 1542, end: 1567 } },
+    ],
+    affiliations: ['kingdom-scotland'],
+    description: 'Catholic queen executed by Elizabeth I, grandmother of future English kings.',
+    tags: ['queen', 'scotland', 'catholic', 'executed'],
+  },
+  {
+    id: 'william-orange',
+    name: 'William III of Orange',
+    birth: 1650,
+    death: 1702,
+    birthPlace: { lat: 52.08, lng: 4.30 },
+    roles: [
+      { title: 'King', powerId: 'kingdom-england', timeRange: { start: 1689, end: 1702 } },
+    ],
+    affiliations: ['dutch-republic', 'kingdom-england'],
+    description: 'Dutch stadtholder who became English king in Glorious Revolution.',
+    tags: ['king', 'dutch', 'england', 'glorious-revolution'],
+  },
+  {
+    id: 'oliver-cromwell',
+    name: 'Oliver Cromwell',
+    birth: 1599,
+    death: 1658,
+    birthPlace: { lat: 52.37, lng: -0.24 }, // Huntingdon
+    roles: [
+      { title: 'Lord Protector', powerId: 'kingdom-england', timeRange: { start: 1653, end: 1658 } },
+    ],
+    affiliations: ['kingdom-england'],
+    description: 'Led Parliamentarians in English Civil War, ruled as Lord Protector.',
+    tags: ['military', 'dictator', 'england', 'civil-war'],
+  },
+  {
+    id: 'maria-theresa',
+    name: 'Maria Theresa',
+    birth: 1717,
+    death: 1780,
+    birthPlace: { lat: 48.21, lng: 16.37 },
+    roles: [
+      { title: 'Empress', powerId: 'habsburg-austria', timeRange: { start: 1740, end: 1780 } },
+    ],
+    affiliations: ['habsburg-austria'],
+    description: 'Only female Habsburg ruler, mother of Marie Antoinette.',
+    tags: ['empress', 'austria', 'habsburg', 'female-ruler'],
+  },
+  {
+    id: 'simon-bolivar',
+    name: 'Simón Bolívar',
+    birth: 1783,
+    death: 1830,
+    birthPlace: { lat: 10.48, lng: -66.90 }, // Caracas
+    roles: [],
+    affiliations: ['gran-colombia'],
+    description: 'The Liberator who freed much of South America from Spanish rule.',
+    tags: ['revolutionary', 'liberator', 'south-america', 'venezuela'],
+  },
+  {
+    id: 'jose-san-martin',
+    name: 'José de San Martín',
+    birth: 1778,
+    death: 1850,
+    birthPlace: { lat: -27.47, lng: -56.93 }, // Yapeyú
+    roles: [],
+    affiliations: [],
+    description: 'Liberator of Argentina, Chile, and Peru from Spanish rule.',
+    tags: ['revolutionary', 'liberator', 'south-america', 'argentina'],
+  },
+
+  // MORE EXPLORERS
+  {
+    id: 'henry-hudson',
+    name: 'Henry Hudson',
+    birth: 1565,
+    death: 1611,
+    birthPlace: { lat: 51.51, lng: -0.13 },
+    roles: [],
+    affiliations: ['kingdom-england', 'dutch-republic'],
+    description: 'Explorer of North America, Hudson River and Hudson Bay named after him.',
+    tags: ['explorer', 'north-america', 'hudson', 'arctic'],
+  },
+  {
+    id: 'abel-tasman',
+    name: 'Abel Tasman',
+    birth: 1603,
+    death: 1659,
+    birthPlace: { lat: 53.05, lng: 5.42 }, // Friesland
+    roles: [],
+    affiliations: ['dutch-republic'],
+    description: 'Dutch explorer who reached Tasmania and New Zealand.',
+    tags: ['explorer', 'pacific', 'australia', 'dutch'],
+  },
+  {
+    id: 'vitus-bering',
+    name: 'Vitus Bering',
+    birth: 1681,
+    death: 1741,
+    birthPlace: { lat: 55.47, lng: 8.45 }, // Horsens
+    roles: [],
+    affiliations: ['russian-empire'],
+    description: 'Danish explorer in Russian service, discovered Bering Strait.',
+    tags: ['explorer', 'arctic', 'russia', 'bering-strait'],
+  },
+  {
+    id: 'la-perouse',
+    name: 'Jean-François de La Pérouse',
+    birth: 1741,
+    death: 1788,
+    birthPlace: { lat: 43.61, lng: 1.43 }, // Albi
+    roles: [],
+    affiliations: ['kingdom-france-early-modern'],
+    description: 'French explorer of the Pacific, expedition disappeared mysteriously.',
+    tags: ['explorer', 'pacific', 'france', 'mystery'],
+  },
 ];
 

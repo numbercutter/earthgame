@@ -395,6 +395,259 @@ export const contemporaryPeople: Person[] = [
     description: 'First female British PM, conservative who transformed UK economy.',
     tags: ['prime-minister', 'conservative', 'reform'],
   },
+
+  // TECH PIONEERS
+  {
+    id: 'steve-jobs',
+    name: 'Steve Jobs',
+    birth: 1955,
+    death: 2011,
+    birthPlace: { lat: 37.33, lng: -122.03 }, // San Francisco
+    roles: [],
+    affiliations: ['usa'],
+    description: 'Co-founder of Apple, revolutionized personal computing and smartphones.',
+    tags: ['entrepreneur', 'technology', 'apple', 'innovation'],
+  },
+  {
+    id: 'bill-gates',
+    name: 'Bill Gates',
+    birth: 1955,
+    death: null,
+    birthPlace: { lat: 47.61, lng: -122.33 }, // Seattle
+    roles: [],
+    affiliations: ['usa'],
+    description: 'Co-founder of Microsoft, became world\'s richest person, major philanthropist.',
+    tags: ['entrepreneur', 'technology', 'microsoft', 'philanthropy'],
+  },
+  {
+    id: 'tim-berners-lee',
+    name: 'Tim Berners-Lee',
+    birth: 1955,
+    death: null,
+    birthPlace: { lat: 51.51, lng: -0.13 },
+    roles: [],
+    affiliations: ['united-kingdom'],
+    description: 'Invented the World Wide Web, transformed global communication.',
+    tags: ['inventor', 'technology', 'internet', 'www'],
+  },
+  {
+    id: 'elon-musk',
+    name: 'Elon Musk',
+    birth: 1971,
+    death: null,
+    birthPlace: { lat: -25.75, lng: 28.19 }, // Pretoria
+    roles: [],
+    affiliations: ['usa'],
+    description: 'Founder of SpaceX and Tesla, aims to make humanity multi-planetary.',
+    tags: ['entrepreneur', 'technology', 'space', 'electric-vehicles'],
+  },
+
+  // MORE WORLD LEADERS
+  {
+    id: 'angela-merkel',
+    name: 'Angela Merkel',
+    birth: 1954,
+    death: null,
+    birthPlace: { lat: 53.55, lng: 10.0 }, // Hamburg
+    roles: [
+      { title: 'Chancellor', powerId: 'germany-reunified', timeRange: { start: 2005, end: 2021 } },
+    ],
+    affiliations: ['germany-reunified', 'european-union'],
+    description: 'First female German Chancellor, led Europe through multiple crises.',
+    tags: ['chancellor', 'germany', 'eu', 'leader'],
+  },
+  {
+    id: 'vladimir-putin',
+    name: 'Vladimir Putin',
+    birth: 1952,
+    death: null,
+    birthPlace: { lat: 59.93, lng: 30.36 }, // Leningrad
+    roles: [
+      { title: 'President', powerId: 'russian-federation', timeRange: { start: 2000, end: null } },
+    ],
+    affiliations: ['russian-federation'],
+    description: 'Russian leader who restored central authority, invaded Ukraine in 2022.',
+    tags: ['president', 'russia', 'authoritarian'],
+  },
+  {
+    id: 'xi-jinping',
+    name: 'Xi Jinping',
+    birth: 1953,
+    death: null,
+    birthPlace: { lat: 39.9, lng: 116.4 }, // Beijing
+    roles: [
+      { title: 'General Secretary', powerId: 'prc', timeRange: { start: 2012, end: null } },
+    ],
+    affiliations: ['prc'],
+    description: 'Most powerful Chinese leader since Mao, assertive foreign policy.',
+    tags: ['leader', 'china', 'communist'],
+  },
+  {
+    id: 'barack-obama',
+    name: 'Barack Obama',
+    birth: 1961,
+    death: null,
+    birthPlace: { lat: 21.31, lng: -157.86 }, // Honolulu
+    roles: [
+      { title: '44th President', powerId: 'usa', timeRange: { start: 2009, end: 2017 } },
+    ],
+    affiliations: ['usa'],
+    description: 'First African American US President, passed Affordable Care Act.',
+    tags: ['president', 'america', 'historic'],
+  },
+  {
+    id: 'pope-john-paul-ii',
+    name: 'Pope John Paul II',
+    birth: 1920,
+    death: 2005,
+    birthPlace: { lat: 49.97, lng: 19.84 }, // Wadowice
+    roles: [
+      { title: 'Pope', powerId: 'papal-states', timeRange: { start: 1978, end: 2005 } },
+    ],
+    affiliations: ['papal-states'],
+    description: 'Polish pope who helped end communism in Eastern Europe.',
+    tags: ['pope', 'catholic', 'poland', 'communism'],
+  },
+  {
+    id: 'dalai-lama-14',
+    name: 'Dalai Lama (14th)',
+    birth: 1935,
+    death: null,
+    birthPlace: { lat: 36.52, lng: 103.38 }, // Taktser
+    roles: [],
+    affiliations: [],
+    description: 'Tibetan spiritual leader in exile, advocate for nonviolence.',
+    tags: ['spiritual', 'buddhist', 'tibet', 'nonviolence'],
+  },
+  {
+    id: 'kofi-annan',
+    name: 'Kofi Annan',
+    birth: 1938,
+    death: 2018,
+    birthPlace: { lat: 5.55, lng: -0.19 }, // Kumasi
+    roles: [
+      { title: 'Secretary-General', powerId: 'un', timeRange: { start: 1997, end: 2006 } },
+    ],
+    affiliations: ['un'],
+    description: 'First Black African UN Secretary-General, Nobel Peace Prize winner.',
+    tags: ['diplomat', 'un', 'peace', 'africa'],
+  },
+
+  // ACTIVISTS & HUMANITARIANS
+  {
+    id: 'mother-teresa',
+    name: 'Mother Teresa',
+    birth: 1910,
+    death: 1997,
+    birthPlace: { lat: 42.0, lng: 21.43 }, // Skopje
+    roles: [],
+    affiliations: ['papal-states'],
+    description: 'Catholic nun who served the poor in Calcutta, Nobel Peace Prize.',
+    tags: ['humanitarian', 'nun', 'poverty', 'nobel'],
+  },
+  {
+    id: 'malala-yousafzai',
+    name: 'Malala Yousafzai',
+    birth: 1997,
+    death: null,
+    birthPlace: { lat: 34.78, lng: 72.36 }, // Mingora
+    roles: [],
+    affiliations: ['pakistan'],
+    description: 'Youngest Nobel laureate, advocate for girls\' education after surviving Taliban shooting.',
+    tags: ['activist', 'education', 'pakistan', 'nobel'],
+  },
+  {
+    id: 'greta-thunberg',
+    name: 'Greta Thunberg',
+    birth: 2003,
+    death: null,
+    birthPlace: { lat: 59.33, lng: 18.07 }, // Stockholm
+    roles: [],
+    affiliations: [],
+    description: 'Swedish climate activist who sparked global youth movement.',
+    tags: ['activist', 'climate', 'youth', 'environment'],
+  },
+  {
+    id: 'aung-san-suu-kyi',
+    name: 'Aung San Suu Kyi',
+    birth: 1945,
+    death: null,
+    birthPlace: { lat: 16.87, lng: 96.2 }, // Rangoon
+    roles: [],
+    affiliations: [],
+    description: 'Myanmar democracy leader, Nobel laureate, later criticized for Rohingya crisis.',
+    tags: ['activist', 'democracy', 'myanmar', 'nobel'],
+  },
+
+  // SCIENTISTS
+  {
+    id: 'stephen-hawking',
+    name: 'Stephen Hawking',
+    birth: 1942,
+    death: 2018,
+    birthPlace: { lat: 51.75, lng: -1.26 }, // Oxford
+    roles: [],
+    affiliations: ['united-kingdom'],
+    description: 'Physicist who studied black holes despite ALS, popularized cosmology.',
+    tags: ['scientist', 'physicist', 'cosmology', 'als'],
+  },
+  {
+    id: 'richard-feynman',
+    name: 'Richard Feynman',
+    birth: 1918,
+    death: 1988,
+    birthPlace: { lat: 40.71, lng: -74.01 }, // New York
+    roles: [],
+    affiliations: ['usa'],
+    description: 'Physicist who developed quantum electrodynamics, brilliant teacher.',
+    tags: ['scientist', 'physicist', 'quantum', 'teacher'],
+  },
+  {
+    id: 'jane-goodall',
+    name: 'Jane Goodall',
+    birth: 1934,
+    death: null,
+    birthPlace: { lat: 51.51, lng: -0.13 },
+    roles: [],
+    affiliations: ['united-kingdom'],
+    description: 'Primatologist who revolutionized understanding of chimpanzees.',
+    tags: ['scientist', 'primatologist', 'conservation', 'chimpanzees'],
+  },
+
+  // CULTURAL FIGURES
+  {
+    id: 'muhammad-ali',
+    name: 'Muhammad Ali',
+    birth: 1942,
+    death: 2016,
+    birthPlace: { lat: 38.25, lng: -85.76 }, // Louisville
+    roles: [],
+    affiliations: ['usa'],
+    description: 'Greatest boxer, refused Vietnam draft, cultural icon.',
+    tags: ['athlete', 'boxing', 'activist', 'icon'],
+  },
+  {
+    id: 'bob-dylan',
+    name: 'Bob Dylan',
+    birth: 1941,
+    death: null,
+    birthPlace: { lat: 47.93, lng: -92.54 }, // Duluth
+    roles: [],
+    affiliations: ['usa'],
+    description: 'Singer-songwriter who defined protest music, Nobel Prize in Literature.',
+    tags: ['musician', 'songwriter', 'protest', 'nobel'],
+  },
+  {
+    id: 'princess-diana',
+    name: 'Princess Diana',
+    birth: 1961,
+    death: 1997,
+    birthPlace: { lat: 52.5, lng: -0.5 }, // Sandringham
+    roles: [],
+    affiliations: ['united-kingdom'],
+    description: 'People\'s Princess, humanitarian, died in Paris car crash.',
+    tags: ['royalty', 'humanitarian', 'celebrity', 'tragedy'],
+  },
 ];
 
 export const contemporaryEvents: HistoricalEvent[] = [
