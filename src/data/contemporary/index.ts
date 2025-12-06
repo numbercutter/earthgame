@@ -1096,6 +1096,7 @@ export const contemporaryConnections: Connection[] = [
     timeRange: { start: 1947, end: 1991 },
     strength: 0.9,
     description: 'Ideological, political, and military rivalry between superpowers.',
+    verified: true,
   },
   {
     id: 'nato-us-alliance',
@@ -1107,6 +1108,7 @@ export const contemporaryConnections: Connection[] = [
     timeRange: { start: 1949, end: null },
     strength: 1.0,
     description: 'US founding membership and leadership in NATO.',
+    verified: true,
   },
   {
     id: 'warsaw-soviet',
@@ -1118,6 +1120,7 @@ export const contemporaryConnections: Connection[] = [
     timeRange: { start: 1955, end: 1991 },
     strength: 1.0,
     description: 'Soviet leadership of Warsaw Pact.',
+    verified: true,
   },
   {
     id: 'us-israel-alliance',
@@ -1129,6 +1132,7 @@ export const contemporaryConnections: Connection[] = [
     timeRange: { start: 1948, end: null },
     strength: 0.9,
     description: 'US support for Israel.',
+    verified: true,
   },
 ];
 
@@ -1140,7 +1144,10 @@ export const contemporaryPolicies: Policy[] = [
     powerId: 'usa',
     enacted: 1947,
     description: 'US policy to contain spread of communism.',
-    effects: ['Cold War containment policy', 'Aid to Greece and Turkey'],
+    effects: [
+      { category: 'military', description: 'Cold War containment policy', intendedBenefit: 'Prevent spread of communism' },
+      { category: 'economic', description: 'Aid to Greece and Turkey', intendedBenefit: 'Stabilize allied nations' },
+    ],
     sponsors: ['harry-truman'],
     tags: ['cold-war', 'containment'],
   },
@@ -1151,7 +1158,10 @@ export const contemporaryPolicies: Policy[] = [
     powerId: 'usa',
     enacted: 1964,
     description: 'Landmark legislation outlawing discrimination based on race.',
-    effects: ['Outlawed discrimination', 'Desegregation'],
+    effects: [
+      { category: 'civil-rights', description: 'Outlawed discrimination based on race, color, religion, sex, or national origin', intendedBenefit: 'Equal rights for all citizens' },
+      { category: 'social', description: 'Desegregation of public facilities', intendedBenefit: 'End of Jim Crow era' },
+    ],
     sponsors: [],
     tags: ['civil-rights', 'equality'],
   },
@@ -1163,7 +1173,10 @@ export const contemporaryPolicies: Policy[] = [
     enacted: 1948,
     repealed: 1991,
     description: 'System of racial segregation in South Africa.',
-    effects: ['Racial segregation', 'Discrimination'],
+    effects: [
+      { category: 'social', description: 'Racial segregation enforced by law', intendedBenefit: 'White minority rule', unintendedConsequences: ['International sanctions', 'Economic isolation', 'Civil unrest'] },
+      { category: 'civil-rights', description: 'Discrimination in all aspects of life', intendedBenefit: 'Maintain racial hierarchy' },
+    ],
     sponsors: [],
     tags: ['apartheid', 'segregation', 'south-africa'],
   },

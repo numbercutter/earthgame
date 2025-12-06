@@ -77,7 +77,7 @@ export interface City {
 export interface ControlPeriod {
   powerId: string;
   timeRange: TimeRange;
-  method?: 'founded' | 'conquest' | 'treaty' | 'purchase' | 'inheritance';
+  method?: 'founded' | 'conquest' | 'treaty' | 'purchase' | 'inheritance' | 'native' | 'independence' | 'liberation' | 'occupation';
 }
 
 export interface PopulationHistory {
@@ -129,7 +129,7 @@ export type ResourceType =
 export interface ResourceControl {
   controllerId: string; // Power ID
   timeRange: TimeRange;
-  method: 'native' | 'conquest' | 'treaty' | 'purchase' | 'concession' | 'nationalization';
+  method: 'native' | 'conquest' | 'treaty' | 'purchase' | 'concession' | 'nationalization' | 'independence' | 'colonial' | 'trade';
   extractionRate?: 'none' | 'low' | 'medium' | 'high' | 'intensive';
   profitDestination?: string; // Where profits went (Power ID)
 }
@@ -169,7 +169,7 @@ export interface PersonRole {
 
 export interface FundingSource {
   sourceId: string; // Power or Person ID
-  sourceType: 'person' | 'power' | 'pac' | 'corporation' | 'foundation';
+  sourceType: 'person' | 'power' | 'pac' | 'super-pac' | 'corporation' | 'foundation';
   amount?: number; // USD equivalent
   timeRange: TimeRange;
   purpose?: string;
@@ -179,7 +179,7 @@ export interface FundingSource {
 
 export interface Ideology {
   economic: 'far-left' | 'left' | 'center-left' | 'centrist' | 'center-right' | 'right' | 'far-right';
-  social: 'progressive' | 'liberal' | 'moderate' | 'conservative' | 'traditionalist';
+  social: 'progressive' | 'liberal' | 'moderate' | 'conservative' | 'traditionalist' | 'libertarian';
   governance: 'anarchist' | 'libertarian' | 'democratic' | 'authoritarian' | 'totalitarian';
   keyBeliefs: string[];
   influences: string[]; // Person IDs of intellectual influences
@@ -354,7 +354,7 @@ export interface Donation {
 export interface ConflictZone {
   id: string;
   name: string;
-  type: 'war' | 'civil-war' | 'genocide' | 'insurgency' | 'border-conflict' | 'siege' | 'naval-battle' | 'air-campaign';
+  type: 'war' | 'civil-war' | 'genocide' | 'insurgency' | 'border-conflict' | 'siege' | 'naval-battle' | 'air-campaign' | 'conquest';
   coordinates: GeoCoordinates; // Center point
   radius: number; // Affected area in km
   polygon?: GeoCoordinates[]; // Optional precise area
